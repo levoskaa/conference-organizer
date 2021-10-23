@@ -1,4 +1,5 @@
 ﻿using Domain.Entitites.Abstractions;
+using System.Collections.Generic;
 
 namespace Domain.Entitites
 {
@@ -6,5 +7,6 @@ namespace Domain.Entitites
     {
         public string Name { get; set; }
         public TimeFrame TimeFrame { get; set; }
+        public List<ApplicationUserConference> UserConferences { get; set; }
     }
 }

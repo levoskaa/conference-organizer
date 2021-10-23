@@ -6,5 +6,6 @@ namespace Domain.Entitites
     public class ApplicationUser : IdentityUser<int>
     {
         public List<ApplicationUserProfessionalField> UserFields { get; set; }
+        public List<ApplicationUserConference> UserConferences { get; set; }
     }
 }
