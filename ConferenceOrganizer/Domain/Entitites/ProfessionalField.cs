@@ -7,5 +7,6 @@ namespace Domain.Entitites
     {
         public string Name { get; set; }
         public List<ApplicationUserProfessionalField> UserFields { get; set; }
+        public List<Section> SectionsAboutField { get; set; }
     }
 }

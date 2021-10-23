@@ -6,5 +6,7 @@ namespace Domain.Entitites
     {
         public string Presenter { get; set; }
         public string Title { get; set; }
+        public int SectionId { get; set; }
+        public Section Section { get; set; }
     }
 }

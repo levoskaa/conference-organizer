@@ -7,5 +7,6 @@ namespace Domain.Entitites
     {
         public List<ApplicationUserProfessionalField> UserFields { get; set; }
         public List<ApplicationUserConference> UserConferences { get; set; }
+        public List<Section> ModeratedSections { get; set; }
     }
 }

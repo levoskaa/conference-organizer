@@ -8,5 +8,6 @@ namespace Domain.Entitites
         public string Name { get; set; }
         public TimeFrame TimeFrame { get; set; }
         public List<ApplicationUserConference> UserConferences { get; set; }
+        public List<Section> Sections { get; set; }
     }
 }

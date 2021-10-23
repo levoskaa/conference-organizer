@@ -14,6 +14,11 @@ namespace DAL.EntityConfigurations
 
             presentationConfiguration.Property(p => p.Id)
                 .UseHiLo("presentationseq");
+
+            presentationConfiguration.HasOne(p => p.Section)
+                .WithMany(nameof(Section.Presentations))
+                .HasForeignKey(nameof(Presentation.SectionId))
+                .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }
