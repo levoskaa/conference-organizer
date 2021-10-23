@@ -15,6 +15,12 @@ namespace DAL.EntityConfigurations
             sectionConfiguration.Property(s => s.Id)
                 .UseHiLo("sectionseq");
 
+            // TimeFrame value object persisted as owned entity
+            sectionConfiguration.OwnsOne(s => s.TimeFrame)
+                .Property(t => t.BeginDate).HasColumnName("BeginDate");
+            sectionConfiguration.OwnsOne(s => s.TimeFrame)
+                .Property(t => t.EndDate).HasColumnName("EndDate");
+
             sectionConfiguration.HasOne(s => s.Conference)
                 .WithMany(nameof(Conference.Sections))
                 .HasForeignKey(nameof(Section.ConferenceId))
