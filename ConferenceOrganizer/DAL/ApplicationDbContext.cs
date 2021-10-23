@@ -28,6 +28,7 @@ namespace DAL
             modelBuilder.ApplyConfiguration(new ProfessionalFieldEntityTypeConfiguration());
             modelBuilder.ApplyConfiguration(new ApplicationUserProfessionalFieldEntityTypeConfiguration());
             modelBuilder.ApplyConfiguration(new ApplicationUserConferenceEntityTypeConfiguration());
+            modelBuilder.ApplyConfiguration(new ApplicationUserEntityTypeConfiguration());
         }
     }
 }
