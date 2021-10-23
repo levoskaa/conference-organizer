@@ -1,4 +1,4 @@
-﻿namespace Domain.Entitites
+﻿namespace Domain.Entitites.Abstractions
 {
     public abstract class EntityBase
     {
