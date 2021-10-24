@@ -11,6 +11,9 @@ namespace BLL
         {
             CreateMap<EntityBase, EntityCreatedViewModel>();
             CreateMap<ApplicationUser, EntityCreatedViewModel>();
+            CreateMap<Conference, ConferenceViewModel>()
+                .ForMember(cvm => cvm.BeginDate, options => options.MapFrom(c => c.TimeFrame.BeginDate))
+                .ForMember(cvm => cvm.EndDate, options => options.MapFrom(c => c.TimeFrame.EndDate));
         }
     }
 }
