@@ -1,3 +1,5 @@
+@import 'colors';
+
 mat-sidenav{
     margin: 16px;
     width: 200px;
@@ -7,7 +9,7 @@ mat-sidenav{
     text-align: center;
 
     color: white;
-    background: #673AB7;
+    background: $purple-heart;
 }
 
 .content {
