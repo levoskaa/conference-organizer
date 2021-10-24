@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using System;
+using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Claims;
@@ -67,7 +68,7 @@ namespace BLL.Services
                 }
                 return new TokenViewModel
                 {
-                    AccessToken = CreateAccessToken(user)
+                    AccessToken = await CreateAccessTokenAsync(user)
                 };
             }
             catch (Exception)
@@ -89,14 +90,17 @@ namespace BLL.Services
             return user;
         }
 
-        private string CreateAccessToken(ApplicationUser user)
+        private async Task<string> CreateAccessTokenAsync(ApplicationUser user)
         {
-            var claims = new[]
+            var claims = new List<Claim>
             {
                 new Claim(JwtRegisteredClaimNames.Sub, user.Id.ToString()),
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
                 new Claim(ClaimTypes.Name, user.UserName),
             };
+
+            var userRoles = await userManager.GetRolesAsync(user);
+            claims.AddRange(userRoles.Select(role => new Claim(ClaimTypes.Role, role)));
 
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Jwt:SigningKey"]));
             var credentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);

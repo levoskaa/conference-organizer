@@ -21,7 +21,7 @@ namespace Web.Controllers
         }
 
         [HttpPost]
-        [Authorize("Admin")]
+        [Authorize(Roles = "Admin")]
         [ProducesResponseType((int)HttpStatusCode.Created)]
         public Task<EntityCreatedViewModel> CreateUser([FromBody] CreateUserDto createUserDto)
         {
