@@ -1,4 +1,5 @@
 ﻿using DAL.EntityConfigurations;
+using DAL.Extensions;
 using Domain.Entitites;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -29,6 +30,8 @@ namespace DAL
             modelBuilder.ApplyConfiguration(new ApplicationUserProfessionalFieldEntityTypeConfiguration());
             modelBuilder.ApplyConfiguration(new ApplicationUserConferenceEntityTypeConfiguration());
             modelBuilder.ApplyConfiguration(new ApplicationUserEntityTypeConfiguration());
+
+            modelBuilder.Seed();
         }
     }
 }

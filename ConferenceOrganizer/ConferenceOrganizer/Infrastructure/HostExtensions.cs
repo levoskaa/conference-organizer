@@ -7,13 +7,12 @@ using System;
 
 namespace Web.Infrastructure
 {
-    public static class MigrationManager
+    public static class HostExtensions
     {
         public static IHost MigrateDatabase(this IHost host)
         {
             var environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
-            var isDevelopment = environment == Environments.Development;
-            if (!isDevelopment)
+            if (environment != Environments.Development)
             {
                 return host;
             }
