@@ -19,6 +19,7 @@ using Serilog;
 using System;
 using System.IdentityModel.Tokens.Jwt;
 using System.Text;
+using Web.Common;
 using Web.Infrastructure;
 
 namespace ConferenceOrganizer
@@ -115,6 +116,8 @@ namespace ConferenceOrganizer
                 });
 
             services.AddAutoMapper(typeof(AutoMapperProfile));
+
+            services.AddScoped<IIdentityHelper, IdentityHelper>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

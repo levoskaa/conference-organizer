@@ -4,7 +4,7 @@ using System.Security.Claims;
 
 namespace Web.Common
 {
-    public class IdentityHelper
+    public class IdentityHelper : IIdentityHelper
     {
         private readonly IHttpContextAccessor httpContextAccessor;
 
