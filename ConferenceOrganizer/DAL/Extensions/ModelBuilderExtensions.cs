@@ -28,6 +28,12 @@ namespace DAL.Extensions
             user.PasswordHash = passwordHasher.HashPassword(user, "abc123");
             modelBuilder.Entity<ApplicationUser>()
                 .HasData(user);
+            modelBuilder.Entity<IdentityUserRole<int>>()
+                .HasData(new IdentityUserRole<int>
+                {
+                    RoleId = 1,
+                    UserId = 1
+                });
         }
     }
 }
