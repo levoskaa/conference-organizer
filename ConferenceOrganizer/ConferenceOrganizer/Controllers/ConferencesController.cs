@@ -7,11 +7,11 @@ using Web.Common;
 namespace Web.Controllers
 {
     [Route("api/[controller]")]
-    public class ConferenceController : ApiController
+    public class ConferencesController : ApiController
     {
         private readonly IConferenceService conferenceService;
 
-        public ConferenceController(IConferenceService conferenceService)
+        public ConferencesController(IConferenceService conferenceService)
         {
             this.conferenceService = conferenceService;
         }
