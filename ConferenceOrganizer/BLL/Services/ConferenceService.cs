@@ -10,13 +10,16 @@ namespace BLL.Services
     public class ConferenceService : IConferenceService
     {
         private readonly IConferenceRepository conferenceRepository;
+        private readonly IUnitOfWork unitOfWork;
         private readonly IMapper mapper;
 
         public ConferenceService(
             IConferenceRepository conferenceRepository,
+            IUnitOfWork unitOfWork,
             IMapper mapper)
         {
             this.conferenceRepository = conferenceRepository;
+            this.unitOfWork = unitOfWork;
             this.mapper = mapper;
         }
 
@@ -32,6 +35,12 @@ namespace BLL.Services
             var conference = await conferenceRepository.FindConferenceByIdAsync(conferenceId);
             var conferenceViewModel = mapper.Map<ConferenceViewModel>(conference);
             return conferenceViewModel;
+        }
+
+        public async Task DeleteConferenceAsync(int conferenceId)
+        {
+            await conferenceRepository.DeleteConferenceAsync(conferenceId);
+            await unitOfWork.SaveChangesAsync();
         }
     }
 }

@@ -31,5 +31,14 @@ namespace DAL.Repositories
             }
             return conference;
         }
+
+        public async Task DeleteConferenceAsync(int conferenceId)
+        {
+            var conference = await dbContext.Conferences.FindAsync(conferenceId);
+            if (conference != null)
+            {
+                dbContext.Conferences.Remove(conference);
+            }
+        }
     }
 }

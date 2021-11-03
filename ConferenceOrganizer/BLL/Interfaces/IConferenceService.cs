@@ -8,5 +8,7 @@ namespace BLL.Interfaces
         Task<ConferencesViewModel> GetAllConferencesAsync();
 
         Task<ConferenceViewModel> FindConferenceByIdAsync(int conferenceId);
+
+        Task DeleteConferenceAsync(int conferenceId);
     }
 }
