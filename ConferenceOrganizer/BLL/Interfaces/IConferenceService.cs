@@ -6,6 +6,7 @@ namespace BLL.Interfaces
 {
     public interface IConferenceService
     {
-        Task<IEnumerable<ConferenceViewModel>> GetConferencesAsync();
+        Task<IEnumerable<ConferenceViewModel>> GetAllConferencesAsync();
+        Task<ConferenceViewModel> FindConferenceByIdAsync(int conferenceId);
     }
 }

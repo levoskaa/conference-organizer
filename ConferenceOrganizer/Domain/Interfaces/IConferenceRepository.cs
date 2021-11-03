@@ -6,6 +6,7 @@ namespace Domain.Interfaces
 {
     public interface IConferenceRepository
     {
-        Task<IEnumerable<Conference>> GetConferencesAsync();
+        Task<IEnumerable<Conference>> GetAllConferencesAsync();
+        Task<Conference> FindConferenceByIdAsync(int conferenceId);
     }
 }

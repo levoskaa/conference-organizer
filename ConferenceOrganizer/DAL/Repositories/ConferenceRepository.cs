@@ -15,10 +15,15 @@ namespace DAL.Repositories
             this.dbContext = dbContext;
         }
 
-        public async Task<IEnumerable<Conference>> GetConferencesAsync()
+        public async Task<IEnumerable<Conference>> GetAllConferencesAsync()
         {
             var conferences = await dbContext.Conferences.ToListAsync();
             return conferences;
+        }
+
+        public async Task<Conference> FindConferenceByIdAsync(int conferenceId)
+        {
+            return await dbContext.Conferences.FindAsync(conferenceId);
         }
     }
 }
