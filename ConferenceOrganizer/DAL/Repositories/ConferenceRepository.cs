@@ -1,4 +1,5 @@
 ﻿using Domain.Entitites;
+using Domain.Exceptions;
 using Domain.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
@@ -23,7 +24,12 @@ namespace DAL.Repositories
 
         public async Task<Conference> FindConferenceByIdAsync(int conferenceId)
         {
-            return await dbContext.Conferences.FindAsync(conferenceId);
+            var conference = await dbContext.Conferences.FindAsync(conferenceId);
+            if (conference == null)
+            {
+                throw new EntityNotFoundException($"Conference with id {conferenceId} not found.");
+            }
+            return conference;
         }
     }
 }
