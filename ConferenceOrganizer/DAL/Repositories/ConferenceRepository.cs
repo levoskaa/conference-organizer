@@ -16,6 +16,12 @@ namespace DAL.Repositories
             this.dbContext = dbContext;
         }
 
+        public int AddConference(Conference conference)
+        {
+            dbContext.Conferences.Add(conference);
+            return conference.Id;
+        }
+
         public async Task<IEnumerable<Conference>> GetAllConferencesAsync()
         {
             var conferences = await dbContext.Conferences.ToListAsync();
@@ -30,6 +36,11 @@ namespace DAL.Repositories
                 throw new EntityNotFoundException($"Conference with id {conferenceId} not found.");
             }
             return conference;
+        }
+
+        public void UpdateConference(Conference conference)
+        {
+            dbContext.Conferences.Update(conference);
         }
 
         public async Task DeleteConferenceAsync(int conferenceId)

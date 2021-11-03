@@ -4,7 +4,6 @@ using BLL.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using System;
 using System.Threading.Tasks;
 using Web.Common;
 
@@ -21,12 +20,12 @@ namespace Web.Controllers
         }
 
         [HttpPost]
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         [ProducesResponseType(StatusCodes.Status201Created)]
         public Task<EntityCreatedViewModel> CreateConference([FromBody] ConferenceUpsertDto conferenceCreateDto)
         {
             HttpContext.Response.StatusCode = StatusCodes.Status201Created;
-            throw new NotImplementedException();
+            return conferenceService.CreateConferenceAsync(conferenceCreateDto);
         }
 
         [HttpGet]
@@ -43,9 +42,9 @@ namespace Web.Controllers
 
         [HttpPut("{conferenceId}")]
         [Authorize]
-        public Task<ConferenceViewModel> UpdateConference([FromRoute] int conferenceId, [FromBody] ConferenceUpsertDto conferenceUpdateDto)
+        public Task UpdateConference([FromRoute] int conferenceId, [FromBody] ConferenceUpsertDto conferenceUpdateDto)
         {
-            throw new NotImplementedException();
+            return conferenceService.UpdateConferenceAsync(conferenceId, conferenceUpdateDto);
         }
 
         [HttpDelete("{conferenceId}")]

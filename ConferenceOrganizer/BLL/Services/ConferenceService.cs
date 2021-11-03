@@ -1,8 +1,9 @@
 ﻿using AutoMapper;
+using BLL.Dtos;
 using BLL.Interfaces;
 using BLL.ViewModels;
+using Domain.Entitites;
 using Domain.Interfaces;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace BLL.Services
@@ -23,6 +24,14 @@ namespace BLL.Services
             this.mapper = mapper;
         }
 
+        public async Task<EntityCreatedViewModel> CreateConferenceAsync(ConferenceUpsertDto conferenceCreateDto)
+        {
+            var conference = mapper.Map<Conference>(conferenceCreateDto);
+            var id = conferenceRepository.AddConference(conference);
+            await unitOfWork.SaveChangesAsync();
+            return new EntityCreatedViewModel(id);
+        }
+
         public async Task<ConferencesViewModel> GetAllConferencesAsync()
         {
             var conferences = await conferenceRepository.GetAllConferencesAsync();
@@ -35,6 +44,14 @@ namespace BLL.Services
             var conference = await conferenceRepository.FindConferenceByIdAsync(conferenceId);
             var conferenceViewModel = mapper.Map<ConferenceViewModel>(conference);
             return conferenceViewModel;
+        }
+
+        public async Task UpdateConferenceAsync(int conferenceId, ConferenceUpsertDto conferenceUpdateDto)
+        {
+            var conference = mapper.Map<Conference>(conferenceUpdateDto);
+            conference.Id = conferenceId;
+            conferenceRepository.UpdateConference(conference);
+            await unitOfWork.SaveChangesAsync();
         }
 
         public async Task DeleteConferenceAsync(int conferenceId)

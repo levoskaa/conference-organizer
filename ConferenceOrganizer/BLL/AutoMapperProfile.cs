@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using BLL.Dtos;
 using BLL.ViewModels;
 using Domain.Entitites;
 using Domain.Entitites.Abstractions;
@@ -17,6 +18,8 @@ namespace BLL
                 .ForMember(cvm => cvm.EndDate, options => options.MapFrom(c => c.TimeFrame.EndDate));
             CreateMap<IEnumerable<Conference>, ConferencesViewModel>()
                 .ForMember(cvm => cvm.Conferences, options => options.MapFrom(c => c));
+            CreateMap<ConferenceUpsertDto, Conference>()
+                .ForMember(c => c.TimeFrame, options => options.MapFrom(dto => new TimeFrame(dto.BeginDate, dto.EndDate)));
         }
     }
 }
