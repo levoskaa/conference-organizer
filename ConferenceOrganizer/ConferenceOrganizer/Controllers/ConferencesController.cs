@@ -25,6 +25,7 @@ namespace Web.Controllers
         [ProducesResponseType(StatusCodes.Status201Created)]
         public Task<EntityCreatedViewModel> CreateConference([FromBody] ConferenceUpsertDto conferenceCreateDto)
         {
+            HttpContext.Response.StatusCode = StatusCodes.Status201Created;
             throw new NotImplementedException();
         }
 
@@ -52,7 +53,8 @@ namespace Web.Controllers
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         public Task DeleteConference([FromRoute] int conferenceId)
         {
-            throw new NotImplementedException();
+            HttpContext.Response.StatusCode = StatusCodes.Status204NoContent;
+            return conferenceService.DeleteConferenceAsync(conferenceId);
         }
     }
 }
