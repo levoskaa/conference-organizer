@@ -19,6 +19,9 @@ namespace Web.Controllers
             this.conferenceService = conferenceService;
         }
 
+
+        //Conferences
+
         [HttpPost]
         [Authorize(Roles = "Admin")]
         [ProducesResponseType(StatusCodes.Status201Created)]
@@ -48,12 +51,21 @@ namespace Web.Controllers
         }
 
         [HttpDelete("{conferenceId}")]
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         public Task DeleteConference([FromRoute] int conferenceId)
         {
             HttpContext.Response.StatusCode = StatusCodes.Status204NoContent;
             return conferenceService.DeleteConferenceAsync(conferenceId);
+        }
+
+
+        // Sections
+
+        [HttpGet("{conferenceId}/sections")]
+        public Task<SectionsViewModel> GetSections([FromRoute] int conferenceId)
+        {
+            return conferenceService.GetAllConferenceSectionsAsync(conferenceId);
         }
     }
 }

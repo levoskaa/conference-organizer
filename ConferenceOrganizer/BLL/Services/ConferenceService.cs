@@ -59,5 +59,12 @@ namespace BLL.Services
             await conferenceRepository.DeleteConferenceAsync(conferenceId);
             await unitOfWork.SaveChangesAsync();
         }
+
+        public async Task<SectionsViewModel> GetAllConferenceSectionsAsync(int conferenceId)
+        {
+            var conference = await conferenceRepository.FindConferenceByIdAsync(conferenceId);
+            var sectionsViewModel = mapper.Map<SectionsViewModel>(conference.Sections);
+            return sectionsViewModel;
+        }
     }
 }

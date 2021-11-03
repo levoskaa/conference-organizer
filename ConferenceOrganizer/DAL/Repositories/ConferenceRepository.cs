@@ -30,7 +30,9 @@ namespace DAL.Repositories
 
         public async Task<Conference> FindConferenceByIdAsync(int conferenceId)
         {
-            var conference = await dbContext.Conferences.FindAsync(conferenceId);
+            var conference = await dbContext.Conferences
+                .Include(c => c.Sections)
+                .FirstOrDefaultAsync(c => c.Id == conferenceId);
             if (conference == null)
             {
                 throw new EntityNotFoundException($"Conference with id {conferenceId} not found.");

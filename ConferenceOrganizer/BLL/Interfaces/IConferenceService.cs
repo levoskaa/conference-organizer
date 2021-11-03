@@ -15,5 +15,8 @@ namespace BLL.Interfaces
         Task UpdateConferenceAsync(int conferenceId, ConferenceUpsertDto conferenceUpdateDto);
 
         Task DeleteConferenceAsync(int conferenceId);
+
+
+        Task<SectionsViewModel> GetAllConferenceSectionsAsync(int conferenceId);
     }
 }
