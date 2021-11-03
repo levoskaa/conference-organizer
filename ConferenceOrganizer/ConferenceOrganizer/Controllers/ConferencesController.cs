@@ -19,9 +19,6 @@ namespace Web.Controllers
             this.conferenceService = conferenceService;
         }
 
-
-        //Conferences
-
         [HttpPost]
         [Authorize(Roles = "Admin")]
         [ProducesResponseType(StatusCodes.Status201Created)]
@@ -43,6 +40,12 @@ namespace Web.Controllers
             return conferenceService.FindConferenceByIdAsync(conferenceId);
         }
 
+        [HttpGet("{conferenceId}/sections")]
+        public Task<SectionsViewModel> GetSections([FromRoute] int conferenceId)
+        {
+            return conferenceService.GetAllConferenceSectionsAsync(conferenceId);
+        }
+
         [HttpPut("{conferenceId}")]
         [Authorize]
         public Task UpdateConference([FromRoute] int conferenceId, [FromBody] ConferenceUpsertDto conferenceUpdateDto)
@@ -57,15 +60,6 @@ namespace Web.Controllers
         {
             HttpContext.Response.StatusCode = StatusCodes.Status204NoContent;
             return conferenceService.DeleteConferenceAsync(conferenceId);
-        }
-
-
-        // Sections
-
-        [HttpGet("{conferenceId}/sections")]
-        public Task<SectionsViewModel> GetSections([FromRoute] int conferenceId)
-        {
-            return conferenceService.GetAllConferenceSectionsAsync(conferenceId);
         }
     }
 }
