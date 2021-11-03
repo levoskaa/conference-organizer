@@ -2,6 +2,7 @@
 using BLL.ViewModels;
 using Domain.Entitites;
 using Domain.Entitites.Abstractions;
+using System.Collections.Generic;
 
 namespace BLL
 {
@@ -14,6 +15,8 @@ namespace BLL
             CreateMap<Conference, ConferenceViewModel>()
                 .ForMember(cvm => cvm.BeginDate, options => options.MapFrom(c => c.TimeFrame.BeginDate))
                 .ForMember(cvm => cvm.EndDate, options => options.MapFrom(c => c.TimeFrame.EndDate));
+            CreateMap<IEnumerable<Conference>, ConferencesViewModel>()
+                .ForMember(cvm => cvm.Conferences, options => options.MapFrom(c => c));
         }
     }
 }

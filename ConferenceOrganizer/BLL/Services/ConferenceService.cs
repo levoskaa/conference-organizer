@@ -20,11 +20,11 @@ namespace BLL.Services
             this.mapper = mapper;
         }
 
-        public async Task<IEnumerable<ConferenceViewModel>> GetAllConferencesAsync()
+        public async Task<ConferencesViewModel> GetAllConferencesAsync()
         {
             var conferences = await conferenceRepository.GetAllConferencesAsync();
-            var conferenceViewModels = mapper.Map<IEnumerable<ConferenceViewModel>>(conferences);
-            return conferenceViewModels;
+            var conferencesViewModel = mapper.Map<ConferencesViewModel>(conferences);
+            return conferencesViewModel;
         }
 
         public async Task<ConferenceViewModel> FindConferenceByIdAsync(int conferenceId)

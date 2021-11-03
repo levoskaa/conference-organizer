@@ -1,7 +1,6 @@
 ﻿using BLL.Interfaces;
 using BLL.ViewModels;
 using Microsoft.AspNetCore.Mvc;
-using System;
 using System.Threading.Tasks;
 using Web.Common;
 
@@ -18,12 +17,9 @@ namespace Web.Controllers
         }
 
         [HttpGet]
-        public async Task<ConferencesViewModel> GetConferences()
+        public Task<ConferencesViewModel> GetConferences()
         {
-            return new ConferencesViewModel
-            {
-                Conferences = await conferenceService.GetAllConferencesAsync()
-            };
+            return conferenceService.GetAllConferencesAsync();
         }
 
         [HttpGet("{conferenceId}")]
