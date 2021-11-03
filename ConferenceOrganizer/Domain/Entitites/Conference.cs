@@ -7,7 +7,17 @@ namespace Domain.Entitites
     {
         public string Name { get; set; }
         public TimeFrame TimeFrame { get; set; }
-        public List<ApplicationUserConference> UserConferences { get; set; }
-        public List<Section> Sections { get; set; }
+
+        private readonly List<ApplicationUserConference> userConferences;
+        public IReadOnlyCollection<ApplicationUserConference> UserConferences => userConferences;
+
+        private readonly List<Section> sections;
+        public IReadOnlyCollection<Section> Sections => sections;
+
+        public Conference()
+        {
+            userConferences = new List<ApplicationUserConference>();
+            sections = new List<Section>();
+        }
     }
 }

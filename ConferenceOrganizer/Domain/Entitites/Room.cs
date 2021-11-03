@@ -7,6 +7,13 @@ namespace Domain.Entitites
     {
         public string UniqueName { get; set; }
         public int Capacity { get; set; }
-        public List<Section> Sections { get; set; }
+
+        private readonly List<Section> sections;
+        public IReadOnlyCollection<Section> Sections => sections;
+
+        public Room()
+        {
+            sections = new List<Section>();
+        }
     }
 }

@@ -14,6 +14,13 @@ namespace Domain.Entitites
         public ApplicationUser User { get; set; }
         public int FieldId { get; set; }
         public ProfessionalField Field { get; set; }
-        public List<Presentation> Presentations { get; set; }
+
+        private readonly List<Presentation> presentations;
+        public IReadOnlyCollection<Presentation> Presentations => presentations;
+
+        public Section()
+        {
+            presentations = new List<Presentation>();
+        }
     }
 }
