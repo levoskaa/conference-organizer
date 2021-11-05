@@ -46,6 +46,23 @@ namespace Web.Controllers
             return conferenceService.GetAllConferenceSectionsAsync(conferenceId);
         }
 
+        [HttpDelete("{conferenceId}/sections/{sectionId}")]
+        [Authorize]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        public Task DeleteSection([FromRoute] int conferenceId, [FromRoute] int sectionId)
+        {
+            return conferenceService.DeleteSectionAsync(conferenceId, sectionId);
+        }
+
+        [HttpPost("{conferenceId}/sections")]
+        [Authorize]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        public Task<EntityCreatedViewModel> AddSection([FromRoute] int conferenceId, [FromBody] SectionUpsertDto sectionCreateDto)
+        {
+            HttpContext.Response.StatusCode = StatusCodes.Status201Created;
+            return conferenceService.AddSectionAsync(conferenceId, sectionCreateDto);
+        }
+
         [HttpPut("{conferenceId}")]
         [Authorize]
         public Task UpdateConference([FromRoute] int conferenceId, [FromBody] ConferenceUpsertDto conferenceUpdateDto)

@@ -53,5 +53,30 @@ namespace DAL.Repositories
                 dbContext.Conferences.Remove(conference);
             }
         }
+
+        public async Task<int> AddSection(int conferenceId, Section section)
+        {
+            var conference = await dbContext.Conferences
+                .Include(c => c.Sections)
+                .FirstOrDefaultAsync(c => c.Id == conferenceId);
+
+            if (conference == null)
+            {
+                throw new EntityNotFoundException($"Conference with id {conferenceId} not found.");
+            }
+
+            conference.AddSection(section);
+            return section.Id;
+        }
+
+        public async Task DeleteSectionAsync(int conferenceId, int sectionId)
+        {
+            var conference = await dbContext.Conferences.FindAsync(conferenceId);
+            var section = await dbContext.Sections.FindAsync(sectionId);
+            if (conference != null)
+            {
+                conference.DeleteSection(section);
+            }
+        }
     }
 }

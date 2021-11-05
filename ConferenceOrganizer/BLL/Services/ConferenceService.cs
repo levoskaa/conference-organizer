@@ -11,15 +11,18 @@ namespace BLL.Services
     public class ConferenceService : IConferenceService
     {
         private readonly IConferenceRepository conferenceRepository;
+        private readonly ISectionRepository sectionRepository;
         private readonly IUnitOfWork unitOfWork;
         private readonly IMapper mapper;
 
         public ConferenceService(
             IConferenceRepository conferenceRepository,
+            ISectionRepository sectionRepository,
             IUnitOfWork unitOfWork,
             IMapper mapper)
         {
             this.conferenceRepository = conferenceRepository;
+            this.sectionRepository = sectionRepository;
             this.unitOfWork = unitOfWork;
             this.mapper = mapper;
         }
@@ -65,6 +68,22 @@ namespace BLL.Services
             var conference = await conferenceRepository.FindConferenceByIdAsync(conferenceId);
             var sectionsViewModel = mapper.Map<SectionsViewModel>(conference.Sections);
             return sectionsViewModel;
+        }
+
+        public async Task DeleteSectionAsync(int conferenceId, int sectionId)
+        {
+            await conferenceRepository.DeleteSectionAsync(conferenceId, sectionId);
+            await unitOfWork.SaveChangesAsync();
+        }
+
+
+        public async Task<EntityCreatedViewModel> AddSectionAsync(int conferenceId, SectionUpsertDto sectionCreateDto)
+        { 
+            var section = mapper.Map<Section>(sectionCreateDto);
+            var id = conferenceRepository.AddSection(conferenceId, section);
+
+            await unitOfWork.SaveChangesAsync();
+            return new EntityCreatedViewModel(id.Result);
         }
     }
 }
