@@ -39,5 +39,10 @@ namespace Domain.Entitites
         {
              return sections.Remove(section);
         }
+
+        public void AddUserConference(ApplicationUserConference userConference)
+        {
+            userConferences.Add(userConference);
+        }
     }
 }

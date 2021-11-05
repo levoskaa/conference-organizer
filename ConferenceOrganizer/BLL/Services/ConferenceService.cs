@@ -1,26 +1,33 @@
-﻿using AutoMapper;
+﻿using System.Collections.Generic;
+using System.Data;
+using AutoMapper;
 using BLL.Dtos;
 using BLL.Interfaces;
 using BLL.ViewModels;
 using Domain.Entitites;
 using Domain.Interfaces;
 using System.Threading.Tasks;
+using Domain.Exceptions;
+using Microsoft.AspNetCore.Identity;
 
 namespace BLL.Services
 {
     public class ConferenceService : IConferenceService
     {
+        private readonly UserManager<ApplicationUser> userManager;
         private readonly IConferenceRepository conferenceRepository;
         private readonly ISectionRepository sectionRepository;
         private readonly IUnitOfWork unitOfWork;
         private readonly IMapper mapper;
 
         public ConferenceService(
+            UserManager<ApplicationUser> userManager,
             IConferenceRepository conferenceRepository,
             ISectionRepository sectionRepository,
             IUnitOfWork unitOfWork,
             IMapper mapper)
         {
+            this.userManager = userManager;
             this.conferenceRepository = conferenceRepository;
             this.sectionRepository = sectionRepository;
             this.unitOfWork = unitOfWork;
@@ -30,6 +37,9 @@ namespace BLL.Services
         public async Task<EntityCreatedViewModel> CreateConferenceAsync(ConferenceUpsertDto conferenceCreateDto)
         {
             var conference = mapper.Map<Conference>(conferenceCreateDto);
+
+            await HandleUserConferences(conferenceCreateDto, conference);
+
             var id = conferenceRepository.AddConference(conference);
             await unitOfWork.SaveChangesAsync();
             return new EntityCreatedViewModel(id);
@@ -84,6 +94,32 @@ namespace BLL.Services
 
             await unitOfWork.SaveChangesAsync();
             return new EntityCreatedViewModel(id.Result);
+        }
+
+        private async Task<ApplicationUser> FindUserAsync(int id)
+        {
+            var user = await userManager.FindByIdAsync(id.ToString());
+            if (user == null)
+            {
+                throw new EntityNotFoundException($"User with id '{id}' not found.");
+            }
+            return user;
+        }
+
+        private async Task HandleUserConferences(ConferenceUpsertDto conferenceCreateDto, Conference conference)
+        {
+            foreach (int applicationUserId in conferenceCreateDto.ApplicationUsers)
+            {
+                var user = await FindUserAsync(applicationUserId);
+                var applicationUserConference = new ApplicationUserConference()
+                {
+                    UserId = user.Id,
+                    User = user,
+                    ConferenceId = conference.Id,
+                    Conference = conference
+                };
+                conference.AddUserConference(applicationUserConference);
+            }
         }
     }
 }
