@@ -2,6 +2,8 @@
 using BLL.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
+using BLL.Dtos;
+using Microsoft.AspNetCore.Http;
 using Web.Common;
 
 namespace Web.Controllers
@@ -20,6 +22,14 @@ namespace Web.Controllers
         public Task<SectionViewModel> GetSectionById([FromRoute] int sectionId)
         {
             return sectionService.FindSectionByIdAsync(sectionId);
+        }
+
+        [HttpPost("{sectionId}")]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        public Task AddPresentations([FromRoute] int sectionId, [FromBody] PresentationsUpsertDto presentationsUpsertDto)
+        {
+            HttpContext.Response.StatusCode = StatusCodes.Status201Created;
+            return sectionService.AddPresentationsAsync(sectionId, presentationsUpsertDto);
         }
     }
 }

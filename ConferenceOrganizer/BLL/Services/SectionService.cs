@@ -1,8 +1,11 @@
-﻿using AutoMapper;
+﻿using System.Collections.Generic;
+using AutoMapper;
 using BLL.Interfaces;
 using BLL.ViewModels;
 using Domain.Interfaces;
 using System.Threading.Tasks;
+using BLL.Dtos;
+using Domain.Entitites;
 
 namespace BLL.Services
 {
@@ -10,13 +13,16 @@ namespace BLL.Services
     {
         private readonly ISectionRepository sectionRepository;
         private readonly IMapper mapper;
+        private readonly IUnitOfWork unitOfWork;
 
         public SectionService(
             ISectionRepository sectionRepository,
-            IMapper mapper)
+            IMapper mapper,
+            IUnitOfWork unitOfWork)
         {
             this.sectionRepository = sectionRepository;
             this.mapper = mapper;
+            this.unitOfWork = unitOfWork;
         }
 
         public async Task<SectionViewModel> FindSectionByIdAsync(int sectionId)
@@ -24,6 +30,24 @@ namespace BLL.Services
             var section = await sectionRepository.FindSectionByIdAsync(sectionId);
             var sectionViewModel = mapper.Map<SectionViewModel>(section);
             return sectionViewModel;
+        }
+
+        public async Task AddPresentationsAsync(int sectionId, PresentationsUpsertDto presentationsUpsertDto)
+        {
+            var section = await sectionRepository.FindSectionByIdAsync(sectionId);
+
+            List<Presentation> presentations = new List<Presentation>();
+            foreach (var presentationUpsertDto in presentationsUpsertDto.Presentations)
+            {
+               var presentation =  mapper.Map<Presentation>(presentationUpsertDto);
+               presentation.SectionId = sectionId;
+               presentation.Section = section;
+
+               presentations.Add(presentation);
+            }
+            
+            await sectionRepository.AddPresentationsAsync(section.Id, presentations);
+            await unitOfWork.SaveChangesAsync();
         }
     }
 }

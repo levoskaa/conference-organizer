@@ -1,4 +1,5 @@
-﻿using Domain.Entitites;
+﻿using System.Collections.Generic;
+using Domain.Entitites;
 using Domain.Exceptions;
 using Domain.Interfaces;
 using System.Threading.Tasks;
@@ -22,6 +23,15 @@ namespace DAL.Repositories
                 throw new EntityNotFoundException($"Section with id {sectionId} not found.");
             }
             return section;
+        }
+
+        public async Task AddPresentationsAsync(int sectionId, List<Presentation> presentations)
+        {
+            var section = await FindSectionByIdAsync(sectionId);
+            foreach (var presentation in presentations)
+            {
+                section.AddPresentation(presentation);
+            }
         }
     }
 }

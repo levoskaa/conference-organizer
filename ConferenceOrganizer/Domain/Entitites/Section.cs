@@ -22,5 +22,10 @@ namespace Domain.Entitites
         {
             presentations = new List<Presentation>();
         }
+
+        public void AddPresentation(Presentation presentation)
+        {
+            presentations.Add(presentation);
+        }
     }
 }
