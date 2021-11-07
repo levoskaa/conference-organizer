@@ -8,6 +8,5 @@ namespace Domain.Interfaces
     {
         Task<Section> FindSectionByIdAsync(int sectionId);
 
-        Task AddPresentationsAsync(int sectionId, List<Presentation> presentations);
     } 
 }

@@ -24,7 +24,7 @@ namespace Web.Controllers
             return sectionService.FindSectionByIdAsync(sectionId);
         }
 
-        [HttpPost("{sectionId}")]
+        [HttpPost("{sectionId}/presentations")]
         [ProducesResponseType(StatusCodes.Status201Created)]
         public Task AddPresentations([FromRoute] int sectionId, [FromBody] PresentationsUpsertDto presentationsUpsertDto)
         {

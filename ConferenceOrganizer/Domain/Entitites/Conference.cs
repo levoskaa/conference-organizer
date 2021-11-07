@@ -26,7 +26,7 @@ namespace Domain.Entitites
         {
             foreach (var s in Sections)
             {
-                if (s.RoomId.Equals(section.RoomId) && (s.TimeFrame.BeginDate <= section.TimeFrame.EndDate && s.TimeFrame.EndDate < section.TimeFrame.BeginDate))
+                if (s.RoomId.Equals(section.RoomId) && (s.TimeFrame.BeginDate <= section.TimeFrame.EndDate && s.TimeFrame.EndDate <= section.TimeFrame.BeginDate))
                 {
                     throw new Exception("A section in the same room with overlapping time frame exists.");
                 }

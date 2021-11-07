@@ -33,10 +33,7 @@ namespace BLL
                 .ForMember(svm => svm.Sections, options => options.MapFrom(x => x));
             CreateMap<SectionUpsertDto, Section>()
                 .ForMember(s => s.TimeFrame,
-                    options => options.MapFrom(dto => new TimeFrame(dto.BeginDate, dto.EndDate)))
-                .ForMember(s => s.Room.UniqueName, options => options.MapFrom(dto => dto.Room))
-                .ForMember(s => s.Field.Name, options => options.MapFrom(dto => dto.Field))
-                .ForMember(s => s.User.UserName, options => options.MapFrom(dto => dto.Chairman));
+                    options => options.MapFrom(dto => new TimeFrame(dto.BeginDate, dto.EndDate)));
         }
     }
 }

@@ -24,14 +24,5 @@ namespace DAL.Repositories
             }
             return section;
         }
-
-        public async Task AddPresentationsAsync(int sectionId, List<Presentation> presentations)
-        {
-            var section = await FindSectionByIdAsync(sectionId);
-            foreach (var presentation in presentations)
-            {
-                section.AddPresentation(presentation);
-            }
-        }
     }
 }

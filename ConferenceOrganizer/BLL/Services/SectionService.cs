@@ -36,17 +36,12 @@ namespace BLL.Services
         {
             var section = await sectionRepository.FindSectionByIdAsync(sectionId);
 
-            List<Presentation> presentations = new List<Presentation>();
             foreach (var presentationUpsertDto in presentationsUpsertDto.Presentations)
             {
                var presentation =  mapper.Map<Presentation>(presentationUpsertDto);
-               presentation.SectionId = sectionId;
-               presentation.Section = section;
-
-               presentations.Add(presentation);
+               section.AddPresentation(presentation);
             }
             
-            await sectionRepository.AddPresentationsAsync(section.Id, presentations);
             await unitOfWork.SaveChangesAsync();
         }
     }

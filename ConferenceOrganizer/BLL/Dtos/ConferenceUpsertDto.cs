@@ -8,6 +8,6 @@ namespace BLL.Dtos
         public string Name { get; set; }
         public DateTime BeginDate { get; set; }
         public DateTime EndDate { get; set; }
-        public List<int> ApplicationUsers { get; set; }
+        public List<int> Editors { get; set; }
     }
 }

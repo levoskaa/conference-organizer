@@ -6,8 +6,8 @@ namespace BLL.Dtos
     {
         public DateTime BeginDate { get; set; }
         public DateTime EndDate { get; set; }
-        public string Room { get; set; }
-        public string Chairman { get; set; }
-        public string Field { get; set; }
+        public int RoomId { get; set; }
+        public int ChairmanId { get; set; }
+        public int FieldId { get; set; }
     }
 }

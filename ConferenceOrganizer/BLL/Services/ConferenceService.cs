@@ -14,22 +14,28 @@ namespace BLL.Services
 {
     public class ConferenceService : IConferenceService
     {
-        private readonly UserManager<ApplicationUser> userManager;
+        private readonly IUserService userService;
         private readonly IConferenceRepository conferenceRepository;
         private readonly ISectionRepository sectionRepository;
+        private readonly IRoomRepository roomRepository;
+        private readonly IProfessionalFieldRepository professionalFieldRepository;
         private readonly IUnitOfWork unitOfWork;
         private readonly IMapper mapper;
 
         public ConferenceService(
-            UserManager<ApplicationUser> userManager,
+            IUserService userService,
             IConferenceRepository conferenceRepository,
             ISectionRepository sectionRepository,
+            IRoomRepository roomRepository,
+            IProfessionalFieldRepository professionalFieldRepository,
             IUnitOfWork unitOfWork,
             IMapper mapper)
         {
-            this.userManager = userManager;
+            this.userService = userService;
             this.conferenceRepository = conferenceRepository;
             this.sectionRepository = sectionRepository;
+            this.roomRepository = roomRepository;
+            this.professionalFieldRepository = professionalFieldRepository;
             this.unitOfWork = unitOfWork;
             this.mapper = mapper;
         }
@@ -86,36 +92,28 @@ namespace BLL.Services
             await unitOfWork.SaveChangesAsync();
         }
 
-
         public async Task<EntityCreatedViewModel> AddSectionAsync(int conferenceId, SectionUpsertDto sectionCreateDto)
         { 
             var section = mapper.Map<Section>(sectionCreateDto);
-            var id = conferenceRepository.AddSection(conferenceId, section);
+            section.Room = await roomRepository.FindRoomByIdAsync(sectionCreateDto.RoomId);
+            section.Field = await professionalFieldRepository.FindProfessionalFieldByIdAsync(sectionCreateDto.FieldId);
+            section.User = await userService.FindUserAsync(sectionCreateDto.ChairmanId);
+
+            var conference = await conferenceRepository.FindConferenceByIdAsync(conferenceId);
+            conference.AddSection(section);
 
             await unitOfWork.SaveChangesAsync();
-            return new EntityCreatedViewModel(id.Result);
-        }
-
-        private async Task<ApplicationUser> FindUserAsync(int id)
-        {
-            var user = await userManager.FindByIdAsync(id.ToString());
-            if (user == null)
-            {
-                throw new EntityNotFoundException($"User with id '{id}' not found.");
-            }
-            return user;
+            return new EntityCreatedViewModel(section.Id);
         }
 
         private async Task HandleUserConferences(ConferenceUpsertDto conferenceCreateDto, Conference conference)
         {
-            foreach (int applicationUserId in conferenceCreateDto.ApplicationUsers)
+            foreach (int applicationUserId in conferenceCreateDto.Editors)
             {
-                var user = await FindUserAsync(applicationUserId);
+                var user = await userService.FindUserAsync(applicationUserId);
                 var applicationUserConference = new ApplicationUserConference()
                 {
-                    UserId = user.Id,
                     User = user,
-                    ConferenceId = conference.Id,
                     Conference = conference
                 };
                 conference.AddUserConference(applicationUserConference);
