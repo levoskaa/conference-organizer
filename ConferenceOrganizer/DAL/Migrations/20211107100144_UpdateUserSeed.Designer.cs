@@ -4,14 +4,16 @@ using DAL;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DAL.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20211107100144_UpdateUserSeed")]
+    partial class UpdateUserSeed
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -66,7 +68,7 @@ namespace DAL.Migrations
                         new
                         {
                             Id = 1,
-                            ConcurrencyStamp = "4ddbbd1a-7b0c-4198-8425-1db1f7a32824",
+                            ConcurrencyStamp = "4117e5cf-a5ed-4077-9ed6-b7dd43da39e2",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         });
@@ -143,13 +145,13 @@ namespace DAL.Migrations
                         {
                             Id = 1,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "a2cff473-9a9c-4efe-9a65-db0d9dfd02ff",
+                            ConcurrencyStamp = "f043ecd1-6f58-48fe-b2e8-ff013e28a154",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAEAACcQAAAAEHKDSXxxP0vXF2JKmY2YXCQBN17k9IInOfb6MeN2mbopu9quy0DeBaArunpmiOZcDw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEIzFf4ORzkdcMYhtnx00V/NZxROAOw+Mc3Rd7KF3H2JilDZDdkAWp9vcYwf+bPWk9g==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "953acac8-43d9-4cb4-8b33-0ef89426dfa4",
+                            SecurityStamp = "f3b8ef41-e7fa-403f-beb1-411a528c8a72",
                             TwoFactorEnabled = false,
                             UserName = "admin"
                         },
@@ -157,13 +159,13 @@ namespace DAL.Migrations
                         {
                             Id = 2,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "1148cfe5-31a5-46f2-a1c3-5279216e16c9",
+                            ConcurrencyStamp = "1e05f4ce-40f1-45ff-a97e-5182867f2586",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedUserName = "USER2",
-                            PasswordHash = "AQAAAAEAACcQAAAAEP3bZI9MDV3Gmxk3uk7JmfQSbUJWMY1BdiAAu1IllaOSCNLraeYxr2NFICsflLMcPQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEG/dWg7pvGAibVN+yjAVcenblt/ZOAtDn89Z8JZgLKbNlP6e6jHejdaPcHP0mkRjLg==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "6ffc068f-487a-4ab1-a7e8-a49eaaf7c4f3",
+                            SecurityStamp = "9ff6661e-4c01-4d05-8cd3-b57cd7bee5c3",
                             TwoFactorEnabled = false,
                             UserName = "user2"
                         },
@@ -171,13 +173,13 @@ namespace DAL.Migrations
                         {
                             Id = 3,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "81f1bbd0-d3b8-447b-8077-ed2640806f4b",
+                            ConcurrencyStamp = "0ea7005a-0c7d-4627-97ad-22fcac6c7c6e",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedUserName = "USER3",
-                            PasswordHash = "AQAAAAEAACcQAAAAEEg0MtjkyrJtwEYktkKc7zZ8y5AAPZA2nrZzrGcYvgdQ9MmKMUPIu+9hsiWSAghQzw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEEBKVO5nDZbB1yUuMVc8U+JVWFIYcNQj+7q9Mhgt3P/SdJSFlKeQZLBlHcQ+z4eSig==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "88ccd836-5711-421c-b7e3-bc67ea52d390",
+                            SecurityStamp = "4bcac847-1fc9-4010-8778-78e7c6271b64",
                             TwoFactorEnabled = false,
                             UserName = "user3"
                         },
@@ -185,13 +187,13 @@ namespace DAL.Migrations
                         {
                             Id = 4,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "a1dcb582-a7d7-4bbb-8434-f12119f32c63",
+                            ConcurrencyStamp = "14b2d2ba-6e4c-47ad-bfbd-8e3910715d23",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedUserName = "USER4",
-                            PasswordHash = "AQAAAAEAACcQAAAAEOI/FkFOWakwYLx5mcG2AJqMT7TTeeNozIDWDoX5+UmsGkgBAEdabo8oyVuxhPoC0A==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEJvI/qRuaCA2906lu5pomdYwoodUNmVlYnSdMXH5m9xdMJ7fHEXqKUAjOyJHafx5uQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "f72f7e22-5006-4182-b9df-e5fcca6e6de3",
+                            SecurityStamp = "98a0e6e4-6f53-48e1-a7d8-ff7225e6ead7",
                             TwoFactorEnabled = false,
                             UserName = "user4"
                         },
@@ -199,13 +201,13 @@ namespace DAL.Migrations
                         {
                             Id = 5,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "94969a43-f21f-4221-8bb0-9d9c9489af50",
+                            ConcurrencyStamp = "cedf0e63-db58-493a-a38b-47b1ac36f43d",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedUserName = "USER5",
-                            PasswordHash = "AQAAAAEAACcQAAAAEN0tPx+8AM2YaZx5sxyN/MXV0yLo6DZbRlGxn9Bj9C8lzJGqepjq3vL8OkhMaWttbg==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEIiB5l1J80izxGspD7/u4+MSxsMkmSLLUDxs7jsWhhE/G8RyQ5thnPjWM3g5XYp88A==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "04d4c17c-7ec9-4fb9-a7cb-170600a1ce30",
+                            SecurityStamp = "34fc9ee8-3651-4976-80ec-6137b18a7cf7",
                             TwoFactorEnabled = false,
                             UserName = "user5"
                         },
@@ -213,13 +215,13 @@ namespace DAL.Migrations
                         {
                             Id = 6,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "a2f4e186-39bb-488a-b2ce-f77c2f47ca40",
+                            ConcurrencyStamp = "08419d80-39d0-48b4-ad71-751cb3c070fe",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedUserName = "USER6",
-                            PasswordHash = "AQAAAAEAACcQAAAAEC3jrpg8W58An4qRUVMJRhzMFDfrLHF3eyHipEQ5udbpfljHmtiKBq9VAXuOfTMetw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEEJHcm3S/BnKf1cBBYFbCaaQm0F8/gjN9UmOY9ms46K42JJjgwZL3+aqiVlvg3y4qQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "d7d53f30-3004-428b-9ee5-da9cf22beaa2",
+                            SecurityStamp = "e1447fc5-daab-4f5b-9ad2-ecfaf9767573",
                             TwoFactorEnabled = false,
                             UserName = "user6"
                         },
@@ -227,13 +229,13 @@ namespace DAL.Migrations
                         {
                             Id = 7,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "4a96f0c5-fae6-4409-b0e6-e1188f44af5f",
+                            ConcurrencyStamp = "747d1cbc-e5a2-4d9f-bbb6-93c27cba83fe",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedUserName = "USER7",
-                            PasswordHash = "AQAAAAEAACcQAAAAEGUe+II9ZNImeydHog60s4OXOkoLCAU39eB7ZjDKsjbq1kyBQPk3fw08Cv1nFE8drQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAENq1rBGo9vwK8Vd89AZ9GPDBhus62KtpTnL3UUEfXGkxVPl5bPG8N8oTdhOYGARxgQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "edeb099d-af26-4ede-841e-7e2b92178e98",
+                            SecurityStamp = "4cbe2be2-cd0d-4e0a-b1fe-b451732678a2",
                             TwoFactorEnabled = false,
                             UserName = "user7"
                         },
@@ -241,13 +243,13 @@ namespace DAL.Migrations
                         {
                             Id = 8,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "fd2b0810-f010-4bf1-ae90-a582650c552d",
+                            ConcurrencyStamp = "6dc1861a-91bb-4bcb-b4b6-237cf779e911",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedUserName = "USER8",
-                            PasswordHash = "AQAAAAEAACcQAAAAEGcdTEKiFBv+OWyvVBqaTXXpPIz33JM0bnkodJx0YGl2dv0NgJoz+gveMVz3uQ8rYw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEOuS5M1Hm6mQf9aLhE68yH9aXAyG8XpSZAtkanZU0bWpMEExgOKyAD1T+NgsbD0M7g==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "15b1eb02-a491-4ebb-bbb4-1ee2ac77ba8a",
+                            SecurityStamp = "90d3a063-e94e-43da-a85b-38c5b2121a4b",
                             TwoFactorEnabled = false,
                             UserName = "user8"
                         },
@@ -255,13 +257,13 @@ namespace DAL.Migrations
                         {
                             Id = 9,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "f949dea0-b6e4-4ab1-9e94-2a9e1c852b11",
+                            ConcurrencyStamp = "aed37935-b21d-4c1a-9188-9e829656e3ba",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedUserName = "USER9",
-                            PasswordHash = "AQAAAAEAACcQAAAAEBZelmkmXDnA5ZTsYiaEIslXe7spp3WDFJp4QymcLzd5uJ0VefapZOdXZl4hL/CuJA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEO94lYHexzAbgXul+cZ5V81MGBw/ZcriiVbOmFpGkB3bBhCt183UFvTkQ6WHaHI0ZQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "6ad24e12-842d-41df-9e81-1e8d90baba20",
+                            SecurityStamp = "01d69c85-79f0-482e-9c0a-0e4af1a5978b",
                             TwoFactorEnabled = false,
                             UserName = "user9"
                         },
@@ -269,13 +271,13 @@ namespace DAL.Migrations
                         {
                             Id = 10,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "a30cd718-4382-49b7-a12a-fef5d92796ac",
+                            ConcurrencyStamp = "845d1c55-0f8e-4e82-bb53-9947c30137a7",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedUserName = "USER10",
-                            PasswordHash = "AQAAAAEAACcQAAAAEJ5Tw+KoBd7aGWyOGKDHc8u8hrgHGs/KUyQLZ+O6a8w+8LU15tcICYoRKcDvgsD3pA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEELiBgKHKVsBcC7OaopC2z29m2B3DRwt547SO6shCU1AhWYbP89B7B8hI4csgNzuXA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "fcbb913d-f328-4784-8830-9c5e5bb38b05",
+                            SecurityStamp = "5d934d74-8050-4951-b267-29440ccfe77c",
                             TwoFactorEnabled = false,
                             UserName = "user10"
                         },
@@ -283,13 +285,13 @@ namespace DAL.Migrations
                         {
                             Id = 11,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "fff36774-3b30-4e4b-94a8-94e356959220",
+                            ConcurrencyStamp = "fc23a491-768a-4151-a883-f5c519a1ab43",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedUserName = "USER11",
-                            PasswordHash = "AQAAAAEAACcQAAAAEE94O+obHxKyBCusEYSOZzQLvE0LIfbpXtzbUJ8bBfgcFrJgH0a/ABIvMMnReeiNrg==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEOAP+i//aUob9A5zOU8p4ewbR0rWuZsi7ynrlpywjVXwXlW2isLSIsC08ErLL5/aXQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "a70bf153-b9ab-4efb-a111-31e2cb81ed39",
+                            SecurityStamp = "c67ae985-adb3-4d93-ac5c-4ba01b4041e9",
                             TwoFactorEnabled = false,
                             UserName = "user11"
                         },
@@ -297,13 +299,13 @@ namespace DAL.Migrations
                         {
                             Id = 12,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "c7f353b1-60d6-41e0-a4b7-404d6ff04cd1",
+                            ConcurrencyStamp = "9b5937a7-ff55-4a18-b131-cae1d174af3c",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedUserName = "USER12",
-                            PasswordHash = "AQAAAAEAACcQAAAAEMaXEfrCYPXVQ0jKokhfNPbdE/UyPzABeKbDnNGR0aOaWwP/wICseo/RyKnBP3uQLQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEO7Bl8B+wDwKwECf27yp6LZPMxPNM5yi2mUOFSaZ+qbao9v1cQ/7V6odNg6a8uyRfg==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "61795743-8a46-49cc-b5f2-4ae972812e32",
+                            SecurityStamp = "b4280b1e-aac9-457c-ad4c-95bcda9eda38",
                             TwoFactorEnabled = false,
                             UserName = "user12"
                         },
@@ -311,13 +313,13 @@ namespace DAL.Migrations
                         {
                             Id = 13,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "f04d9410-9fbd-45c4-aa48-45a69f20b0b8",
+                            ConcurrencyStamp = "64312f0c-f590-4c27-a9d8-2f1eb642b647",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedUserName = "USER13",
-                            PasswordHash = "AQAAAAEAACcQAAAAELQ4sMQ6u/0ZPkTNkYpcSxO+27H14kBiBNWB9nOAnNxu9YPK39/fZ/7Mf02hx5OLIA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEPpiOlstwjYTo+Kj9nVDBkduRn+lc7NviDxRrhPC66BNdr4DY+I4T3wd6rMR3+ZXBw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "6fb4cb70-950f-476d-b035-f12b2894f535",
+                            SecurityStamp = "750668fc-c113-40c8-843d-fc5b759238bd",
                             TwoFactorEnabled = false,
                             UserName = "user13"
                         },
@@ -325,13 +327,13 @@ namespace DAL.Migrations
                         {
                             Id = 14,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "ea2eccc5-7251-4e58-9ec5-d3f1ed97670c",
+                            ConcurrencyStamp = "2290d90c-6a0f-4442-93c2-efce47eacc61",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedUserName = "USER14",
-                            PasswordHash = "AQAAAAEAACcQAAAAEKaEFpj5MRDgLy/C63rBYADqmzJEssyZvyZMZN9bN2Q0cGjWTG8htkw41KJVK60/AQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEDFbdoQs2SMskpEQwjuROzo6zQrImDdNox8vw+n1Fc25vRW73yuTfdVs6YdAok75Bw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "b3aae4c0-22ac-4577-8861-62e14281b9dd",
+                            SecurityStamp = "a35de423-8dd7-42f3-ab2c-38d203183c61",
                             TwoFactorEnabled = false,
                             UserName = "user14"
                         },
@@ -339,13 +341,13 @@ namespace DAL.Migrations
                         {
                             Id = 15,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "23466021-e016-4688-80c1-a40bea2b806c",
+                            ConcurrencyStamp = "a76c6e71-774f-446d-b505-692987508ca4",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedUserName = "USER15",
-                            PasswordHash = "AQAAAAEAACcQAAAAEINCd8MZcknpJVqTe2WP9zAAXSnZVZlSWuNH4EbEO5vHZIs+CZD0hXdwOVTBwCmFFg==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEHIigLoYNb5lfG25hRHCxqMRKo3cDHgzGodhWEsEVuBom2tGdob9wY6l17TZ3wohZA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "15bfb0c3-06cc-4f4d-92a1-7615698e3463",
+                            SecurityStamp = "e85a6d29-34f1-46be-924b-b44f41ce1646",
                             TwoFactorEnabled = false,
                             UserName = "user15"
                         },
@@ -353,13 +355,13 @@ namespace DAL.Migrations
                         {
                             Id = 16,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "1ac68869-1203-4f21-924e-cb997f5e8563",
+                            ConcurrencyStamp = "c91f4e52-2eb5-4a8f-9c94-c3ddcc0fe452",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedUserName = "USER16",
-                            PasswordHash = "AQAAAAEAACcQAAAAEKN2+d+9SGy0NEvOuQiU0NOgCJBjfSPy5IJjhGzLiiX6UqMRhLqxKj19tgFIS6pPOA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEEb2YlIkWnrkWItB+LOvzcEeb3BwSDLigSkR/V7719eMFkUERaxuAhA8HvbdymZiRw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "957be00d-146f-4585-b008-e06580bd09e2",
+                            SecurityStamp = "6987523e-d4fc-4bde-9b51-10a315e3a3f8",
                             TwoFactorEnabled = false,
                             UserName = "user16"
                         },
@@ -367,13 +369,13 @@ namespace DAL.Migrations
                         {
                             Id = 17,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "bdf9c347-67f9-46cf-91b0-b2866eac504e",
+                            ConcurrencyStamp = "0c2eed9a-e687-4ad7-99b5-70f636eca6c1",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedUserName = "USER17",
-                            PasswordHash = "AQAAAAEAACcQAAAAEAvW04g5VmdFDfkWmIS1UKqx3tSxmsLu7xP3yo/ZFqNp2tFOqBCm3qFblqAPiEJE8A==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEP3/EOE0ofUQxeH9tvpxj6cnDD7ihDj+VrOZoAvXBDHhunJXtCCrOfLF5PXdK4jWnQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "e575ba67-030f-43c2-8c6a-3cd160df756e",
+                            SecurityStamp = "a64e2017-7e0e-43c3-bdd9-82eccaeb8fe6",
                             TwoFactorEnabled = false,
                             UserName = "user17"
                         },
@@ -381,13 +383,13 @@ namespace DAL.Migrations
                         {
                             Id = 18,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "ee25d22c-8cba-4aa7-98a6-f86f412143e0",
+                            ConcurrencyStamp = "06d7177a-996e-493d-a366-79adaa73bba8",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedUserName = "USER18",
-                            PasswordHash = "AQAAAAEAACcQAAAAEF8e6QmrA9YfDeJ1QrNSl3q1zFb1rN9+AdUBBZEpQ46nO52OPC3XAfZVmxrC0Mds4g==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEA6BkmqAgJuaossWR6zEcCfGDa3m+c0iGPtrIdY74RjZhP9KvXDR++F6kl0g//yd+A==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "fda7b75b-ca77-4039-aa0a-0382be59e7ab",
+                            SecurityStamp = "b90de9a0-88c2-4b60-8f31-4a6ac69f717d",
                             TwoFactorEnabled = false,
                             UserName = "user18"
                         },
@@ -395,13 +397,13 @@ namespace DAL.Migrations
                         {
                             Id = 19,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "b196f287-c0d8-447e-989c-4b1480fd78f4",
+                            ConcurrencyStamp = "7120b3b0-1b2e-4866-bac0-87248571e566",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedUserName = "USER19",
-                            PasswordHash = "AQAAAAEAACcQAAAAEMG2JsKUcc1GBiKZZfKHDa2xYDIGerA1tgF1+cs1p2brRyUkCg212NuKutezWzEvWw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAELeNkzchzMrPlxPTMJ+LrevIEQmyy1mnHkJckBbFY46NKlHFT0XDWR8iT5k7VpnCMQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "9946c9ca-31b2-43c7-b07f-fc7da1da76a6",
+                            SecurityStamp = "325554ca-6cbd-427e-833e-4de13a39c95a",
                             TwoFactorEnabled = false,
                             UserName = "user19"
                         },
@@ -409,13 +411,13 @@ namespace DAL.Migrations
                         {
                             Id = 20,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "23f2a340-e1e4-420b-b23f-666754dd3e42",
+                            ConcurrencyStamp = "81eb0f05-77bd-40b7-bd1f-f926025b8b24",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedUserName = "USER20",
-                            PasswordHash = "AQAAAAEAACcQAAAAEJtl3PYQ+oK+nLi8BB6NYCwJGCaCvQOIcxzvr4TIGq36ENk/M2NQCtGBJBEBrh+gNw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEGefK8PZYR8/Tmqg85OL4i4GT8r2G/CEVafwowfS8JPxOwnCDjjZcn/CweRGVWsytg==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "3c83f0c3-7b9c-46e7-b09c-33126ed5a849",
+                            SecurityStamp = "5564a50f-6e09-49bb-988f-3d4e27bd0e4b",
                             TwoFactorEnabled = false,
                             UserName = "user20"
                         });
@@ -434,48 +436,6 @@ namespace DAL.Migrations
                     b.HasIndex("ConferenceId");
 
                     b.ToTable("UserConference");
-
-                    b.HasData(
-                        new
-                        {
-                            UserId = 2,
-                            ConferenceId = 1
-                        },
-                        new
-                        {
-                            UserId = 3,
-                            ConferenceId = 1
-                        },
-                        new
-                        {
-                            UserId = 4,
-                            ConferenceId = 1
-                        },
-                        new
-                        {
-                            UserId = 5,
-                            ConferenceId = 1
-                        },
-                        new
-                        {
-                            UserId = 6,
-                            ConferenceId = 2
-                        },
-                        new
-                        {
-                            UserId = 7,
-                            ConferenceId = 2
-                        },
-                        new
-                        {
-                            UserId = 8,
-                            ConferenceId = 2
-                        },
-                        new
-                        {
-                            UserId = 9,
-                            ConferenceId = 2
-                        });
                 });
 
             modelBuilder.Entity("Domain.Entitites.ApplicationUserProfessionalField", b =>
@@ -491,148 +451,6 @@ namespace DAL.Migrations
                     b.HasIndex("FieldId");
 
                     b.ToTable("UserProfessionalField");
-
-                    b.HasData(
-                        new
-                        {
-                            UserId = 2,
-                            FieldId = 3
-                        },
-                        new
-                        {
-                            UserId = 3,
-                            FieldId = 4
-                        },
-                        new
-                        {
-                            UserId = 4,
-                            FieldId = 3
-                        },
-                        new
-                        {
-                            UserId = 4,
-                            FieldId = 5
-                        },
-                        new
-                        {
-                            UserId = 5,
-                            FieldId = 1
-                        },
-                        new
-                        {
-                            UserId = 5,
-                            FieldId = 4
-                        },
-                        new
-                        {
-                            UserId = 6,
-                            FieldId = 3
-                        },
-                        new
-                        {
-                            UserId = 7,
-                            FieldId = 4
-                        },
-                        new
-                        {
-                            UserId = 7,
-                            FieldId = 5
-                        },
-                        new
-                        {
-                            UserId = 8,
-                            FieldId = 1
-                        },
-                        new
-                        {
-                            UserId = 9,
-                            FieldId = 2
-                        },
-                        new
-                        {
-                            UserId = 9,
-                            FieldId = 3
-                        },
-                        new
-                        {
-                            UserId = 10,
-                            FieldId = 1
-                        },
-                        new
-                        {
-                            UserId = 11,
-                            FieldId = 4
-                        },
-                        new
-                        {
-                            UserId = 12,
-                            FieldId = 1
-                        },
-                        new
-                        {
-                            UserId = 13,
-                            FieldId = 2
-                        },
-                        new
-                        {
-                            UserId = 13,
-                            FieldId = 3
-                        },
-                        new
-                        {
-                            UserId = 13,
-                            FieldId = 4
-                        },
-                        new
-                        {
-                            UserId = 14,
-                            FieldId = 3
-                        },
-                        new
-                        {
-                            UserId = 15,
-                            FieldId = 5
-                        },
-                        new
-                        {
-                            UserId = 16,
-                            FieldId = 1
-                        },
-                        new
-                        {
-                            UserId = 16,
-                            FieldId = 4
-                        },
-                        new
-                        {
-                            UserId = 17,
-                            FieldId = 3
-                        },
-                        new
-                        {
-                            UserId = 18,
-                            FieldId = 4
-                        },
-                        new
-                        {
-                            UserId = 18,
-                            FieldId = 5
-                        },
-                        new
-                        {
-                            UserId = 19,
-                            FieldId = 1
-                        },
-                        new
-                        {
-                            UserId = 20,
-                            FieldId = 2
-                        },
-                        new
-                        {
-                            UserId = 20,
-                            FieldId = 3
-                        });
                 });
 
             modelBuilder.Entity("Domain.Entitites.Conference", b =>
@@ -649,18 +467,6 @@ namespace DAL.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Conferences");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Name = "Conference 1"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Name = "Conference 2"
-                        });
                 });
 
             modelBuilder.Entity("Domain.Entitites.Presentation", b =>
@@ -685,99 +491,6 @@ namespace DAL.Migrations
                     b.HasIndex("SectionId");
 
                     b.ToTable("Presentations");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Presenter = "HerczegMáté",
-                            SectionId = 2,
-                            Title = "Presentation 1"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Presenter = "KissSára",
-                            SectionId = 3,
-                            Title = "Presentation 2"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Presenter = "FehérMáté",
-                            SectionId = 4,
-                            Title = "Presentation 3"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            Presenter = "KovácsBernadett",
-                            SectionId = 1,
-                            Title = "Presentation 4"
-                        },
-                        new
-                        {
-                            Id = 5,
-                            Presenter = "KissGéza",
-                            SectionId = 2,
-                            Title = "Presentation 5"
-                        },
-                        new
-                        {
-                            Id = 6,
-                            Presenter = "FehérBernadett",
-                            SectionId = 3,
-                            Title = "Presentation 6"
-                        },
-                        new
-                        {
-                            Id = 7,
-                            Presenter = "HerczegMáté",
-                            SectionId = 4,
-                            Title = "Presentation 7"
-                        },
-                        new
-                        {
-                            Id = 8,
-                            Presenter = "NémethSára",
-                            SectionId = 1,
-                            Title = "Presentation 8"
-                        },
-                        new
-                        {
-                            Id = 9,
-                            Presenter = "ErőssSára",
-                            SectionId = 2,
-                            Title = "Presentation 9"
-                        },
-                        new
-                        {
-                            Id = 10,
-                            Presenter = "NémethMáté",
-                            SectionId = 3,
-                            Title = "Presentation 10"
-                        },
-                        new
-                        {
-                            Id = 11,
-                            Presenter = "FehérAnna",
-                            SectionId = 4,
-                            Title = "Presentation 11"
-                        },
-                        new
-                        {
-                            Id = 12,
-                            Presenter = "KovácsLevente",
-                            SectionId = 1,
-                            Title = "Presentation 12"
-                        },
-                        new
-                        {
-                            Id = 13,
-                            Presenter = "KovácsSára",
-                            SectionId = 2,
-                            Title = "Presentation 13"
-                        });
                 });
 
             modelBuilder.Entity("Domain.Entitites.ProfessionalField", b =>
@@ -794,33 +507,6 @@ namespace DAL.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("ProfessionalFields");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Name = "Physics"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Name = "Medicine"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Name = "Sociology"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            Name = "Information Technology"
-                        },
-                        new
-                        {
-                            Id = 5,
-                            Name = "Economics"
-                        });
                 });
 
             modelBuilder.Entity("Domain.Entitites.Room", b =>
@@ -840,68 +526,6 @@ namespace DAL.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Rooms");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Capacity = 100,
-                            UniqueName = "A1"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Capacity = 150,
-                            UniqueName = "A2"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Capacity = 80,
-                            UniqueName = "A3"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            Capacity = 60,
-                            UniqueName = "A4"
-                        },
-                        new
-                        {
-                            Id = 5,
-                            Capacity = 75,
-                            UniqueName = "A5"
-                        },
-                        new
-                        {
-                            Id = 6,
-                            Capacity = 30,
-                            UniqueName = "B1"
-                        },
-                        new
-                        {
-                            Id = 7,
-                            Capacity = 130,
-                            UniqueName = "B2"
-                        },
-                        new
-                        {
-                            Id = 8,
-                            Capacity = 50,
-                            UniqueName = "B3"
-                        },
-                        new
-                        {
-                            Id = 9,
-                            Capacity = 100,
-                            UniqueName = "B4"
-                        },
-                        new
-                        {
-                            Id = 10,
-                            Capacity = 75,
-                            UniqueName = "B5"
-                        });
                 });
 
             modelBuilder.Entity("Domain.Entitites.Section", b =>
@@ -935,48 +559,6 @@ namespace DAL.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("Sections");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            ConferenceId = 1,
-                            FieldId = 3,
-                            RoomId = 3,
-                            UserId = 2
-                        },
-                        new
-                        {
-                            Id = 2,
-                            ConferenceId = 1,
-                            FieldId = 1,
-                            RoomId = 3,
-                            UserId = 10
-                        },
-                        new
-                        {
-                            Id = 3,
-                            ConferenceId = 2,
-                            FieldId = 4,
-                            RoomId = 5,
-                            UserId = 16
-                        },
-                        new
-                        {
-                            Id = 4,
-                            ConferenceId = 2,
-                            FieldId = 5,
-                            RoomId = 1,
-                            UserId = 7
-                        },
-                        new
-                        {
-                            Id = 5,
-                            ConferenceId = 2,
-                            FieldId = 1,
-                            RoomId = 1,
-                            UserId = 10
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
@@ -1149,20 +731,6 @@ namespace DAL.Migrations
 
                             b1.WithOwner()
                                 .HasForeignKey("ConferenceId");
-
-                            b1.HasData(
-                                new
-                                {
-                                    ConferenceId = 1,
-                                    BeginDate = new DateTime(2021, 12, 7, 8, 0, 0, 0, DateTimeKind.Unspecified),
-                                    EndDate = new DateTime(2021, 12, 7, 12, 0, 0, 0, DateTimeKind.Unspecified)
-                                },
-                                new
-                                {
-                                    ConferenceId = 2,
-                                    BeginDate = new DateTime(2022, 1, 12, 10, 0, 0, 0, DateTimeKind.Unspecified),
-                                    EndDate = new DateTime(2022, 1, 12, 16, 0, 0, 0, DateTimeKind.Unspecified)
-                                });
                         });
 
                     b.Navigation("TimeFrame");
@@ -1227,38 +795,6 @@ namespace DAL.Migrations
 
                             b1.WithOwner()
                                 .HasForeignKey("SectionId");
-
-                            b1.HasData(
-                                new
-                                {
-                                    SectionId = 1,
-                                    BeginDate = new DateTime(2021, 12, 7, 8, 0, 0, 0, DateTimeKind.Unspecified),
-                                    EndDate = new DateTime(2021, 12, 7, 10, 0, 0, 0, DateTimeKind.Unspecified)
-                                },
-                                new
-                                {
-                                    SectionId = 2,
-                                    BeginDate = new DateTime(2021, 12, 7, 10, 0, 0, 0, DateTimeKind.Unspecified),
-                                    EndDate = new DateTime(2021, 12, 7, 12, 0, 0, 0, DateTimeKind.Unspecified)
-                                },
-                                new
-                                {
-                                    SectionId = 3,
-                                    BeginDate = new DateTime(2022, 1, 12, 10, 0, 0, 0, DateTimeKind.Unspecified),
-                                    EndDate = new DateTime(2022, 1, 12, 12, 30, 0, 0, DateTimeKind.Unspecified)
-                                },
-                                new
-                                {
-                                    SectionId = 4,
-                                    BeginDate = new DateTime(2022, 1, 12, 12, 30, 0, 0, DateTimeKind.Unspecified),
-                                    EndDate = new DateTime(2022, 1, 12, 15, 0, 0, 0, DateTimeKind.Unspecified)
-                                },
-                                new
-                                {
-                                    SectionId = 5,
-                                    BeginDate = new DateTime(2022, 1, 12, 15, 0, 0, 0, DateTimeKind.Unspecified),
-                                    EndDate = new DateTime(2022, 1, 12, 16, 0, 0, 0, DateTimeKind.Unspecified)
-                                });
                         });
 
                     b.Navigation("Conference");

@@ -18,5 +18,11 @@ namespace Domain.Entitites
             userFields = new List<ApplicationUserProfessionalField>();
             sectionsAboutField = new List<Section>();
         }
+
+        public ProfessionalField(string name)
+            : this()
+        {
+            Name = name;
+        }
     }
 }
