@@ -1,7 +1,6 @@
-﻿using System;
-using Domain.Entitites.Abstractions;
+﻿using Domain.Entitites.Abstractions;
+using System;
 using System.Collections.Generic;
-using Domain.Exceptions;
 
 namespace Domain.Entitites
 {
@@ -37,7 +36,7 @@ namespace Domain.Entitites
 
         public bool DeleteSection(Section section)
         {
-             return sections.Remove(section);
+            return sections.Remove(section);
         }
 
         public void AddUserConference(ApplicationUserConference userConference)
