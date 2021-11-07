@@ -1,6 +1,7 @@
 ﻿using Domain.Entitites.Abstractions;
 using System;
 using System.Collections.Generic;
+using Domain.Exceptions;
 
 namespace Domain.Entitites
 {
@@ -27,7 +28,7 @@ namespace Domain.Entitites
             {
                 if (s.RoomId.Equals(section.RoomId) && (s.TimeFrame.BeginDate <= section.TimeFrame.EndDate && s.TimeFrame.EndDate <= section.TimeFrame.BeginDate))
                 {
-                    throw new Exception("A section in the same room with overlapping time frame exists.");
+                    throw new DomainException("A section in the same room with overlapping time frame exists.");
                 }
             }
 
