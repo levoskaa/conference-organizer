@@ -31,7 +31,7 @@ namespace DAL.Repositories
                 .FirstOrDefaultAsync(c => c.Id == professionalFieldId);
             if (professionalField == null)
             {
-                throw new EntityNotFoundException($"Conference with id {professionalFieldId} not found.");
+                throw new EntityNotFoundException($"Professional field with id {professionalFieldId} not found.");
             }
             return professionalField;
         }

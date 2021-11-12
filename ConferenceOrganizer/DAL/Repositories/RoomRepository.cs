@@ -28,7 +28,7 @@ namespace DAL.Repositories
                 .FirstOrDefaultAsync(c => c.Id == roomId);
             if (room == null)
             {
-                throw new EntityNotFoundException($"Conference with id {roomId} not found.");
+                throw new EntityNotFoundException($"Room with id {roomId} not found.");
             }
             return room;
         }
