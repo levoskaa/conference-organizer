@@ -242,7 +242,7 @@ namespace DAL.Extensions
                 Id = 1,
                 ConferenceId = 1,
                 RoomId = 3,
-                UserId = 2,
+                ChairmanId = 2,
                 FieldId = 3,
             };
             var section2 = new Section
@@ -250,7 +250,7 @@ namespace DAL.Extensions
                 Id = 2,
                 ConferenceId = 1,
                 RoomId = 3,
-                UserId = 10,
+                ChairmanId = 10,
                 FieldId = 1,
             };
 
@@ -260,7 +260,7 @@ namespace DAL.Extensions
                 Id = 3,
                 ConferenceId = 2,
                 RoomId = 5,
-                UserId = 16,
+                ChairmanId = 16,
                 FieldId = 4,
             };
             var section4 = new Section
@@ -268,7 +268,7 @@ namespace DAL.Extensions
                 Id = 4,
                 ConferenceId = 2,
                 RoomId = 1,
-                UserId = 7,
+                ChairmanId = 7,
                 FieldId = 5,
             };
             var section5 = new Section
@@ -276,7 +276,7 @@ namespace DAL.Extensions
                 Id = 5,
                 ConferenceId = 2,
                 RoomId = 1,
-                UserId = 10,
+                ChairmanId = 10,
                 FieldId = 1,
             };
 

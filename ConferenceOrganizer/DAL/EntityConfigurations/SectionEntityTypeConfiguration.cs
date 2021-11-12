@@ -33,9 +33,9 @@ namespace DAL.EntityConfigurations
                 .WithMany(nameof(Room.Sections))
                 .HasForeignKey(nameof(Section.RoomId));
 
-            sectionConfiguration.HasOne(s => s.User)
+            sectionConfiguration.HasOne(s => s.Chairman)
                 .WithMany(nameof(ApplicationUser.ModeratedSections))
-                .HasForeignKey(nameof(Section.UserId));
+                .HasForeignKey(nameof(Section.ChairmanId));
 
             sectionConfiguration.HasOne(s => s.Field)
                 .WithMany(nameof(ProfessionalField.SectionsAboutField))

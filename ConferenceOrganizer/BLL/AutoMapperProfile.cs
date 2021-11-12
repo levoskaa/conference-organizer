@@ -27,7 +27,7 @@ namespace BLL
                 .ForMember(svm => svm.BeginDate, options => options.MapFrom(s => s.TimeFrame.BeginDate))
                 .ForMember(svm => svm.EndDate, options => options.MapFrom(s => s.TimeFrame.EndDate))
                 .ForMember(svm => svm.Room, options => options.MapFrom(s => s.Room.UniqueName))
-                .ForMember(svm => svm.Chairman, options => options.MapFrom(s => s.User.UserName))
+                .ForMember(svm => svm.Chairman, options => options.MapFrom(s => s.Chairman.UserName))
                 .ForMember(svm => svm.Field, options => options.MapFrom(s => s.Field.Name));
             CreateMap<IEnumerable<Section>, SectionsViewModel>()
                 .ForMember(svm => svm.Sections, options => options.MapFrom(x => x));

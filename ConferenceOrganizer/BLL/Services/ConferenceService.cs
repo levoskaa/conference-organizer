@@ -93,11 +93,11 @@ namespace BLL.Services
         }
 
         public async Task<EntityCreatedViewModel> AddSectionAsync(int conferenceId, SectionUpsertDto sectionCreateDto)
-        { 
+        {
             var section = mapper.Map<Section>(sectionCreateDto);
             section.Room = await roomRepository.FindRoomByIdAsync(sectionCreateDto.RoomId);
             section.Field = await professionalFieldRepository.FindProfessionalFieldByIdAsync(sectionCreateDto.FieldId);
-            section.User = await userService.FindUserAsync(sectionCreateDto.ChairmanId);
+            section.Chairman = await userService.FindUserAsync(sectionCreateDto.ChairmanId);
 
             var conference = await conferenceRepository.FindConferenceByIdAsync(conferenceId);
             conference.AddSection(section);
