@@ -32,6 +32,11 @@ namespace DAL.Repositories
         {
             var conference = await dbContext.Conferences
                 .Include(c => c.Sections)
+                    .ThenInclude(s => s.Field)
+                .Include(c => c.Sections)
+                    .ThenInclude(s => s.Chairman)
+                .Include(c => c.Sections)
+                    .ThenInclude(c => c.Room)
                 .FirstOrDefaultAsync(c => c.Id == conferenceId);
             if (conference == null)
             {
