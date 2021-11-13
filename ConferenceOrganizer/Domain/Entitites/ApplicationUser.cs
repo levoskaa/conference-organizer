@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Domain.Entitites
 {
@@ -19,6 +20,11 @@ namespace Domain.Entitites
             userFields = new List<ApplicationUserProfessionalField>();
             userConferences = new List<ApplicationUserConference>();
             moderatedSections = new List<Section>();
+        }
+
+        public IReadOnlyCollection<ProfessionalField> GetFields()
+        {
+            return UserFields.Select(uf => uf.Field).ToList();
         }
     }
 }

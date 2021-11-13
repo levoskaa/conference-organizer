@@ -20,7 +20,6 @@ namespace BLL.Services
         public ConferenceService(
             IUserService userService,
             IConferenceRepository conferenceRepository,
-            ISectionRepository sectionRepository,
             IRoomRepository roomRepository,
             IProfessionalFieldRepository professionalFieldRepository,
             IUnitOfWork unitOfWork,
@@ -81,12 +80,13 @@ namespace BLL.Services
 
         public async Task<EntityCreatedViewModel> AddSectionAsync(int conferenceId, SectionUpsertDto sectionCreateDto)
         {
-            var section = mapper.Map<Section>(sectionCreateDto);
-            section.Room = await roomRepository.FindRoomByIdAsync(sectionCreateDto.RoomId);
-            section.Field = await professionalFieldRepository.FindProfessionalFieldByIdAsync(sectionCreateDto.FieldId);
-            section.Chairman = await userService.FindUserAsync(sectionCreateDto.ChairmanId);
-
             var conference = await conferenceRepository.FindConferenceByIdAsync(conferenceId);
+            var section = mapper.Map<Section>(sectionCreateDto);
+            var field = await professionalFieldRepository.FindProfessionalFieldByIdAsync(sectionCreateDto.FieldId);
+            var chairman = await userService.FindUserAsync(sectionCreateDto.ChairmanId);
+
+            section.Room = await roomRepository.FindRoomByIdAsync(sectionCreateDto.RoomId);
+            section.UpdateChairmanAndField(chairman, field);
             conference.AddSection(section);
 
             await unitOfWork.SaveChangesAsync();
