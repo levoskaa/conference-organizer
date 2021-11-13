@@ -51,9 +51,8 @@ namespace BLL.Services
 
         public async Task UpdateProfessionalFieldAsync(int professionalFieldId, ProfessionalFieldUpsertDto professionalFieldUpdateDto)
         {
-            var professionalField = mapper.Map<ProfessionalField>(professionalFieldUpdateDto);
-            professionalField.Id = professionalFieldId;
-            professionalFieldRepository.UpdateProfessionalField(professionalField);
+            var professionalField = await professionalFieldRepository.FindProfessionalFieldByIdAsync(professionalFieldId);
+            professionalField.Update(mapper.Map<ProfessionalField>(professionalFieldUpdateDto));
             await unitOfWork.SaveChangesAsync();
         }
 

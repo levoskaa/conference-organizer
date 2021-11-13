@@ -61,9 +61,8 @@ namespace BLL.Services
 
         public async Task UpdateConferenceAsync(int conferenceId, ConferenceUpsertDto conferenceUpdateDto)
         {
-            var conference = mapper.Map<Conference>(conferenceUpdateDto);
-            conference.Id = conferenceId;
-            conferenceRepository.UpdateConference(conference);
+            var conference = await conferenceRepository.FindConferenceByIdAsync(conferenceId);
+            conference.Update(mapper.Map<Conference>(conferenceUpdateDto));
             await unitOfWork.SaveChangesAsync();
         }
 

@@ -24,5 +24,10 @@ namespace Domain.Entitites
         {
             Name = name;
         }
+
+        public void Update(ProfessionalField updatedField)
+        {
+            Name = updatedField.Name;
+        }
     }
 }

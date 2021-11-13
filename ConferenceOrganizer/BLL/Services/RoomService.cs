@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
 using BLL.Dtos;
 using BLL.Interfaces;
 using BLL.ViewModels;
 using Domain.Entitites;
 using Domain.Interfaces;
+using System.Threading.Tasks;
 
 namespace BLL.Services
 {
@@ -54,9 +50,8 @@ namespace BLL.Services
 
         public async Task UpdateRoomAsync(int roomId, RoomUpsertDto roomUpdateDto)
         {
-            var room = mapper.Map<Room>(roomUpdateDto);
-            room.Id = roomId;
-            roomRepository.UpdateRoom(room);
+            var room = await roomRepository.FindRoomByIdAsync(roomId);
+            room.Update(mapper.Map<Room>(roomUpdateDto));
             await unitOfWork.SaveChangesAsync();
         }
 

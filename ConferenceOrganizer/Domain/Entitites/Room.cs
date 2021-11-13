@@ -7,6 +7,7 @@ namespace Domain.Entitites
     public class Room : EntityBase
     {
         public string UniqueName { get; set; }
+
         private int capacity;
         public int Capacity
         {
@@ -37,6 +38,12 @@ namespace Domain.Entitites
         {
             UniqueName = name;
             Capacity = capacity;
+        }
+
+        public void Update(Room updatedRoom)
+        {
+            UniqueName = updatedRoom.UniqueName;
+            Capacity = updatedRoom.Capacity;
         }
     }
 }

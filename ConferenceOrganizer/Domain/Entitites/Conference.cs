@@ -1,7 +1,6 @@
 ﻿using Domain.Entitites.Abstractions;
-using System;
-using System.Collections.Generic;
 using Domain.Exceptions;
+using System.Collections.Generic;
 
 namespace Domain.Entitites
 {
@@ -20,6 +19,12 @@ namespace Domain.Entitites
         {
             userConferences = new List<ApplicationUserConference>();
             sections = new List<Section>();
+        }
+
+        public void Update(Conference updatedConference)
+        {
+            Name = updatedConference.Name;
+            TimeFrame = updatedConference.TimeFrame;
         }
 
         public void AddSection(Section section)
