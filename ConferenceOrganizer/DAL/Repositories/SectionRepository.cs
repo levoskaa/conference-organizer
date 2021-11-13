@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
-using Domain.Entitites;
+﻿using Domain.Entitites;
 using Domain.Exceptions;
 using Domain.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using System.Threading.Tasks;
 
 namespace DAL.Repositories
@@ -17,7 +17,11 @@ namespace DAL.Repositories
 
         public async Task<Section> FindSectionByIdAsync(int sectionId)
         {
-            var section = await dbContext.Sections.FindAsync(sectionId);
+            var section = await dbContext.Sections
+                .Include(s => s.Room)
+                .Include(s => s.Chairman)
+                .Include(s => s.Field)
+                .FirstOrDefaultAsync(s => s.Id == sectionId);
             if (section == null)
             {
                 throw new EntityNotFoundException($"Section with id {sectionId} not found.");
