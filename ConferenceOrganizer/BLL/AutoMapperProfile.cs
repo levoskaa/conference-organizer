@@ -39,6 +39,11 @@ namespace BLL
             CreateMap<IEnumerable<ProfessionalField>, ProfessionalFieldsViewModel>()
                 .ForMember(pvm => pvm.ProfessionalFields, options => options.MapFrom(x => x));
             CreateMap<ProfessionalFieldUpsertDto, ProfessionalField>();
+
+            CreateMap<Room, RoomViewModel>();
+            CreateMap<IEnumerable<Room>, RoomsViewModel>()
+                .ForMember(rvm => rvm.Rooms, options => options.MapFrom(x => x));
+            CreateMap<RoomUpsertDto, Room>();
         }
     }
 }
