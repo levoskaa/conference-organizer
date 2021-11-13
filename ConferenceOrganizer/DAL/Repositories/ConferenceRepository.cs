@@ -58,15 +58,5 @@ namespace DAL.Repositories
                 dbContext.Conferences.Remove(conference);
             }
         }
-
-        public async Task DeleteSectionAsync(int conferenceId, int sectionId)
-        {
-            var conference = await dbContext.Conferences.FindAsync(conferenceId);
-            var section = await dbContext.Sections.FindAsync(sectionId);
-            if (conference != null)
-            {
-                conference.DeleteSection(section);
-            }
-        }
     }
 }

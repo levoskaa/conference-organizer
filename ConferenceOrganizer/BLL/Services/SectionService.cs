@@ -1,11 +1,10 @@
-﻿using System.Collections.Generic;
-using AutoMapper;
+﻿using AutoMapper;
+using BLL.Dtos;
 using BLL.Interfaces;
 using BLL.ViewModels;
+using Domain.Entitites;
 using Domain.Interfaces;
 using System.Threading.Tasks;
-using BLL.Dtos;
-using Domain.Entitites;
 
 namespace BLL.Services
 {
@@ -38,10 +37,16 @@ namespace BLL.Services
 
             foreach (var presentationUpsertDto in presentationsUpsertDto.Presentations)
             {
-               var presentation =  mapper.Map<Presentation>(presentationUpsertDto);
-               section.AddPresentation(presentation);
+                var presentation = mapper.Map<Presentation>(presentationUpsertDto);
+                section.AddPresentation(presentation);
             }
-            
+
+            await unitOfWork.SaveChangesAsync();
+        }
+
+        public async Task DeleteSectionAsync(int sectionId)
+        {
+            await sectionRepository.DeleteSectionAsync(sectionId);
             await unitOfWork.SaveChangesAsync();
         }
     }

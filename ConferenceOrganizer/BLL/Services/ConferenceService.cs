@@ -1,14 +1,10 @@
-﻿using System.Collections.Generic;
-using System.Data;
-using AutoMapper;
+﻿using AutoMapper;
 using BLL.Dtos;
 using BLL.Interfaces;
 using BLL.ViewModels;
 using Domain.Entitites;
 using Domain.Interfaces;
 using System.Threading.Tasks;
-using Domain.Exceptions;
-using Microsoft.AspNetCore.Identity;
 
 namespace BLL.Services
 {
@@ -16,7 +12,6 @@ namespace BLL.Services
     {
         private readonly IUserService userService;
         private readonly IConferenceRepository conferenceRepository;
-        private readonly ISectionRepository sectionRepository;
         private readonly IRoomRepository roomRepository;
         private readonly IProfessionalFieldRepository professionalFieldRepository;
         private readonly IUnitOfWork unitOfWork;
@@ -33,7 +28,6 @@ namespace BLL.Services
         {
             this.userService = userService;
             this.conferenceRepository = conferenceRepository;
-            this.sectionRepository = sectionRepository;
             this.roomRepository = roomRepository;
             this.professionalFieldRepository = professionalFieldRepository;
             this.unitOfWork = unitOfWork;
@@ -84,12 +78,6 @@ namespace BLL.Services
             var conference = await conferenceRepository.FindConferenceByIdAsync(conferenceId);
             var sectionsViewModel = mapper.Map<SectionsViewModel>(conference.Sections);
             return sectionsViewModel;
-        }
-
-        public async Task DeleteSectionAsync(int conferenceId, int sectionId)
-        {
-            await conferenceRepository.DeleteSectionAsync(conferenceId, sectionId);
-            await unitOfWork.SaveChangesAsync();
         }
 
         public async Task<EntityCreatedViewModel> AddSectionAsync(int conferenceId, SectionUpsertDto sectionCreateDto)

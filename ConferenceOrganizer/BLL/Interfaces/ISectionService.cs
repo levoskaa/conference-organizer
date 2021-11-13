@@ -1,6 +1,6 @@
-﻿using BLL.ViewModels;
+﻿using BLL.Dtos;
+using BLL.ViewModels;
 using System.Threading.Tasks;
-using BLL.Dtos;
 
 namespace BLL.Interfaces
 {
@@ -9,5 +9,7 @@ namespace BLL.Interfaces
         Task<SectionViewModel> FindSectionByIdAsync(int sectionId);
 
         Task AddPresentationsAsync(int sectionId, PresentationsUpsertDto presentationsUpsertDto);
+
+        Task DeleteSectionAsync(int sectionId);
     }
 }

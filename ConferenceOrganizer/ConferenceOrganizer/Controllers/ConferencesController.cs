@@ -46,14 +46,6 @@ namespace Web.Controllers
             return conferenceService.GetAllConferenceSectionsAsync(conferenceId);
         }
 
-        [HttpDelete("{conferenceId}/sections/{sectionId}")]
-        [Authorize]
-        [ProducesResponseType(StatusCodes.Status204NoContent)]
-        public Task DeleteSection([FromRoute] int conferenceId, [FromRoute] int sectionId)
-        {
-            return conferenceService.DeleteSectionAsync(conferenceId, sectionId);
-        }
-
         [HttpPost("{conferenceId}/sections")]
         [Authorize]
         [ProducesResponseType(StatusCodes.Status201Created)]

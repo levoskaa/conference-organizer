@@ -24,5 +24,14 @@ namespace DAL.Repositories
             }
             return section;
         }
+
+        public async Task DeleteSectionAsync(int sectionId)
+        {
+            var section = await dbContext.Sections.FindAsync(sectionId);
+            if (section != null)
+            {
+                dbContext.Sections.Remove(section);
+            }
+        }
     }
 }

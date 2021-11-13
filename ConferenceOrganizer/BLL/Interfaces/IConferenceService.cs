@@ -18,8 +18,6 @@ namespace BLL.Interfaces
 
         Task<SectionsViewModel> GetAllConferenceSectionsAsync(int conferenceId);
 
-        Task DeleteSectionAsync(int conferenceId, int sectionId);
-
         Task<EntityCreatedViewModel> AddSectionAsync(int conferenceId, SectionUpsertDto sectionCreateDto);
     }
 }

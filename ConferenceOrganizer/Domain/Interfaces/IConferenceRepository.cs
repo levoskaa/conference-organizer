@@ -15,7 +15,5 @@ namespace Domain.Interfaces
         void UpdateConference(Conference conference);
 
         Task DeleteConferenceAsync(int conferenceId);
-        
-        Task DeleteSectionAsync(int conferenceId, int sectionId);
     }
 }

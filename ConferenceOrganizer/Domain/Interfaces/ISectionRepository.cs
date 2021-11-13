@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using Domain.Entitites;
+﻿using Domain.Entitites;
 using System.Threading.Tasks;
 
 namespace Domain.Interfaces
@@ -8,5 +7,6 @@ namespace Domain.Interfaces
     {
         Task<Section> FindSectionByIdAsync(int sectionId);
 
-    } 
+        Task DeleteSectionAsync(int sectionId);
+    }
 }
