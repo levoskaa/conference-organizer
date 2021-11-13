@@ -34,6 +34,11 @@ namespace BLL
             CreateMap<SectionUpsertDto, Section>()
                 .ForMember(s => s.TimeFrame,
                     options => options.MapFrom(dto => new TimeFrame(dto.BeginDate, dto.EndDate)));
+
+            CreateMap<ProfessionalField, ProfessionalFieldViewModel>();
+            CreateMap<IEnumerable<ProfessionalField>, ProfessionalFieldsViewModel>()
+                .ForMember(pvm => pvm.ProfessionalFields, options => options.MapFrom(x => x));
+            CreateMap<ProfessionalFieldUpsertDto, ProfessionalField>();
         }
     }
 }
