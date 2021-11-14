@@ -34,6 +34,13 @@ namespace Web.Controllers
             return sectionService.FindSectionByIdAsync(sectionId);
         }
 
+        [HttpPut("{sectionId}")]
+        [Authorize]
+        public Task UpdatSection([FromRoute] int sectionId, [FromBody] SectionUpsertDto sectionUpdateDto)
+        {
+            return sectionService.UpdateSectionAsync(sectionId, sectionUpdateDto);
+        }
+
         [HttpDelete("{sectionId}")]
         [Authorize]
         [ProducesResponseType(StatusCodes.Status204NoContent)]

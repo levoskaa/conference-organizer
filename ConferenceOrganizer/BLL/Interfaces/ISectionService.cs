@@ -10,6 +10,8 @@ namespace BLL.Interfaces
 
         Task AddPresentationsAsync(int sectionId, PresentationsUpsertDto presentationsUpsertDto);
 
+        Task UpdateSectionAsync(int sectionId, SectionUpsertDto sectionUpdateDto);
+
         Task DeleteSectionAsync(int sectionId);
     }
 }

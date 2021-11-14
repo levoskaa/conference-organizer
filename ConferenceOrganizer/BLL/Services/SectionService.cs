@@ -11,15 +11,24 @@ namespace BLL.Services
     public class SectionService : ISectionService
     {
         private readonly ISectionRepository sectionRepository;
+        private readonly IRoomRepository roomRepository;
+        private readonly IProfessionalFieldRepository fieldRepository;
+        private readonly IUserService userService;
         private readonly IMapper mapper;
         private readonly IUnitOfWork unitOfWork;
 
         public SectionService(
             ISectionRepository sectionRepository,
+            IRoomRepository roomRepository,
+            IProfessionalFieldRepository fieldRepository,
+            IUserService userService,
             IMapper mapper,
             IUnitOfWork unitOfWork)
         {
             this.sectionRepository = sectionRepository;
+            this.roomRepository = roomRepository;
+            this.fieldRepository = fieldRepository;
+            this.userService = userService;
             this.mapper = mapper;
             this.unitOfWork = unitOfWork;
         }
@@ -41,6 +50,17 @@ namespace BLL.Services
                 section.AddPresentation(presentation);
             }
 
+            await unitOfWork.SaveChangesAsync();
+        }
+
+        public async Task UpdateSectionAsync(int sectionId, SectionUpsertDto sectionUpdateDto)
+        {
+            var section = await sectionRepository.FindSectionByIdAsync(sectionId);
+            var timeFrame = new TimeFrame(sectionUpdateDto.BeginDate, sectionUpdateDto.EndDate);
+            var room = await roomRepository.FindRoomByIdAsync(sectionUpdateDto.RoomId);
+            var chairman = await userService.FindUserAsync(sectionUpdateDto.ChairmanId);
+            var field = await fieldRepository.FindProfessionalFieldByIdAsync(sectionUpdateDto.FieldId);
+            section.Update(timeFrame, room, chairman, field);
             await unitOfWork.SaveChangesAsync();
         }
 

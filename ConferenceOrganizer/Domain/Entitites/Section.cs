@@ -30,6 +30,13 @@ namespace Domain.Entitites
             presentations.Add(presentation);
         }
 
+        public void Update(TimeFrame timeFrame, Room room, ApplicationUser chairman, ProfessionalField field)
+        {
+            TimeFrame = timeFrame;
+            Room = room;
+            UpdateChairmanAndField(chairman, field);
+        }
+
         public void UpdateChairmanAndField(ApplicationUser chairman, ProfessionalField field)
         {
             if (!chairman.GetFields().Contains(field))
