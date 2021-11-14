@@ -58,7 +58,7 @@ namespace BLL.Services
             var section = await sectionRepository.FindSectionByIdAsync(sectionId);
             var timeFrame = new TimeFrame(sectionUpdateDto.BeginDate, sectionUpdateDto.EndDate);
             var room = await roomRepository.FindRoomByIdAsync(sectionUpdateDto.RoomId);
-            var chairman = await userService.FindUserAsync(sectionUpdateDto.ChairmanId);
+            var chairman = await userService.FindUserByIdAsync(sectionUpdateDto.ChairmanId);
             var field = await fieldRepository.FindProfessionalFieldByIdAsync(sectionUpdateDto.FieldId);
             section.Update(timeFrame, room, chairman, field);
             await unitOfWork.SaveChangesAsync();

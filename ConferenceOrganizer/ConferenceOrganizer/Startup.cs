@@ -100,6 +100,7 @@ namespace ConferenceOrganizer
                 .AddDefaultTokenProviders();
 
             // Register JWT authentication scheme
+            JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>
                 {

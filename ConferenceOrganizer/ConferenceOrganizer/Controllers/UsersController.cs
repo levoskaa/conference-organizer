@@ -14,10 +14,17 @@ namespace Web.Controllers
     public class UsersController : ApiController
     {
         private readonly IAuthService authService;
+        private readonly IUserService userService;
+        private readonly IIdentityHelper identityHelper;
 
-        public UsersController(IAuthService authService)
+        public UsersController(
+            IAuthService authService,
+            IUserService userService,
+            IIdentityHelper identityHelper)
         {
             this.authService = authService;
+            this.userService = userService;
+            this.identityHelper = identityHelper;
         }
 
         [HttpPost]
@@ -27,6 +34,14 @@ namespace Web.Controllers
         {
             HttpContext.Response.StatusCode = (int)HttpStatusCode.Created;
             return authService.CreateUserAsync(createUserDto);
+        }
+
+        [HttpPut("me/fields")]
+        [Authorize]
+        public Task UpdateFields([FromBody] ProfessionalFieldUpdateDto fieldUpdateDto)
+        {
+            var userId = identityHelper.GetAuthenticatedUserId();
+            return userService.UpdateProfessionalFields(userId, fieldUpdateDto);
         }
     }
 }

@@ -89,7 +89,7 @@ namespace BLL.Services
             var conference = await conferenceRepository.FindConferenceByIdAsync(conferenceId);
             var section = mapper.Map<Section>(sectionCreateDto);
             var field = await professionalFieldRepository.FindProfessionalFieldByIdAsync(sectionCreateDto.FieldId);
-            var chairman = await userService.FindUserAsync(sectionCreateDto.ChairmanId);
+            var chairman = await userService.FindUserByIdAsync(sectionCreateDto.ChairmanId);
 
             section.Room = await roomRepository.FindRoomByIdAsync(sectionCreateDto.RoomId);
             section.UpdateChairmanAndField(chairman, field);
@@ -104,7 +104,7 @@ namespace BLL.Services
             var userConferences = new List<ApplicationUserConference>();
             foreach (int applicationUserId in conferenceCreateDto.Editors)
             {
-                var user = await userService.FindUserAsync(applicationUserId);
+                var user = await userService.FindUserByIdAsync(applicationUserId);
                 var applicationUserConference = new ApplicationUserConference()
                 {
                     User = user,

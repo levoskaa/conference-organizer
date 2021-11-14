@@ -26,5 +26,11 @@ namespace Domain.Entitites
         {
             return UserFields.Select(uf => uf.Field).ToList();
         }
+
+        public void SetUserFields(IEnumerable<ApplicationUserProfessionalField> userFields)
+        {
+            this.userFields.Clear();
+            this.userFields.AddRange(userFields);
+        }
     }
 }

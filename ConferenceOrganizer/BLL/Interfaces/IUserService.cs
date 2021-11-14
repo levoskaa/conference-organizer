@@ -1,14 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using BLL.Dtos;
 using Domain.Entitites;
+using System.Threading.Tasks;
 
 namespace BLL.Interfaces
 {
     public interface IUserService
     {
-        Task<ApplicationUser> FindUserAsync(int id);
+        Task<ApplicationUser> FindUserByIdAsync(int id);
+
+        Task UpdateProfessionalFields(int userid, ProfessionalFieldUpdateDto fieldUpdateDto);
     }
 }
