@@ -37,6 +37,8 @@ namespace DAL.Repositories
                     .ThenInclude(s => s.Chairman)
                 .Include(c => c.Sections)
                     .ThenInclude(c => c.Room)
+                .Include(c => c.UserConferences)
+                    .ThenInclude(uc => uc.User)
                 .FirstOrDefaultAsync(c => c.Id == conferenceId);
             if (conference == null)
             {

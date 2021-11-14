@@ -1,5 +1,6 @@
 ﻿using BLL.Dtos;
 using BLL.ViewModels;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace BLL.Interfaces
@@ -12,7 +13,7 @@ namespace BLL.Interfaces
 
         Task<ConferenceViewModel> FindConferenceByIdAsync(int conferenceId);
 
-        Task UpdateConferenceAsync(int conferenceId, ConferenceUpsertDto conferenceUpdateDto);
+        Task UpdateConferenceAsync(int conferenceId, ConferenceUpsertDto conferenceUpdateDto, IEnumerable<string> userRoles);
 
         Task DeleteConferenceAsync(int conferenceId);
 

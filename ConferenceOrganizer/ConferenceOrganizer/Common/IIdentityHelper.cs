@@ -1,7 +1,11 @@
-﻿namespace Web.Common
+﻿using System.Collections.Generic;
+
+namespace Web.Common
 {
-    internal interface IIdentityHelper
+    public interface IIdentityHelper
     {
         int GetAuthenticatedUserId();
+
+        IEnumerable<string> GetAuthenticatedUserRoles();
     }
 }

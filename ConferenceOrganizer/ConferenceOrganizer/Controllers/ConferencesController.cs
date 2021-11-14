@@ -13,10 +13,14 @@ namespace Web.Controllers
     public class ConferencesController : ApiController
     {
         private readonly IConferenceService conferenceService;
+        private readonly IIdentityHelper identityHelper;
 
-        public ConferencesController(IConferenceService conferenceService)
+        public ConferencesController(
+            IConferenceService conferenceService,
+            IIdentityHelper identityHelper)
         {
             this.conferenceService = conferenceService;
+            this.identityHelper = identityHelper;
         }
 
         [HttpPost]
@@ -59,7 +63,8 @@ namespace Web.Controllers
         [Authorize]
         public Task UpdateConference([FromRoute] int conferenceId, [FromBody] ConferenceUpsertDto conferenceUpdateDto)
         {
-            return conferenceService.UpdateConferenceAsync(conferenceId, conferenceUpdateDto);
+            var userRoles = identityHelper.GetAuthenticatedUserRoles();
+            return conferenceService.UpdateConferenceAsync(conferenceId, conferenceUpdateDto, userRoles);
         }
 
         [HttpDelete("{conferenceId}")]

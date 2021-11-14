@@ -4,6 +4,8 @@ using BLL.Interfaces;
 using BLL.ViewModels;
 using Domain.Entitites;
 using Domain.Interfaces;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace BLL.Services
@@ -58,9 +60,13 @@ namespace BLL.Services
             return conferenceViewModel;
         }
 
-        public async Task UpdateConferenceAsync(int conferenceId, ConferenceUpsertDto conferenceUpdateDto)
+        public async Task UpdateConferenceAsync(int conferenceId, ConferenceUpsertDto conferenceUpdateDto, IEnumerable<string> userRoles)
         {
             var conference = await conferenceRepository.FindConferenceByIdAsync(conferenceId);
+            if (userRoles.Contains("Admin"))
+            {
+                await HandleUserConferences(conferenceUpdateDto, conference);
+            }
             conference.Update(mapper.Map<Conference>(conferenceUpdateDto));
             await unitOfWork.SaveChangesAsync();
         }
@@ -95,6 +101,7 @@ namespace BLL.Services
 
         private async Task HandleUserConferences(ConferenceUpsertDto conferenceCreateDto, Conference conference)
         {
+            var userConferences = new List<ApplicationUserConference>();
             foreach (int applicationUserId in conferenceCreateDto.Editors)
             {
                 var user = await userService.FindUserAsync(applicationUserId);
@@ -103,8 +110,9 @@ namespace BLL.Services
                     User = user,
                     Conference = conference
                 };
-                conference.AddUserConference(applicationUserConference);
+                userConferences.Add(applicationUserConference);
             }
+            conference.SetUserConferences(userConferences);
         }
     }
 }

@@ -49,5 +49,14 @@ namespace Domain.Entitites
         {
             userConferences.Add(userConference);
         }
+
+        public void SetUserConferences(IEnumerable<ApplicationUserConference> userConferences)
+        {
+            this.userConferences.Clear();
+            foreach (var userConference in userConferences)
+            {
+                AddUserConference(userConference);
+            }
+        }
     }
 }
