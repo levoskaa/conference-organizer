@@ -1,10 +1,14 @@
-﻿using AutoMapper;
+﻿using System.Globalization;
+using System.IO;
+using AutoMapper;
 using BLL.Dtos;
 using BLL.Interfaces;
 using BLL.ViewModels;
 using Domain.Entitites;
 using Domain.Interfaces;
 using System.Threading.Tasks;
+using CsvHelper;
+using Microsoft.AspNetCore.Http;
 
 namespace BLL.Services
 {
@@ -51,6 +55,24 @@ namespace BLL.Services
             }
 
             await unitOfWork.SaveChangesAsync();
+        }
+
+        public async Task AddPresentationsByFileAsync(int sectionId, IFormFile presentationsFile)
+        {
+          var section = await sectionRepository.FindSectionByIdAsync(sectionId);
+
+          using (var reader = new StreamReader(presentationsFile.OpenReadStream()))
+          using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
+          {
+            var presentations = csv.GetRecords<PresentationUpsertDto>();
+            foreach (var presentationDto in presentations)
+            {
+              var presentation = mapper.Map<Presentation>(presentationDto);
+              section.AddPresentation(presentation);
+            }
+          }
+
+          await unitOfWork.SaveChangesAsync();
         }
 
         public async Task UpdateSectionAsync(int sectionId, SectionUpsertDto sectionUpdateDto)

@@ -1,4 +1,5 @@
-﻿using BLL.Interfaces;
+﻿using System;
+using BLL.Interfaces;
 using BLL.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
@@ -28,7 +29,28 @@ namespace Web.Controllers
             return sectionService.AddPresentationsAsync(sectionId, presentationsUpsertDto);
         }
 
-        [HttpGet("{sectionId}")]
+        [HttpPost("{sectionId}/presentations/file")]
+        [Authorize]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        public Task AddPresentationsByFile([FromRoute] int sectionId)
+        {
+          HttpContext.Response.StatusCode = StatusCodes.Status201Created;
+
+          try
+          {
+            var file = Request.Form.Files[0];
+            return sectionService.AddPresentationsByFileAsync(sectionId, file);
+          }
+          catch (Exception e)
+          {
+            //TODO throw exception
+            Console.WriteLine(e);
+            throw;
+          }
+
+        }
+
+    [HttpGet("{sectionId}")]
         public Task<SectionViewModel> GetSectionById([FromRoute] int sectionId)
         {
             return sectionService.FindSectionByIdAsync(sectionId);
