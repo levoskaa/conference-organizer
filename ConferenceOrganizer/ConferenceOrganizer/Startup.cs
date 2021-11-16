@@ -69,6 +69,17 @@ namespace ConferenceOrganizer
                 });
             });
 
+            services.AddCors(options =>
+            {
+                options.AddPolicy(name: "AllowAngularClient",
+                                  builder =>
+                                  {
+                                      builder.WithOrigins("http://localhost:4200")
+                                        .AllowAnyMethod()
+                                        .AllowAnyHeader();
+                                  });
+            });
+
             services
                 .AddControllers()
                 .AddFluentValidation(options =>
@@ -134,9 +145,9 @@ namespace ConferenceOrganizer
 
             app.UseSerilogRequestLogging();
 
-            app.UseHttpsRedirection();
-
             app.UseRouting();
+
+            app.UseCors("AllowAngularClient");
 
             app.UseAuthentication();
 
