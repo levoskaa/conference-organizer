@@ -4,6 +4,7 @@ import { BreakpointObserver } from '@angular/cdk/layout';
 import { delay } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { AuthService } from './core/auth.service';
+import { UnsubscribeOnDestroy } from './core/UnsubscribeOnDestroy';
 
 @Component({
     selector: 'app-root',
@@ -29,6 +30,10 @@ export class AppComponent {
 
     changeToUserNavBar(res: boolean) {
         this.isUserLoggedIn = res;
+    }
+
+    logout() {
+        this.authService.logout();
     }
 
     ngAfterViewInit() {

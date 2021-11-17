@@ -30,7 +30,6 @@ export class LoginPageComponent extends UnsubscribeOnDestroy {
     login(): void {
         this.subscribe(this.authService.login(this.form.value).pipe(
             tap((token) => console.log(token)),
-            tap(() => this.authService.userLoggedin()),
             tap(() => this.router.navigate(['']))
         ));
     }

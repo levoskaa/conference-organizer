@@ -1,5 +1,5 @@
-import { EventEmitter, Injectable, Output } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Injectable, Output } from '@angular/core';
+import { Observable, Subject } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { LoginDto, TokenViewModel } from '../models/generated';
 import { AppHttpClient } from './app-http-client';
@@ -10,15 +10,15 @@ import { AppHttpClient } from './app-http-client';
 export class AuthService {
     private readonly authUrl = 'api/auth';
 
-    @Output() userLoggedIn: EventEmitter<any> = new EventEmitter();
-    @Output() adminLoggedIn: EventEmitter<any> = new EventEmitter();
+    @Output() userLoggedIn: Subject<boolean> = new Subject();
+    @Output() adminLoggedIn: Subject<boolean> = new Subject();
 
     constructor(private readonly httpClient: AppHttpClient) { }
 
     login(loginDto: LoginDto): Observable<TokenViewModel> {
         return this.httpClient.post<TokenViewModel>(`${this.authUrl}/login`, loginDto).pipe(
-            tap((response) => this.setSession(response))
-        );
+            tap((response) => this.setSession(response)),
+            tap(() => this.userLoggedin()));
     }
 
     private setSession(tokenViewModel: TokenViewModel): void {
@@ -27,6 +27,8 @@ export class AuthService {
 
     logout(): void {
         this.removeSession();
+        this.userLoggedout();
+        this.adminLoggedout();
     }
 
     private removeSession(): void {
@@ -38,10 +40,19 @@ export class AuthService {
     }
 
     userLoggedin() {
-        this.userLoggedIn.emit(true);
+        this.userLoggedIn.next(true);
     }
 
     adminLoggedin() {
-        this.adminLoggedIn.emit(true);
+        this.adminLoggedIn.next(true);
     }
+
+    userLoggedout() {
+        this.userLoggedIn.next(false);
+    }
+
+    adminLoggedout() {
+        this.adminLoggedIn.next(false);
+    }
+
 }
