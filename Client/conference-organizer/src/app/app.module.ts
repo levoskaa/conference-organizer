@@ -16,7 +16,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { LoginPageComponent } from './components/login-page/login-page.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatMenuModule } from '@angular/material/menu';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ProfilePageComponent } from './components/profile-page/profile-page.component';
 
 @NgModule({
     declarations: [
@@ -24,7 +26,8 @@ import { ReactiveFormsModule } from '@angular/forms';
         HeaderComponent,
         SidenavComponent,
         HomeComponent,
-        LoginPageComponent
+        LoginPageComponent,
+        ProfilePageComponent
     ],
     imports: [
         BrowserModule,
@@ -39,6 +42,7 @@ import { ReactiveFormsModule } from '@angular/forms';
         MatFormFieldModule,
         MatInputModule,
         ReactiveFormsModule,
+        MatMenuModule,
     ],
     providers: [],
     bootstrap: [AppComponent]

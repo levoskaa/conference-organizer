@@ -7,11 +7,22 @@
             close
         </mat-icon>
     </button>
-    <span>Konferencia Szervező</span>
+    <span class="app-title" routerLink="" routerLinkActive="active">Konferencia Szervező</span>
     <span class="header-spacer"></span>
-    <button mat-icon-button class="profile-icon" aria-label="Profile icon-button">
+    <button mat-icon-button class="profile-icon" [matMenuTriggerFor]="menu" aria-label="Profile icon-button">
         <mat-icon>person</mat-icon>
     </button>
+    <mat-menu #menu="matMenu">
+        <button routerLink="/login" routerLinkActive="active" mat-menu-item>
+            <span>Bejelentkezés</span>
+        </button>
+        <button routerLink="/profile" routerLinkActive="active" mat-menu-item>
+            <span>Profil</span>
+        </button>
+        <button routerLink="" routerLinkActive="active" mat-menu-item>
+            <span>Kijelentkezés</span>
+        </button>
+    </mat-menu>
 </mat-toolbar>
 <mat-sidenav-container>
     <mat-sidenav #sidenav="matSidenav" class="mat-elevation-z8">
