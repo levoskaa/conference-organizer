@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { EventEmitter, Injectable, Output } from '@angular/core';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { LoginDto, TokenViewModel } from '../models/generated';
@@ -9,6 +9,9 @@ import { AppHttpClient } from './app-http-client';
 })
 export class AuthService {
     private readonly authUrl = 'api/auth';
+
+    @Output() userLoggedIn: EventEmitter<any> = new EventEmitter();
+    @Output() adminLoggedIn: EventEmitter<any> = new EventEmitter();
 
     constructor(private readonly httpClient: AppHttpClient) { }
 
@@ -32,5 +35,13 @@ export class AuthService {
 
     getAccessToken(): string | null {
         return localStorage.getItem("access_token");
+    }
+
+    userLoggedin() {
+        this.userLoggedIn.emit(true);
+    }
+
+    adminLoggedin() {
+        this.adminLoggedIn.emit(true);
     }
 }
