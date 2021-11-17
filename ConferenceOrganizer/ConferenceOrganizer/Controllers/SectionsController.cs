@@ -4,6 +4,7 @@ using BLL.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using BLL.Dtos;
+using BLL.Exceptions;
 using Microsoft.AspNetCore.Http;
 using Web.Common;
 using Microsoft.AspNetCore.Authorization;
@@ -43,10 +44,9 @@ namespace Web.Controllers
           }
           catch (Exception e)
           {
-            //TODO throw exception
-            Console.WriteLine(e);
-            throw;
+            throw new AppException("No file attached or wrong file format given.");
           }
+          
 
         }
 

@@ -1,5 +1,6 @@
 ﻿using System.Globalization;
 using System.IO;
+using System.Linq;
 using AutoMapper;
 using BLL.Dtos;
 using BLL.Interfaces;
@@ -7,6 +8,7 @@ using BLL.ViewModels;
 using Domain.Entitites;
 using Domain.Interfaces;
 using System.Threading.Tasks;
+using BLL.Exceptions;
 using CsvHelper;
 using Microsoft.AspNetCore.Http;
 
@@ -60,12 +62,13 @@ namespace BLL.Services
         public async Task AddPresentationsByFileAsync(int sectionId, IFormFile presentationsFile)
         {
           var section = await sectionRepository.FindSectionByIdAsync(sectionId);
-
+      
           using (var reader = new StreamReader(presentationsFile.OpenReadStream()))
           using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
           {
-            var presentations = csv.GetRecords<PresentationUpsertDto>();
-            foreach (var presentationDto in presentations)
+            var presentationDtos = csv.GetRecords<PresentationUpsertDto>().ToList();
+
+            foreach (var presentationDto in presentationDtos)
             {
               var presentation = mapper.Map<Presentation>(presentationDto);
               section.AddPresentation(presentation);
