@@ -2,7 +2,7 @@
     <mat-icon>home</mat-icon>
     <span>Konferenciák</span>
 </button>
-<ng-container *ngIf="isAdminLoggedIn">
+<ng-container *ngIf="currentUser?.role === 'Admin'">
     <button mat-button class="menu-button" (click)="onUsersClick()">
         <mat-icon>person</mat-icon>
         <span>Felhasználók</span>

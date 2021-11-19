@@ -1,7 +1,8 @@
 import { Injectable, Output } from '@angular/core';
-import { Observable, Subject } from 'rxjs';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { tap } from 'rxjs/operators';
-import { LoginDto, TokenViewModel } from '../models/generated';
+import { LoginDto, Role, TokenViewModel, UserViewModel } from '../models/generated';
+import { UsersService } from '../services/users.service';
 import { AppHttpClient } from './app-http-client';
 
 @Injectable({
@@ -10,32 +11,49 @@ import { AppHttpClient } from './app-http-client';
 export class AuthService {
     private readonly authUrl = 'api/auth';
 
-    @Output() userLoggedIn: Subject<boolean> = new Subject();
-    @Output() adminLoggedIn: Subject<boolean> = new Subject();
+    private currentUserSubject: BehaviorSubject<UserViewModel | null>;
+    public currentUser: Observable<UserViewModel | null>;
 
-    constructor(private readonly httpClient: AppHttpClient) { }
+    constructor(private readonly httpClient: AppHttpClient, private readonly usersService: UsersService) {
+        if (this.getAccessToken() !== null) {
+            const userViewModel: UserViewModel = {
+                username: '',
+                role: this.isAdminFromToken() ? Role.Admin : Role.User,
+                editableConferenceIds: []
+            }
+            this.currentUserSubject = new BehaviorSubject<UserViewModel | null>(userViewModel);
+        }
+        else {
+            this.currentUserSubject = new BehaviorSubject<UserViewModel | null>(null);
+        }
+
+        this.currentUser = this.currentUserSubject.asObservable();
+    }
+
+    public get currentUserValue(): UserViewModel | null {
+        return this.currentUserSubject.value;
+    }
 
     login(loginDto: LoginDto): Observable<TokenViewModel> {
         return this.httpClient.post<TokenViewModel>(`${this.authUrl}/login`, loginDto).pipe(
             tap((response) => {
                 this.setSession(response);
-                if (this.isAdmin()) {
-                    this.adminLoggedin();
+                const userViewModel: UserViewModel = {
+                    username: '',
+                    role: this.isAdminFromToken() ? Role.Admin : Role.User,
+                    editableConferenceIds: []
                 }
-                else {
-                    this.userLoggedin();
-                }
+                this.currentUserSubject.next(userViewModel);
             }));
-    }
-
-    private setSession(tokenViewModel: TokenViewModel): void {
-        localStorage.setItem('access_token', tokenViewModel.accessToken);
     }
 
     logout(): void {
         this.removeSession();
-        this.userLoggedout();
-        this.adminLoggedout();
+        this.currentUserSubject.next(null);
+    }
+
+    private setSession(tokenViewModel: TokenViewModel): void {
+        localStorage.setItem('access_token', tokenViewModel.accessToken);
     }
 
     private removeSession(): void {
@@ -46,23 +64,7 @@ export class AuthService {
         return localStorage.getItem("access_token");
     }
 
-    userLoggedin() {
-        this.userLoggedIn.next(true);
-    }
-
-    adminLoggedin() {
-        this.adminLoggedIn.next(true);
-    }
-
-    userLoggedout() {
-        this.userLoggedIn.next(false);
-    }
-
-    adminLoggedout() {
-        this.adminLoggedIn.next(false);
-    }
-
-    isAdmin(): boolean {
+    isAdminFromToken(): boolean {
         let jwt = localStorage.getItem('access_token');
 
         if (jwt !== null) {

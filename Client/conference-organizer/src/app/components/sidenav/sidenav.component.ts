@@ -1,23 +1,26 @@
 import { ChangeDetectorRef, Component, ElementRef, OnInit } from '@angular/core';
 import { MatDrawerContent, MatSidenav } from '@angular/material/sidenav';
 import { Router } from '@angular/router';
+import { UserViewModel } from '@models/generated';
+import { tap } from 'rxjs/operators';
 import { AuthService } from 'src/app/core/auth.service';
+import { UnsubscribeOnDestroy } from 'src/app/core/UnsubscribeOnDestroy';
+import { Role } from '@models/generated';
 
 @Component({
     selector: 'app-sidenav',
     templateUrl: './sidenav.component.html',
     styleUrls: ['./sidenav.component.scss']
 })
-export class SidenavComponent implements OnInit {
+export class SidenavComponent extends UnsubscribeOnDestroy implements OnInit {
 
-    isAdminLoggedIn: boolean = false;
+    currentUser: UserViewModel | null;
 
     constructor(private authService: AuthService, private router: Router) {
-        this.authService.adminLoggedIn.subscribe(res => this.isAdminLoggedInChanged(res));
-    }
-
-    isAdminLoggedInChanged(res: boolean): void {
-        this.isAdminLoggedIn = res;
+        super();
+        this.subscribe(this.authService.currentUser.pipe(
+            tap(x => this.currentUser = x)
+        ));
     }
 
     ngOnInit(): void {

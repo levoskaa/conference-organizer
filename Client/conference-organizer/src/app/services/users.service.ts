@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { UsersViewModel, UserViewModel } from '@models/generated';
+import { CreateUserDto, EntityCreatedViewModel, UsersViewModel, UserViewModel } from '@models/generated';
 import { Observable } from 'rxjs';
 import { AppHttpClient } from '../core/app-http-client';
 
@@ -17,5 +17,9 @@ export class UsersService {
 
     getUsers(): Observable<UsersViewModel> {
         return this.httpClient.get<UsersViewModel>(`${this.usersApiUrl}`);
+    }
+
+    addUser(createUserDto: CreateUserDto): Observable<EntityCreatedViewModel> {
+        return this.httpClient.post<EntityCreatedViewModel>(`${this.usersApiUrl}`, createUserDto);
     }
 }

@@ -5,6 +5,7 @@ import { delay } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { AuthService } from './core/auth.service';
 import { UnsubscribeOnDestroy } from './core/UnsubscribeOnDestroy';
+import { UserViewModel } from '@models/generated';
 
 @Component({
     selector: 'app-root',
@@ -16,20 +17,10 @@ export class AppComponent {
     @ViewChild(MatSidenav)
     sidenav!: MatSidenav
 
-    isUserLoggedIn: boolean = false;
-    isAdminLoggedIn: boolean = false;
+    currentUser: UserViewModel | null;
 
     constructor(private observer: BreakpointObserver, private authService: AuthService, private router: Router) {
-        this.authService.adminLoggedIn.subscribe(res => this.changeToAdminNavBar(res));
-        this.authService.userLoggedIn.subscribe(res => this.changeToUserNavBar(res));
-    }
-
-    changeToAdminNavBar(res: boolean) {
-        this.isAdminLoggedIn = res;
-    }
-
-    changeToUserNavBar(res: boolean) {
-        this.isUserLoggedIn = res;
+        this.authService.currentUser.subscribe(x => this.currentUser = x);
     }
 
     logout() {

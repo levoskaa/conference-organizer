@@ -26,6 +26,8 @@ import { DatePipe } from '@angular/common';
 import { ConferenceDetailsComponent } from './components/conference-details/conference-details.component';
 import { UsersPageComponent } from './components/users-page/users-page.component';
 import { TokenInterceptor } from './core/token.interceptor';
+import { AddUserDialogComponent } from './components/dialogs/add-user-dialog/add-user-dialog.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
     declarations: [
@@ -38,7 +40,8 @@ import { TokenInterceptor } from './core/token.interceptor';
         TableComponent,
         ConferencesPageComponent,
         ConferenceDetailsComponent,
-        UsersPageComponent
+        UsersPageComponent,
+        AddUserDialogComponent,
     ],
     imports: [
         BrowserModule,
@@ -55,6 +58,7 @@ import { TokenInterceptor } from './core/token.interceptor';
         ReactiveFormsModule,
         MatMenuModule,
         MatTableModule,
+        MatDialogModule,
     ],
     providers: [
         DatePipe,

@@ -13,13 +13,13 @@
         <mat-icon>person</mat-icon>
     </button>
     <mat-menu #menu="matMenu">
-        <ng-container *ngIf="!isUserLoggedIn && !isAdminLoggedIn">
+        <ng-container *ngIf="currentUser === null">
             <button routerLink="/login" routerLinkActive="active" mat-menu-item>
                 <span>Bejelentkezés</span>
             </button>
         </ng-container>
 
-        <ng-container *ngIf="isUserLoggedIn || isAdminLoggedIn">
+        <ng-container *ngIf="currentUser !== null">
             <button routerLink="/profile" routerLinkActive="active" mat-menu-item>
                 <span>Profil</span>
             </button>
