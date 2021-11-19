@@ -1,2 +1,2 @@
 <h2>Konferenciák</h2>
-<app-table [columns]="columns" [dataSource]="conferences"></app-table>
+<app-table [columns]="columns" [dataSource]="conferences" (rowClicked)="onRowClicked($event)"></app-table>
