@@ -95,3 +95,14 @@ export interface CreateUserDto {
 export interface ProfessionalFieldUpdateDto {
     professionalFieldIds: number[];
 }
+
+export enum Role {
+    User = 'User',
+    Admin = 'Admin',
+}
+
+export interface UserViewModel {
+    username: string;
+    role: Role;
+    editableConferenceIds: number[];
+}
