@@ -12,7 +12,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDividerModule } from '@angular/material/divider';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { LoginPageComponent } from './components/login-page/login-page.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -25,6 +25,7 @@ import { ConferencesPageComponent } from './components/conferences-page/conferen
 import { DatePipe } from '@angular/common';
 import { ConferenceDetailsComponent } from './components/conference-details/conference-details.component';
 import { UsersPageComponent } from './components/users-page/users-page.component';
+import { TokenInterceptor } from './core/token.interceptor';
 
 @NgModule({
     declarations: [
@@ -57,6 +58,9 @@ import { UsersPageComponent } from './components/users-page/users-page.component
     ],
     providers: [
         DatePipe,
+        {
+            provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true
+        },
     ],
     bootstrap: [AppComponent]
 })

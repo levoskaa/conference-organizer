@@ -17,7 +17,6 @@ export class SidenavComponent implements OnInit {
     }
 
     isAdminLoggedInChanged(res: boolean): void {
-        console.log("sidenav:" + res)
         this.isAdminLoggedIn = res;
     }
 

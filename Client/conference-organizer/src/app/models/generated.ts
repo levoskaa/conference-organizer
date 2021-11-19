@@ -106,3 +106,7 @@ export interface UserViewModel {
     role: Role;
     editableConferenceIds: number[];
 }
+
+export interface UsersViewModel {
+    users: UserViewModel[];
+}

@@ -12,5 +12,7 @@ namespace BLL.Interfaces
         Task<UserViewModel> GetUser(int userId);
 
         Task UpdateProfessionalFields(int userid, ProfessionalFieldUpdateDto fieldUpdateDto);
+
+        Task<UsersViewModel> GetUsers();
     }
 }

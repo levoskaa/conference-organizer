@@ -51,5 +51,12 @@ namespace Web.Controllers
             var userId = identityHelper.GetAuthenticatedUserId();
             return userService.UpdateProfessionalFields(userId, fieldUpdateDto);
         }
-    }
+
+        [HttpGet]
+        [Authorize(Roles = "Admin")]
+        public Task<UsersViewModel> GetUsers()
+        {
+          return userService.GetUsers();
+        }
+  }
 }

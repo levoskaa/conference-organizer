@@ -8,7 +8,9 @@ import {
 import { Observable } from 'rxjs';
 import { AuthService } from './auth.service';
 
-@Injectable()
+@Injectable({
+    providedIn: 'root'
+})
 export class TokenInterceptor implements HttpInterceptor {
 
     constructor(private readonly authService: AuthService) { }

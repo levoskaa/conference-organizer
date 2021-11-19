@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { UserViewModel } from '@models/generated';
+import { UsersViewModel, UserViewModel } from '@models/generated';
 import { Observable } from 'rxjs';
 import { AppHttpClient } from '../core/app-http-client';
 
@@ -13,5 +13,9 @@ export class UsersService {
 
     getCurrentUser(): Observable<UserViewModel> {
         return this.httpClient.get<UserViewModel>(`${this.usersApiUrl}/me`);
+    }
+
+    getUsers(): Observable<UsersViewModel> {
+        return this.httpClient.get<UsersViewModel>(`${this.usersApiUrl}`);
     }
 }
