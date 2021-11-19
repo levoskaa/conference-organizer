@@ -19,6 +19,10 @@ import { MatInputModule } from '@angular/material/input';
 import { MatMenuModule } from '@angular/material/menu';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ProfilePageComponent } from './components/profile-page/profile-page.component';
+import { TableComponent } from './components/table/table.component';
+import { MatTableModule } from '@angular/material/table';
+import { ConferencesPageComponent } from './components/conferences-page/conferences-page.component';
+import { DatePipe } from '@angular/common';
 
 @NgModule({
     declarations: [
@@ -27,7 +31,9 @@ import { ProfilePageComponent } from './components/profile-page/profile-page.com
         SidenavComponent,
         HomeComponent,
         LoginPageComponent,
-        ProfilePageComponent
+        ProfilePageComponent,
+        TableComponent,
+        ConferencesPageComponent
     ],
     imports: [
         BrowserModule,
@@ -43,8 +49,11 @@ import { ProfilePageComponent } from './components/profile-page/profile-page.com
         MatInputModule,
         ReactiveFormsModule,
         MatMenuModule,
+        MatTableModule,
     ],
-    providers: [],
+    providers: [
+        DatePipe,
+    ],
     bootstrap: [AppComponent]
 })
 export class AppModule { }
