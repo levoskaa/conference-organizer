@@ -17,8 +17,15 @@ export class AuthService {
 
     login(loginDto: LoginDto): Observable<TokenViewModel> {
         return this.httpClient.post<TokenViewModel>(`${this.authUrl}/login`, loginDto).pipe(
-            tap((response) => this.setSession(response)),
-            tap(() => this.userLoggedin()));
+            tap((response) => {
+                this.setSession(response);
+                if (this.isAdmin()) {
+                    this.adminLoggedin();
+                }
+                else {
+                    this.userLoggedin();
+                }
+            }));
     }
 
     private setSession(tokenViewModel: TokenViewModel): void {
@@ -55,7 +62,7 @@ export class AuthService {
         this.adminLoggedIn.next(false);
     }
 
-    public isAdmin(): boolean {
+    isAdmin(): boolean {
         let jwt = localStorage.getItem('access_token');
 
         if (jwt !== null) {

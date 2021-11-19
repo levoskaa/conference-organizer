@@ -24,6 +24,7 @@ import { MatTableModule } from '@angular/material/table';
 import { ConferencesPageComponent } from './components/conferences-page/conferences-page.component';
 import { DatePipe } from '@angular/common';
 import { ConferenceDetailsComponent } from './components/conference-details/conference-details.component';
+import { UsersPageComponent } from './components/users-page/users-page.component';
 
 @NgModule({
     declarations: [
@@ -35,7 +36,8 @@ import { ConferenceDetailsComponent } from './components/conference-details/conf
         ProfilePageComponent,
         TableComponent,
         ConferencesPageComponent,
-        ConferenceDetailsComponent
+        ConferenceDetailsComponent,
+        UsersPageComponent
     ],
     imports: [
         BrowserModule,

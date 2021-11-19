@@ -5,6 +5,8 @@ import { ConferencesPageComponent } from './components/conferences-page/conferen
 import { HomeComponent } from './components/home/home.component';
 import { LoginPageComponent } from './components/login-page/login-page.component';
 import { ProfilePageComponent } from './components/profile-page/profile-page.component';
+import { UsersPageComponent } from './components/users-page/users-page.component';
+import { AdminAuthGuard } from './guards/admin-auth.guard';
 import { UserAuthGuard } from './guards/user-auth.guard';
 
 const routes: Routes = [
@@ -23,6 +25,8 @@ const routes: Routes = [
             }
         ]
     },
+    { path: 'conferences', component: ConferencesPageComponent },
+    { path: 'users', component: UsersPageComponent, canActivate: [AdminAuthGuard] },
     { path: '', pathMatch: 'full', component: HomeComponent }
 ];
 
