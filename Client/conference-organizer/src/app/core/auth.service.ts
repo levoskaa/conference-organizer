@@ -55,4 +55,20 @@ export class AuthService {
         this.adminLoggedIn.next(false);
     }
 
+    public isAdmin(): boolean {
+        let jwt = localStorage.getItem('access_token');
+
+        if (jwt !== null) {
+            let jwtData = jwt.split('.')[1]
+            let decodedJwtJsonData = window.atob(jwtData)
+            let decodedJwtData = JSON.parse(decodedJwtJsonData)
+
+            if (decodedJwtData['http://schemas.microsoft.com/ws/2008/06/identity/claims/role'] === "Admin") {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
 }
