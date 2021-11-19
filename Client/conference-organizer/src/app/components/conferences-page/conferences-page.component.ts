@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { map, tap } from 'rxjs/operators';
 import { UnsubscribeOnDestroy } from 'src/app/core/UnsubscribeOnDestroy';
 import { ConferenceViewModel } from 'src/app/models/generated';
@@ -28,7 +29,8 @@ export class ConferencesPageComponent extends UnsubscribeOnDestroy implements On
     }];
     conferences: ConferenceViewModel[];
 
-    constructor(private readonly conferencesService: ConferencesService) {
+    constructor(private readonly conferencesService: ConferencesService,
+        private readonly router: Router) {
         super();
     }
 
@@ -37,5 +39,9 @@ export class ConferencesPageComponent extends UnsubscribeOnDestroy implements On
             map((response) => response.conferences),
             tap((conferences) => this.conferences = conferences)
         ));
+    }
+
+    onRowClicked(conference: ConferenceViewModel): void {
+        this.router.navigate(['/conferences', conference.id]);
     }
 }

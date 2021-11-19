@@ -23,6 +23,7 @@ import { TableComponent } from './components/table/table.component';
 import { MatTableModule } from '@angular/material/table';
 import { ConferencesPageComponent } from './components/conferences-page/conferences-page.component';
 import { DatePipe } from '@angular/common';
+import { ConferenceDetailsComponent } from './components/conference-details/conference-details.component';
 
 @NgModule({
     declarations: [
@@ -33,7 +34,8 @@ import { DatePipe } from '@angular/common';
         LoginPageComponent,
         ProfilePageComponent,
         TableComponent,
-        ConferencesPageComponent
+        ConferencesPageComponent,
+        ConferenceDetailsComponent
     ],
     imports: [
         BrowserModule,

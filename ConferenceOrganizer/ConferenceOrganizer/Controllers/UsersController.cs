@@ -36,6 +36,14 @@ namespace Web.Controllers
             return authService.CreateUserAsync(createUserDto);
         }
 
+        [HttpGet("me")]
+        [Authorize]
+        public Task<UserViewModel> GetAuthenticatedUser()
+        {
+            var userId = identityHelper.GetAuthenticatedUserId();
+            return userService.GetUser(userId);
+        }
+
         [HttpPut("me/fields")]
         [Authorize]
         public Task UpdateFields([FromBody] ProfessionalFieldUpdateDto fieldUpdateDto)
