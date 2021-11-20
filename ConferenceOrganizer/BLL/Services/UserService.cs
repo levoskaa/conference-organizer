@@ -98,6 +98,7 @@ namespace BLL.Services
                 var userRoles = await userManager.GetRolesAsync(user);
                 var userViewModel = new UserViewModel
                 {
+                    Id = user.Id,
                     Username = user.UserName,
                     Role = (Role)Enum.Parse(typeof(Role), userRoles.Contains("Admin") ? "Admin" : "User"),
                     EditableConferenceIds = user.UserConferences.Select(uc => uc.Conference.Id).ToArray()
