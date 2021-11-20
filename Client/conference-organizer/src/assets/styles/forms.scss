@@ -1,0 +1,14 @@
+.form {
+    &-group {
+        &.vertical {
+            display: flex;
+            flex-direction: column;
+        }
+
+        &-label {
+            font-size: 14px;
+            font-weight: 600;
+            margin: 0 15px 0 5px;
+        }
+    }
+}

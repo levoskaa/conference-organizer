@@ -8,5 +8,6 @@ namespace BLL.ViewModels
         public string Name { get; set; }
         public DateTime BeginDate { get; set; }
         public DateTime EndDate { get; set; }
+        public int[] EditorIds { get; set; }
     }
 }

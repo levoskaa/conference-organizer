@@ -4,6 +4,7 @@ using BLL.ViewModels;
 using Domain.Entitites;
 using Domain.Entitites.Abstractions;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace BLL
 {
@@ -14,10 +15,16 @@ namespace BLL
             CreateMap<EntityBase, EntityCreatedViewModel>();
 
             CreateMap<ApplicationUser, EntityCreatedViewModel>();
+            CreateMap<ApplicationUser, DropDownItemViewModel>()
+                .ForMember(y => y.Value, options => options.MapFrom(x => x.Id))
+                .ForMember(y => y.Text, options => options.MapFrom(x => x.UserName));
+            CreateMap<IEnumerable<ApplicationUser>, DropDownViewModel>()
+                .ForMember(y => y.Items, options => options.MapFrom(x => x));
 
             CreateMap<Conference, ConferenceViewModel>()
                 .ForMember(cvm => cvm.BeginDate, options => options.MapFrom(c => c.TimeFrame.BeginDate))
-                .ForMember(cvm => cvm.EndDate, options => options.MapFrom(c => c.TimeFrame.EndDate));
+                .ForMember(cvm => cvm.EndDate, options => options.MapFrom(c => c.TimeFrame.EndDate))
+                .ForMember(cvm => cvm.EditorIds, options => options.MapFrom(c => c.UserConferences.Select(uc => uc.User.Id)));
             CreateMap<IEnumerable<Conference>, ConferencesViewModel>()
                 .ForMember(cvm => cvm.Conferences, options => options.MapFrom(x => x));
             CreateMap<ConferenceUpsertDto, Conference>()

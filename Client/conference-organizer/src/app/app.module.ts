@@ -29,6 +29,9 @@ import { TokenInterceptor } from './core/token.interceptor';
 import { AddUserDialogComponent } from './components/dialogs/add-user-dialog/add-user-dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { ToastrModule } from 'ngx-toastr';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+
 
 @NgModule({
     declarations: [
@@ -64,6 +67,8 @@ import { ToastrModule } from 'ngx-toastr';
             positionClass: 'toast-top-center',
             closeButton: true
         }),
+        MatDatepickerModule,
+        MatNativeDateModule,
     ],
     providers: [
         DatePipe,
