@@ -20,8 +20,8 @@ export class AppHttpClient {
         return this.http.post<T>(`${this.apiUrl}/${endPoint}`, dto);
     }
 
-    public put<T>(endPoint: string): Observable<T> {
-        return this.http.put<T>(`${this.apiUrl}/${endPoint}`, {});
+    public put<T>(endPoint: string, dto: Object): Observable<T> {
+        return this.http.put<T>(`${this.apiUrl}/${endPoint}`, dto);
     }
 
     public delete<T>(endPoint: string): Observable<T> {
