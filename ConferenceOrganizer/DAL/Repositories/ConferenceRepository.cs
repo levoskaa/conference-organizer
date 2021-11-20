@@ -24,7 +24,10 @@ namespace DAL.Repositories
 
         public async Task<IEnumerable<Conference>> GetAllConferencesAsync()
         {
-            var conferences = await dbContext.Conferences.ToListAsync();
+            var conferences = await dbContext.Conferences
+                .Include(c => c.UserConferences)
+                    .ThenInclude(uc => uc.User)
+                .ToListAsync();
             return conferences;
         }
 
