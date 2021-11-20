@@ -1,1 +1,28 @@
-<p>conference-details works!</p>
+<div class="conf-content">
+    <div class="flex-box space-between">
+        <h2>Konferencia részletei</h2>
+        <button mat-flat-button color="accent" *ngIf="!formDisabled">Frissítés</button>
+    </div>
+    <form [formGroup]="form" class="form">
+        <div class="form-group vertical">
+            <label class="form-group-label">Név</label>
+            <mat-form-field appearance="outline">
+                <input matInput [formControl]="formControls.name" [readonly]="formDisabled" />
+            </mat-form-field>
+        </div>
+        <div class="form-group vertical">
+            <label class="form-group-label">Időtartam</label>
+            <mat-form-field appearance="outline">
+                <mat-date-range-input [formGroup]="formControls.dateRange" [rangePicker]="picker">
+                    <input matStartDate formControlName="start" [readonly]="formDisabled">
+                    <input matEndDate formControlName="end" [readonly]="formDisabled">
+                </mat-date-range-input>
+                <mat-datepicker-toggle *ngIf="!formDisabled" matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-date-range-picker #picker></mat-date-range-picker>
+            </mat-form-field>
+        </div>
+    </form>
+
+    <h2>Szekciók</h2>
+    <app-table [dataSource]="sections" [columns]="sectionColumns" (rowClicked)="onSectionClicked($event)"></app-table>
+</div>

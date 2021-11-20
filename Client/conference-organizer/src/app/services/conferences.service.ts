@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { AppHttpClient } from '../core/app-http-client';
-import { ConferencesViewModel } from '../models/generated';
+import { ConferencesViewModel, ConferenceViewModel, SectionsViewModel } from '../models/generated';
 
 @Injectable({
     providedIn: 'root'
@@ -13,5 +13,13 @@ export class ConferencesService {
 
     getConferences(): Observable<ConferencesViewModel> {
         return this.httpClient.get<ConferencesViewModel>(`${this.conferencesApiUrl}`);
+    }
+
+    getConference(conferenceId: number): Observable<ConferenceViewModel> {
+        return this.httpClient.get<ConferenceViewModel>(`${this.conferencesApiUrl}/${conferenceId}`);
+    }
+
+    getConferenceSections(conferenceId: number): Observable<SectionsViewModel> {
+        return this.httpClient.get<SectionsViewModel>(`${this.conferencesApiUrl}/${conferenceId}/sections`);
     }
 }
