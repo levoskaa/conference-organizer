@@ -32,6 +32,11 @@
         </div>
     </form>
 
-    <h2>Szekciók</h2>
+
+    <div class="flex-box space-between">
+        <h2>Szekciók</h2>
+        <button mat-flat-button color="accent" *ngIf="!formDisabled" (click)="addSection()"
+            [disabled]="form.invalid">Szekció hozzáadása</button>
+    </div>
     <app-table [dataSource]="sections" [columns]="sectionColumns" (rowClicked)="onSectionClicked($event)"></app-table>
 </div>

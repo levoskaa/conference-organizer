@@ -31,26 +31,33 @@ export class ConferenceDetailsComponent extends UnsubscribeOnDestroy implements 
     formDisabled = true;
 
 
-    readonly sectionColumns: TableColumn[] = [{
-        name: "Téma",
-        dataField: "field",
-    },
-    {
-        name: "Elnök",
-        dataField: "chairman",
-    },
-    {
-        name: "Terem",
-        dataField: "room",
-    },
-    {
-        name: "Kezdet",
-        dataField: "beginDate",
-    },
-    {
-        name: "Vég",
-        dataField: "endDate",
-    },];
+    readonly sectionColumns: TableColumn[] = [
+        {
+            name: 'Téma',
+            dataField: 'field',
+        },
+        {
+            name: 'Elnök',
+            dataField: 'chairman',
+        },
+        {
+            name: 'Terem',
+            dataField: 'room',
+        },
+        {
+            name: 'Kezdet',
+            dataField: 'beginDate',
+            dataType: 'date',
+            format: 'yyyy.MM.dd. HH:mm'
+        },
+        {
+            name: 'Vég',
+            dataField: 'endDate',
+
+            dataType: 'date',
+            format: 'yyyy.MM.dd. HH:mm'
+        },
+    ];
 
     constructor(private readonly route: ActivatedRoute,
         private readonly conferencesService: ConferencesService,
@@ -104,5 +111,9 @@ export class ConferenceDetailsComponent extends UnsubscribeOnDestroy implements 
         this.subscribe(this.conferencesService.updateConference(this.conference.id, dto).pipe(
             tap(() => this.getData())
         ));
+    }
+
+    addSection(): void {
+        // TODO
     }
 }
