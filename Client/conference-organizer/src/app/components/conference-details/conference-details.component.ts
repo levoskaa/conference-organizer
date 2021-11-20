@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Role, SectionViewModel } from '@models/generated';
+import { ConferenceUpsertDto, ConferenceViewModel, DropDownItemViewModel, Role, SectionViewModel, UserViewModel } from '@models/generated';
 import { combineLatest } from 'rxjs';
 import { map, switchMap, tap } from 'rxjs/operators';
 import { UnsubscribeOnDestroy } from 'src/app/core/UnsubscribeOnDestroy';
@@ -15,8 +15,9 @@ import { TableColumn } from '../table/table.models';
     styleUrls: ['./conference-details.component.scss']
 })
 export class ConferenceDetailsComponent extends UnsubscribeOnDestroy implements OnInit {
-    formDisabled = true;
+    conference: ConferenceViewModel;
     sections: SectionViewModel[] = [];
+    users: UserViewModel[];
 
     formControls = {
         name: new FormControl(null, Validators.required),
@@ -24,8 +25,11 @@ export class ConferenceDetailsComponent extends UnsubscribeOnDestroy implements 
             start: new FormControl(null, Validators.required),
             end: new FormControl(null, Validators.required),
         }),
+        editors: new FormControl(null),
     }
     form = new FormGroup(this.formControls);
+    formDisabled = true;
+
 
     readonly sectionColumns: TableColumn[] = [{
         name: "Téma",
@@ -56,27 +60,49 @@ export class ConferenceDetailsComponent extends UnsubscribeOnDestroy implements 
     }
 
     ngOnInit(): void {
+        this.subscribe(this.usersService.getUsers().pipe(
+            map((response) => response.users.filter((user) => user.role !== Role.Admin)),
+            tap((users) => this.users = users)
+        ));
+        this.getData();
+    }
+
+    private getData(): void {
         const conference$ = this.route.params.pipe(
             switchMap((params => this.conferencesService.getConference(params['id']))),
             tap((conference) => {
+                this.conference = conference;
                 this.formControls.name.patchValue(conference.name);
                 this.formControls.dateRange.controls.start.patchValue(conference.beginDate);
                 this.formControls.dateRange.controls.end.patchValue(conference.endDate);
-            })
+                this.formControls.editors.patchValue(conference.editorIds);
+            }),
         );
-        this.subscribe(combineLatest([conference$, this.usersService.getCurrentUser()]).pipe(
-            tap(([conference, user]) => {
-                this.formDisabled = !user.editableConferenceIds.includes(conference.id) && user.role !== Role.Admin;
-            })
-        ));
         this.subscribe(conference$.pipe(
             switchMap((conference) => this.conferencesService.getConferenceSections(conference.id)),
             map((response) => response.sections),
-            tap((sections) => this.sections = sections)
+            tap((sections) => this.sections = sections),
+        ));
+        this.subscribe(combineLatest([conference$, this.usersService.getCurrentUser()]).pipe(
+            tap(([conference, user]) => {
+                this.formDisabled = !user.editableConferenceIds.includes(conference.id) && user.role !== Role.Admin;
+            }),
         ));
     }
 
     onSectionClicked(section: SectionViewModel): void {
         this.router.navigate(['/sections', section.id]);
+    }
+
+    updateConference(): void {
+        const dto: ConferenceUpsertDto = {
+            name: this.formControls.name.value,
+            beginDate: this.formControls.dateRange.controls.start.value,
+            endDate: this.formControls.dateRange.controls.end.value,
+            editors: this.formControls.editors.value,
+        };
+        this.subscribe(this.conferencesService.updateConference(this.conference.id, dto).pipe(
+            tap(() => this.getData())
+        ));
     }
 }

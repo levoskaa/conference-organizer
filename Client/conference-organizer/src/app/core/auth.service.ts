@@ -16,7 +16,9 @@ export class AuthService {
 
     constructor(private readonly httpClient: AppHttpClient, private readonly usersService: UsersService) {
         if (this.getAccessToken() !== null) {
+            // TODO: ezeket a subjecteket ha hasznalni akarjuk nem igy kene inicializalni
             const userViewModel: UserViewModel = {
+                id: 0,
                 username: '',
                 role: this.isAdminFromToken() ? Role.Admin : Role.User,
                 editableConferenceIds: []
@@ -39,6 +41,7 @@ export class AuthService {
             tap((response) => {
                 this.setSession(response);
                 const userViewModel: UserViewModel = {
+                    id: 0,
                     username: '',
                     role: this.isAdminFromToken() ? Role.Admin : Role.User,
                     editableConferenceIds: []

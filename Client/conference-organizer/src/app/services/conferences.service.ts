@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { AppHttpClient } from '../core/app-http-client';
-import { ConferencesViewModel, ConferenceViewModel, SectionsViewModel } from '../models/generated';
+import { ConferencesViewModel, ConferenceUpsertDto, ConferenceViewModel, SectionsViewModel } from '../models/generated';
 
 @Injectable({
     providedIn: 'root'
@@ -21,5 +21,9 @@ export class ConferencesService {
 
     getConferenceSections(conferenceId: number): Observable<SectionsViewModel> {
         return this.httpClient.get<SectionsViewModel>(`${this.conferencesApiUrl}/${conferenceId}/sections`);
+    }
+
+    updateConference(conferenceId: number, dto: ConferenceUpsertDto): Observable<void> {
+        return this.httpClient.put<void>(`${this.conferencesApiUrl}/${conferenceId}`, dto);
     }
 }

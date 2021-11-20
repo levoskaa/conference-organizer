@@ -32,6 +32,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { SectionDetailsComponent } from './components/section-details/section-details.component';
+import { MatSelectModule } from '@angular/material/select';
 
 
 @NgModule({
@@ -71,6 +72,7 @@ import { SectionDetailsComponent } from './components/section-details/section-de
         }),
         MatDatepickerModule,
         MatNativeDateModule,
+        MatSelectModule,
     ],
     providers: [
         DatePipe,
