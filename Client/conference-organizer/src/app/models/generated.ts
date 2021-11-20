@@ -23,6 +23,7 @@ export interface ConferenceViewModel {
     name: string;
     beginDate: Date;
     endDate: Date;
+    editorIds: number[];
 }
 
 export interface ConferencesViewModel {
@@ -102,16 +103,13 @@ export interface CreateUserDto {
     password: string;
 }
 
-export interface ProfessionalFieldUpdateDto {
-    professionalFieldIds: number[];
-}
-
 export enum Role {
-    User = 'User',
-    Admin = 'Admin',
+    User = "User",
+    Admin = "Admin",
 }
 
 export interface UserViewModel {
+    id: number;
     username: string;
     role: Role;
     editableConferenceIds: number[];
@@ -119,4 +117,17 @@ export interface UserViewModel {
 
 export interface UsersViewModel {
     users: UserViewModel[];
+}
+
+export interface DropDownItemViewModel {
+    value: number;
+    text: string;
+}
+
+export interface DropDownViewModel {
+    items: DropDownItemViewModel[];
+}
+
+export interface ProfessionalFieldUpdateDto {
+    professionalFieldIds: number[];
 }
