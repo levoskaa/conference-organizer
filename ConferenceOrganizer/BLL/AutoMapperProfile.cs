@@ -51,6 +51,14 @@ namespace BLL
             CreateMap<IEnumerable<Room>, RoomsViewModel>()
                 .ForMember(rvm => rvm.Rooms, options => options.MapFrom(x => x));
             CreateMap<RoomUpsertDto, Room>();
-        }
+
+            CreateMap<Presentation, PresentationViewModel>()
+              .ForMember(pvm => pvm.Id, options => options.MapFrom(p => p.Id) )
+              .ForMember(pvm => pvm.Presenter, options => options.MapFrom(p => p.Presenter))
+              .ForMember(pvm => pvm.Title, options => options.MapFrom(p => p.Title));
+      
+            CreateMap<IEnumerable<Presentation>, PresentationsViewModel>()
+              .ForMember(pvm => pvm.Presentations, options => options.MapFrom(x => x));
+    }
     }
 }

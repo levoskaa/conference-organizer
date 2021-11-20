@@ -50,10 +50,16 @@ namespace Web.Controllers
 
         }
 
-    [HttpGet("{sectionId}")]
+        [HttpGet("{sectionId}")]
         public Task<SectionViewModel> GetSectionById([FromRoute] int sectionId)
         {
             return sectionService.FindSectionByIdAsync(sectionId);
+        }
+
+        [HttpGet("{sectionId}/presentations")]
+        public Task<PresentationsViewModel> GetPresentations([FromRoute] int sectionId)
+        {
+          return sectionService.GetAllSectionPresentationsAsync(sectionId);
         }
 
         [HttpPut("{sectionId}")]

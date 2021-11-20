@@ -94,5 +94,12 @@ namespace BLL.Services
             await sectionRepository.DeleteSectionAsync(sectionId);
             await unitOfWork.SaveChangesAsync();
         }
+
+        public async Task<PresentationsViewModel> GetAllSectionPresentationsAsync(int sectionId)
+        {
+          var section = await sectionRepository.FindSectionByIdAsync(sectionId);
+          var presentationsViewModel = mapper.Map<PresentationsViewModel>(section.Presentations);
+          return presentationsViewModel;
+        }
     }
 }

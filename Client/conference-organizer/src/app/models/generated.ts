@@ -87,6 +87,16 @@ export interface PresentationsUpsertDto {
     presentations: PresentationUpsertDto[];
 }
 
+export interface PresentationViewModel {
+    id: number;
+    presenter: string;
+    title: string;
+}
+
+export interface PresentationsViewModel {
+    presentations: PresentationViewModel[];
+}
+
 export interface CreateUserDto {
     username: string;
     password: string;

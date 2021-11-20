@@ -31,6 +31,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { ToastrModule } from 'ngx-toastr';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import { SectionDetailsComponent } from './components/section-details/section-details.component';
 
 
 @NgModule({
@@ -46,6 +47,7 @@ import { MatNativeDateModule } from '@angular/material/core';
         ConferenceDetailsComponent,
         UsersPageComponent,
         AddUserDialogComponent,
+        SectionDetailsComponent,
     ],
     imports: [
         BrowserModule,

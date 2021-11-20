@@ -16,5 +16,6 @@ namespace BLL.Interfaces
         Task UpdateSectionAsync(int sectionId, SectionUpsertDto sectionUpdateDto);
 
         Task DeleteSectionAsync(int sectionId);
+        Task<PresentationsViewModel> GetAllSectionPresentationsAsync(int sectionId);
     }
 }
