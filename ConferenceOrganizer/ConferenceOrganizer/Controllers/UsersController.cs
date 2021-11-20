@@ -36,12 +36,19 @@ namespace Web.Controllers
             return authService.CreateUserAsync(createUserDto);
         }
 
+        [HttpGet("dropdown")]
+        [Authorize(Roles = "Admin")]
+        public Task<DropDownViewModel> GetUsersDropDown()
+        {
+            return userService.GetUsersDropDownAsync();
+        }
+
         [HttpGet("me")]
         [Authorize]
         public Task<UserViewModel> GetAuthenticatedUser()
         {
             var userId = identityHelper.GetAuthenticatedUserId();
-            return userService.GetUser(userId);
+            return userService.GetUserAsync(userId);
         }
 
         [HttpPut("me/fields")]
@@ -49,14 +56,14 @@ namespace Web.Controllers
         public Task UpdateFields([FromBody] ProfessionalFieldUpdateDto fieldUpdateDto)
         {
             var userId = identityHelper.GetAuthenticatedUserId();
-            return userService.UpdateProfessionalFields(userId, fieldUpdateDto);
+            return userService.UpdateProfessionalFieldsAsync(userId, fieldUpdateDto);
         }
 
         [HttpGet]
         [Authorize(Roles = "Admin")]
         public Task<UsersViewModel> GetUsers()
         {
-          return userService.GetUsers();
+            return userService.GetUsersAsync();
         }
-  }
+    }
 }

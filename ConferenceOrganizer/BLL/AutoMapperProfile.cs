@@ -14,6 +14,11 @@ namespace BLL
             CreateMap<EntityBase, EntityCreatedViewModel>();
 
             CreateMap<ApplicationUser, EntityCreatedViewModel>();
+            CreateMap<ApplicationUser, DropDownItemViewModel>()
+                .ForMember(y => y.Value, options => options.MapFrom(x => x.Id))
+                .ForMember(y => y.Text, options => options.MapFrom(x => x.UserName));
+            CreateMap<IEnumerable<ApplicationUser>, DropDownViewModel>()
+                .ForMember(y => y.Items, options => options.MapFrom(x => x));
 
             CreateMap<Conference, ConferenceViewModel>()
                 .ForMember(cvm => cvm.BeginDate, options => options.MapFrom(c => c.TimeFrame.BeginDate))

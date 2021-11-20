@@ -9,10 +9,12 @@ namespace BLL.Interfaces
     {
         Task<ApplicationUser> FindUserByIdAsync(int id);
 
-        Task<UserViewModel> GetUser(int userId);
+        Task<UserViewModel> GetUserAsync(int userId);
 
-        Task UpdateProfessionalFields(int userid, ProfessionalFieldUpdateDto fieldUpdateDto);
+        Task<DropDownViewModel> GetUsersDropDownAsync();
 
-        Task<UsersViewModel> GetUsers();
+        Task UpdateProfessionalFieldsAsync(int userid, ProfessionalFieldUpdateDto fieldUpdateDto);
+
+        Task<UsersViewModel> GetUsersAsync();
     }
 }
