@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { tap } from 'rxjs/operators';
 import { AuthService } from 'src/app/core/auth.service';
 import { UnsubscribeOnDestroy } from 'src/app/core/UnsubscribeOnDestroy';
@@ -23,14 +24,18 @@ export class LoginPageComponent extends UnsubscribeOnDestroy {
     form = new FormGroup(this.formControls);
 
     constructor(private readonly authService: AuthService,
-        private readonly router: Router) {
+        private readonly router: Router,
+        private readonly toast: ToastrService) {
         super();
     }
 
     login(): void {
         this.subscribe(this.authService.login(this.form.value).pipe(
-            tap((token) => console.log(token)),
-            tap(() => this.router.navigate(['']))
+            tap((token) => {
+                console.log(token);
+                this.toast.success('Sikeres bejelentkezés.');
+                this.router.navigate(['']);
+            })
         ));
     }
 }

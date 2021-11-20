@@ -2,6 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { CreateUserDto, UserViewModel } from '@models/generated';
+import { ToastrService } from 'ngx-toastr';
 import { map, tap } from 'rxjs/operators';
 import { UnsubscribeOnDestroy } from 'src/app/core/UnsubscribeOnDestroy';
 import { UsersService } from 'src/app/services/users.service';
@@ -26,7 +27,8 @@ export class UsersPageComponent extends UnsubscribeOnDestroy implements OnInit {
 
     constructor(private readonly usersService: UsersService,
         private readonly router: Router,
-        private dialog: MatDialog) {
+        private dialog: MatDialog,
+        private toast: ToastrService) {
         super();
     }
 
@@ -46,6 +48,7 @@ export class UsersPageComponent extends UnsubscribeOnDestroy implements OnInit {
         dialogRef.afterClosed().subscribe((result: CreateUserDto) => {
             if (result) {
                 this.usersService.addUser(result).subscribe((result) => console.log(result));
+                this.toast.success('Felhasználó sikeresen hozzáadva.');
             }
         });
     }

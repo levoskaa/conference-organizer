@@ -28,6 +28,7 @@ import { UsersPageComponent } from './components/users-page/users-page.component
 import { TokenInterceptor } from './core/token.interceptor';
 import { AddUserDialogComponent } from './components/dialogs/add-user-dialog/add-user-dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
     declarations: [
@@ -59,6 +60,10 @@ import { MatDialogModule } from '@angular/material/dialog';
         MatMenuModule,
         MatTableModule,
         MatDialogModule,
+        ToastrModule.forRoot({
+            positionClass: 'toast-top-center',
+            closeButton: true
+        }),
     ],
     providers: [
         DatePipe,
