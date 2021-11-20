@@ -1,8 +1,12 @@
 <div class="conf-content">
-    <div class="flex-box space-between">
+    <div class="header flex-box space-between">
         <h2>Konferencia részletei</h2>
-        <button mat-flat-button color="accent" *ngIf="!formDisabled" (click)="updateConference()"
-            [disabled]="form.invalid">Frissítés</button>
+        <div>
+            <button mat-flat-button color="accent" *ngIf="!formDisabled" (click)="updateConference()"
+                [disabled]="form.invalid">Frissítés</button>
+            <button mat-flat-button color="warn" *ngIf="!formDisabled" (click)="deleteConference()"
+                [disabled]="form.invalid">Törlés</button>
+        </div>
     </div>
     <form [formGroup]="form" class="form">
         <div class="form-group vertical">

@@ -113,6 +113,12 @@ export class ConferenceDetailsComponent extends UnsubscribeOnDestroy implements 
         ));
     }
 
+    deleteConference(): void {
+        this.subscribe(this.conferencesService.deleteConference(this.conference.id).pipe(
+            tap(() => this.router.navigate(['/conferences'])),
+        ));
+    }
+
     addSection(): void {
         // TODO
     }

@@ -24,6 +24,10 @@ export class ConferencesService {
     }
 
     updateConference(conferenceId: number, dto: ConferenceUpsertDto): Observable<void> {
-        return this.httpClient.put<void>(`${this.conferencesApiUrl}/${conferenceId}`, dto);
+        return this.httpClient.put(`${this.conferencesApiUrl}/${conferenceId}`, dto);
+    }
+
+    deleteConference(conferenceId: number): Observable<void> {
+        return this.httpClient.delete(`${this.conferencesApiUrl}/${conferenceId}`);
     }
 }
