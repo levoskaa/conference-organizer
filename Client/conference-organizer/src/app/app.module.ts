@@ -30,8 +30,8 @@ import { AddUserDialogComponent } from './components/dialogs/add-user-dialog/add
 import { MatDialogModule } from '@angular/material/dialog';
 import { ToastrModule } from 'ngx-toastr';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatNativeDateModule } from '@angular/material/core';
 import { SectionDetailsComponent } from './components/section-details/section-details.component';
+import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 
 
@@ -76,9 +76,8 @@ import { MatSelectModule } from '@angular/material/select';
     ],
     providers: [
         DatePipe,
-        {
-            provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true
-        },
+        { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
+        { provide: MAT_DATE_LOCALE, useValue: 'hu-HU' },
     ],
     bootstrap: [AppComponent]
 })
