@@ -86,6 +86,17 @@ namespace Web.Infrastructure
                         Stacktrace = e.StackTrace
                     });
             }
+            catch (NoAccessException e)
+            {
+                await SendResponseAsync(
+                    httpContext,
+                    (int)HttpStatusCode.Forbidden,
+                    new ErrorViewModel
+                    {
+                        Message = e.Message,
+                        Stacktrace = e.StackTrace
+                    });
+            }
             catch (Exception e)
             {
                 logger.LogError(e, "Unhandled exception caught.");

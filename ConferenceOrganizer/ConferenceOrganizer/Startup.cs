@@ -153,6 +153,8 @@ namespace ConferenceOrganizer
 
             app.UseAuthorization();
 
+            app.UseMiddleware<EditorAccessControlMiddleware>();
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();

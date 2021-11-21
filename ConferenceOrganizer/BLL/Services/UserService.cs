@@ -43,6 +43,8 @@ namespace BLL.Services
             var user = await userManager.Users
               .Include(u => u.UserConferences)
                 .ThenInclude(uc => uc.Conference)
+                    .ThenInclude(c => c.Sections)
+                        .ThenInclude(s => s.Presentations)
               .Include(u => u.UserFields)
                 .ThenInclude(uf => uf.Field)
               .FirstOrDefaultAsync(u => u.Id == id);
