@@ -19,7 +19,9 @@ import { TableColumn } from '../table/table.models';
 export class ConferenceDetailsComponent extends UnsubscribeOnDestroy implements OnInit {
     conference: ConferenceViewModel;
     sections: SectionViewModel[] = [];
+    user: UserViewModel | undefined;
     users: UserViewModel[];
+    Role = Role;
 
     formControls = {
         name: new FormControl(null, Validators.required),
@@ -97,6 +99,7 @@ export class ConferenceDetailsComponent extends UnsubscribeOnDestroy implements 
         ));
         this.subscribe(combineLatest([conference$, this.usersService.getCurrentUser()]).pipe(
             tap(([conference, user]) => {
+                this.user = user;
                 this.formDisabled = !user.editableConferenceIds.includes(conference.id) && user.role !== Role.Admin;
             }),
         ));
