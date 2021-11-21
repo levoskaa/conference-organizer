@@ -29,6 +29,11 @@ namespace Domain.Entitites
 
         public void AddSection(Section section)
         {
+            if (section.TimeFrame.EndDate < section.TimeFrame.BeginDate)
+            {
+              throw new DomainException("BeginDate of section cannot be later than EndDate.");
+            }
+
             foreach (var s in Sections)
             {
                 if (s.RoomId.Equals(section.RoomId) && (s.TimeFrame.BeginDate < section.TimeFrame.EndDate && s.TimeFrame.EndDate < section.TimeFrame.BeginDate))
