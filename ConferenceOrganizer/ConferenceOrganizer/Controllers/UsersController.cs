@@ -51,6 +51,12 @@ namespace Web.Controllers
             return userService.GetUserAsync(userId);
         }
 
+        [HttpGet("{userId}/fields")]
+        public Task<ProfessionalFieldsViewModel> GetUserFields([FromRoute] int userId)
+        {
+            return userService.GetUserFieldsAsync(userId);
+        }
+
         [HttpPut("me/fields")]
         [Authorize]
         public Task UpdateFields([FromBody] ProfessionalFieldUpdateDto fieldUpdateDto)

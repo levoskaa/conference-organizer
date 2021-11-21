@@ -13,6 +13,8 @@ namespace BLL.Interfaces
 
         Task<DropDownViewModel> GetUsersDropDownAsync();
 
+        Task<ProfessionalFieldsViewModel> GetUserFieldsAsync(int userId);
+
         Task UpdateProfessionalFieldsAsync(int userid, ProfessionalFieldUpdateDto fieldUpdateDto);
 
         Task<UsersViewModel> GetUsersAsync();

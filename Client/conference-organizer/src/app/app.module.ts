@@ -33,6 +33,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { SectionDetailsComponent } from './components/section-details/section-details.component';
 import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
+import { NewSectionDialogComponent } from './components/dialogs/new-section-dialog/new-section-dialog.component';
 
 
 @NgModule({
@@ -49,6 +50,7 @@ import { MatSelectModule } from '@angular/material/select';
         UsersPageComponent,
         AddUserDialogComponent,
         SectionDetailsComponent,
+        NewSectionDialogComponent,
     ],
     imports: [
         BrowserModule,

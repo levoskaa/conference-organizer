@@ -1,0 +1,10 @@
+.content {
+    .actions {
+        display: flex;
+        justify-content: flex-end;
+
+        .mat-button-base {
+            margin-left: 10px;
+        }
+    }
+}

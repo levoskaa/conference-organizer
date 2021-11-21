@@ -4,8 +4,7 @@
         <div>
             <button mat-flat-button color="accent" *ngIf="!formDisabled" (click)="updateConference()"
                 [disabled]="form.invalid">Frissítés</button>
-            <button mat-flat-button color="warn" *ngIf="!formDisabled" (click)="deleteConference()"
-                [disabled]="form.invalid">Törlés</button>
+            <button mat-flat-button color="warn" *ngIf="!formDisabled" (click)="deleteConference()">Törlés</button>
         </div>
     </div>
     <form [formGroup]="form" class="form">
@@ -37,10 +36,9 @@
     </form>
 
 
-    <div class="flex-box space-between">
+    <div class="header flex-box space-between">
         <h2>Szekciók</h2>
-        <button mat-flat-button color="accent" *ngIf="!formDisabled" (click)="addSection()"
-            [disabled]="form.invalid">Szekció hozzáadása</button>
+        <button mat-flat-button color="accent" *ngIf="!formDisabled" (click)="addSection()">Szekció hozzáadása</button>
     </div>
     <app-table [dataSource]="sections" [columns]="sectionColumns" (rowClicked)="onSectionClicked($event)"></app-table>
 </div>

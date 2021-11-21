@@ -1,0 +1,41 @@
+<div class="content">
+    <form class="form" [formGroup]="form">
+        <div class="form-group vertical">
+            <label class="form-group-label">Kezdet</label>
+            <input type="datetime-local" [formControl]="formControls.beginDate" />
+        </div>
+        <div class="form-group vertical">
+            <label class="form-group-label">Vég</label>
+            <input type="datetime-local" [formControl]="formControls.endDate" />
+        </div>
+        <div class="form-group vertical">
+            <label class="form-group-label">Szoba</label>
+            <mat-form-field appearance="outline">
+                <mat-select [formControl]="formControls.roomId">
+                    <mat-option *ngFor="let room of rooms" [value]="room.id">{{ room.uniqueName }}</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div class="form-group vertical">
+            <label class="form-group-label">Elnök</label>
+            <mat-form-field appearance="outline">
+                <mat-select [formControl]="formControls.chairmanId">
+                    <mat-option *ngFor="let user of users" [value]="user.id">{{ user.username }}</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div class="form-group vertical">
+            <label class="form-group-label">Téma</label>
+            <mat-form-field appearance="outline">
+                <mat-select [formControl]="formControls.fieldId" [disabled]="formControls.chairmanId.invalid">
+                    <mat-option *ngFor="let field of userFields" [value]="field.id">{{ field.name }}</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+    </form>
+
+    <div class="actions">
+        <button mat-flat-button color="basic" (click)="cancel()">Mégse</button>
+        <button mat-flat-button color="accent" (click)="submit()" [disabled]="form.invalid">Küldés</button>
+    </div>
+</div>

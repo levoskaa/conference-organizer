@@ -42,9 +42,9 @@ namespace BLL.Services
         {
             var user = await userManager.Users
               .Include(u => u.UserConferences)
-              .ThenInclude(uc => uc.Conference)
+                .ThenInclude(uc => uc.Conference)
               .Include(u => u.UserFields)
-              .ThenInclude(uf => uf.Field)
+                .ThenInclude(uf => uf.Field)
               .FirstOrDefaultAsync(u => u.Id == id);
             if (user == null) throw new EntityNotFoundException($"User with id '{id}' not found.");
             return user;
@@ -68,6 +68,13 @@ namespace BLL.Services
             var users = await userRepository.GetUsersAsync();
             var dropDownViewModel = mapper.Map<DropDownViewModel>(users);
             return dropDownViewModel;
+        }
+
+        public async Task<ProfessionalFieldsViewModel> GetUserFieldsAsync(int userId)
+        {
+            var user = await FindUserByIdAsync(userId);
+            var professionalFieldsViewModel = mapper.Map<ProfessionalFieldsViewModel>(user.UserFields.Select(uf => uf.Field).ToList());
+            return professionalFieldsViewModel;
         }
 
         public async Task UpdateProfessionalFieldsAsync(int userId, ProfessionalFieldUpdateDto fieldUpdateDto)

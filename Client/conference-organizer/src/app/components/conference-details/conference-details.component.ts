@@ -3,10 +3,12 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ConferenceUpsertDto, ConferenceViewModel, DropDownItemViewModel, Role, SectionViewModel, UserViewModel } from '@models/generated';
 import { combineLatest } from 'rxjs';
-import { map, switchMap, tap } from 'rxjs/operators';
+import { filter, map, switchMap, tap } from 'rxjs/operators';
 import { UnsubscribeOnDestroy } from 'src/app/core/UnsubscribeOnDestroy';
 import { ConferencesService } from 'src/app/services/conferences.service';
+import { DialogService } from 'src/app/services/dialog.service';
 import { UsersService } from 'src/app/services/users.service';
+import { NewSectionDialogComponent } from '../dialogs/new-section-dialog/new-section-dialog.component';
 import { TableColumn } from '../table/table.models';
 
 @Component({
@@ -59,10 +61,13 @@ export class ConferenceDetailsComponent extends UnsubscribeOnDestroy implements 
         },
     ];
 
-    constructor(private readonly route: ActivatedRoute,
+    constructor(
+        private readonly route: ActivatedRoute,
         private readonly conferencesService: ConferencesService,
         private readonly usersService: UsersService,
-        private readonly router: Router) {
+        private readonly router: Router,
+        private readonly dialogService: DialogService,
+    ) {
         super();
     }
 
@@ -120,6 +125,10 @@ export class ConferenceDetailsComponent extends UnsubscribeOnDestroy implements 
     }
 
     addSection(): void {
-        // TODO
+        const dialogRef = this.dialogService.openDialog(NewSectionDialogComponent, this.conference.id);
+        this.subscribe(dialogRef.afterClosed().pipe(
+            filter((result) => !!result?.isSuccessful),
+            tap(() => this.getData()),
+        ));
     }
 }

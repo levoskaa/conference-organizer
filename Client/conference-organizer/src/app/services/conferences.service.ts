@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { AppHttpClient } from '../core/app-http-client';
-import { ConferencesViewModel, ConferenceUpsertDto, ConferenceViewModel, SectionsViewModel } from '../models/generated';
+import { ConferencesViewModel, ConferenceUpsertDto, ConferenceViewModel, EntityCreatedViewModel, SectionsViewModel, SectionUpsertDto } from '../models/generated';
 
 @Injectable({
     providedIn: 'root'
@@ -25,6 +25,10 @@ export class ConferencesService {
 
     updateConference(conferenceId: number, dto: ConferenceUpsertDto): Observable<void> {
         return this.httpClient.put(`${this.conferencesApiUrl}/${conferenceId}`, dto);
+    }
+
+    addSection(conferenceId: number, dto: SectionUpsertDto): Observable<EntityCreatedViewModel> {
+        return this.httpClient.post<EntityCreatedViewModel>(`${this.conferencesApiUrl}/${conferenceId}/sections`, dto);
     }
 
     deleteConference(conferenceId: number): Observable<void> {
