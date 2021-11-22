@@ -17,5 +17,9 @@ namespace BLL.Interfaces
 
         Task DeleteSectionAsync(int sectionId);
         Task<PresentationsViewModel> GetAllSectionPresentationsAsync(int sectionId);
+        Task<ConferenceViewModel> GetSectionConferenceAsync(int sectionId);
+        Task<ProfessionalFieldViewModel> GetSectionFieldAsync(int sectionId);
+        Task<UserViewModel> GetSectionChairmanAsync(int sectionId);
+        Task<RoomViewModel> GetSectionRoomAsync(int sectionId);
     }
 }

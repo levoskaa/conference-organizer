@@ -34,6 +34,7 @@ import { SectionDetailsComponent } from './components/section-details/section-de
 import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 import { NewSectionDialogComponent } from './components/dialogs/new-section-dialog/new-section-dialog.component';
+import { NewPresentationDialogComponent } from './components/dialogs/new-presentation-dialog/new-presentation-dialog.component';
 
 
 @NgModule({
@@ -51,6 +52,7 @@ import { NewSectionDialogComponent } from './components/dialogs/new-section-dial
         AddUserDialogComponent,
         SectionDetailsComponent,
         NewSectionDialogComponent,
+        NewPresentationDialogComponent,
     ],
     imports: [
         BrowserModule,

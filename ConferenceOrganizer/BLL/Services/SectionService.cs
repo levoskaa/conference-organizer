@@ -101,5 +101,33 @@ namespace BLL.Services
           var presentationsViewModel = mapper.Map<PresentationsViewModel>(section.Presentations);
           return presentationsViewModel;
         }
+
+        public async Task<ConferenceViewModel> GetSectionConferenceAsync(int sectionId)
+        {
+          var section = await sectionRepository.FindSectionByIdAsync(sectionId);
+          var conferenceViewModel = mapper.Map<ConferenceViewModel>(section.Conference);
+          return conferenceViewModel;
+        }
+
+        public async Task<ProfessionalFieldViewModel> GetSectionFieldAsync(int sectionId)
+        {
+          var section = await sectionRepository.FindSectionByIdAsync(sectionId);
+          var fieldViewModel = mapper.Map<ProfessionalFieldViewModel>(section.Field);
+          return fieldViewModel;
+    }
+
+        public async Task<UserViewModel> GetSectionChairmanAsync(int sectionId)
+        {
+          var section = await sectionRepository.FindSectionByIdAsync(sectionId);
+          var userViewModel = mapper.Map<UserViewModel>(section.Chairman);
+          return userViewModel;
+    }
+
+        public async Task<RoomViewModel> GetSectionRoomAsync(int sectionId)
+        {
+          var section = await sectionRepository.FindSectionByIdAsync(sectionId);
+          var roomViewModel = mapper.Map<RoomViewModel>(section.Room);
+          return roomViewModel;
+    }
     }
 }

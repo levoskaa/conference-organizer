@@ -77,5 +77,29 @@ namespace Web.Controllers
             HttpContext.Response.StatusCode = StatusCodes.Status204NoContent;
             return sectionService.DeleteSectionAsync(sectionId);
         }
+
+        [HttpGet("{sectionId}/conference")]
+        public Task<ConferenceViewModel> GetSectionConference([FromRoute] int sectionId)
+        {
+          return sectionService.GetSectionConferenceAsync(sectionId);
+        }
+
+        [HttpGet("{sectionId}/field")]
+        public Task<ProfessionalFieldViewModel> GetSectionField([FromRoute] int sectionId)
+        {
+          return sectionService.GetSectionFieldAsync(sectionId);
+        }
+
+        [HttpGet("{sectionId}/room")]
+        public Task<RoomViewModel> GetSectionRoom([FromRoute] int sectionId)
+        {
+          return sectionService.GetSectionRoomAsync(sectionId);
+        }
+
+        [HttpGet("{sectionId}/chairman")]
+        public Task<UserViewModel> GetSectionChairman([FromRoute] int sectionId)
+        {
+          return sectionService.GetSectionChairmanAsync(sectionId);
+        }
     }
 }

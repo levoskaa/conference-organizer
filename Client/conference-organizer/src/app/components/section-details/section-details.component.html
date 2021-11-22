@@ -1,1 +1,55 @@
-<p>section-details works!</p>
+<div class="sect-content">
+    <div class="header flex-box space-between">
+        <h2>Szekció részletei</h2>
+        <div>
+            <button mat-flat-button color="accent" *ngIf="!formDisabled" (click)="updateSection()"
+                [disabled]="form.invalid">Frissítés</button>
+            <button mat-flat-button color="warn" *ngIf="!formDisabled" (click)="deleteSection()">Törlés</button>
+        </div>
+    </div>
+    <form class="form" [formGroup]="form">
+        <div class="form-group vertical">
+            <label class="form-group-label">Időtartam</label>
+            <mat-form-field appearance="outline">
+                <mat-date-range-input [formGroup]="formControls.dateRange" [rangePicker]="picker">
+                    <input matStartDate formControlName="start" [readonly]="formDisabled">
+                    <input matEndDate formControlName="end" [readonly]="formDisabled">
+                </mat-date-range-input>
+                <mat-datepicker-toggle *ngIf="!formDisabled" matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-date-range-picker #picker></mat-date-range-picker>
+            </mat-form-field>
+        </div>
+        <div class="form-group vertical">
+            <label class="form-group-label">Szoba</label>
+            <mat-form-field appearance="outline">
+                <mat-select [formControl]="formControls.roomId">
+                    <mat-option *ngFor="let room of rooms" [value]="room.id">{{ room.uniqueName }}</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div class="form-group vertical">
+            <label class="form-group-label">Elnök</label>
+            <mat-form-field appearance="outline">
+                <mat-select [formControl]="formControls.chairmanId">
+                    <mat-option *ngFor="let user of users" [value]="user.id">{{ user.username }}</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div class="form-group vertical">
+            <label class="form-group-label">Téma</label>
+            <mat-form-field appearance="outline">
+                <mat-select [formControl]="formControls.fieldId" [disabled]="formControls.chairmanId.invalid">
+                    <mat-option *ngFor="let field of userFields" [value]="field.id">{{ field.name }}</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+    </form>
+
+    <div class="header flex-box space-between">
+        <h2>Prezentációk</h2>
+        <button mat-flat-button color="accent" *ngIf="!formDisabled" (click)="addPresentation()">Prezentáció
+            hozzáadása</button>
+    </div>
+    <app-table [dataSource]="presentations" [columns]="sectionColumns"></app-table>
+
+</div>
