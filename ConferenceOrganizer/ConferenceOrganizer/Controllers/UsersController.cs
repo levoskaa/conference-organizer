@@ -66,7 +66,6 @@ namespace Web.Controllers
         }
 
         [HttpGet]
-        [Authorize(Roles = "Admin")]
         public Task<UsersViewModel> GetUsers()
         {
             return userService.GetUsersAsync();

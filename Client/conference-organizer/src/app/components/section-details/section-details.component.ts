@@ -170,4 +170,8 @@ export class SectionDetailsComponent extends UnsubscribeOnDestroy implements OnI
             ));
         }
     }
+
+    onPresentationClicked(presentation: PresentationViewModel): void {
+        this.router.navigate(['/presentations', presentation.id]);
+    }
 }

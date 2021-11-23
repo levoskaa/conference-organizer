@@ -3,8 +3,9 @@ import { MatDialog, MatDialogConfig, MAT_DIALOG_DATA } from '@angular/material/d
 import { Router } from '@angular/router';
 import { CreateUserDto, UserViewModel } from '@models/generated';
 import { ToastrService } from 'ngx-toastr';
-import { map, tap } from 'rxjs/operators';
+import { filter, map, tap } from 'rxjs/operators';
 import { UnsubscribeOnDestroy } from 'src/app/core/UnsubscribeOnDestroy';
+import { DialogService } from 'src/app/services/dialog.service';
 import { UsersService } from 'src/app/services/users.service';
 import { AddUserDialogComponent } from '../dialogs/add-user-dialog/add-user-dialog.component';
 import { TableColumn } from '../table/table.models';
@@ -28,39 +29,30 @@ export class UsersPageComponent extends UnsubscribeOnDestroy implements OnInit {
     constructor(private readonly usersService: UsersService,
         private readonly router: Router,
         private dialog: MatDialog,
-        private toast: ToastrService) {
+        private toast: ToastrService,
+        private readonly dialogService: DialogService,) {
         super();
     }
 
     ngOnInit(): void {
+        this.getData();
+    }
+
+    private getData(): void {
         this.subscribe(this.usersService.getUsers().pipe(
             map(response => response.users),
             tap(users => this.users = users)
         ));
     }
 
-    addUserClick() {
-        const dialogConfig = this.setAddUserDialogConfigs();
-        const dialogRef = this.dialog.open(
-            AddUserDialogComponent,
-            dialogConfig
-        );
-        dialogRef.afterClosed().subscribe((result: CreateUserDto) => {
-            if (result) {
-                this.usersService.addUser(result).subscribe((result) => console.log(result));
+    addUserClick(): void {
+        const dialogRef = this.dialogService.openDialog(AddUserDialogComponent);
+        this.subscribe(dialogRef.afterClosed().pipe(
+            filter((result) => !!result?.isSuccessful),
+            tap(() => {
+                this.getData();
                 this.toast.success('Felhasználó sikeresen hozzáadva.');
-            }
-        });
-    }
-
-    setAddUserDialogConfigs(): MatDialogConfig {
-        const dialogConfig = new MatDialogConfig();
-        dialogConfig.autoFocus = true;
-        dialogConfig.hasBackdrop = true;
-        dialogConfig.closeOnNavigation = true;
-        dialogConfig.disableClose = true;
-        dialogConfig.width = '450px';
-
-        return dialogConfig;
+            }),
+        ));
     }
 }

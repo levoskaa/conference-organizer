@@ -23,7 +23,7 @@ namespace Web.Controllers
         }
 
         [HttpPost]
-        [Authorize("Admin")]
+        [Authorize(Roles = "Admin")]
         [ProducesResponseType(StatusCodes.Status201Created)]
         public Task<EntityCreatedViewModel> CreateProfessionalField([FromBody] ProfessionalFieldUpsertDto professionalFieldCreateDto)
         {
@@ -44,14 +44,14 @@ namespace Web.Controllers
         }
 
         [HttpPut("{professionalFieldId}")]
-        [Authorize("Admin")]
+        [Authorize(Roles = "Admin")]
         public Task UpdateProfessionalField([FromRoute] int professionalFieldId, [FromBody] ProfessionalFieldUpsertDto professionalFieldUpdateDto)
         {
             return professionalFieldService.UpdateProfessionalFieldAsync(professionalFieldId, professionalFieldUpdateDto);
         }
 
         [HttpDelete("{professionalFieldId}")]
-        [Authorize("Admin")]
+        [Authorize(Roles = "Admin")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         public Task DeleteProfessionalField([FromRoute] int professionalFieldId)
         {

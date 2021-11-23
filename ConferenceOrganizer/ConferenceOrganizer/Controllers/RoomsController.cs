@@ -24,7 +24,7 @@ namespace Web.Controllers
         }
 
         [HttpPost]
-        [Authorize("Admin")]
+        [Authorize(Roles = "Admin")]
         [ProducesResponseType(StatusCodes.Status201Created)]
         public Task<EntityCreatedViewModel> CreateRoom([FromBody] RoomUpsertDto roomCreateDto)
         {
@@ -45,14 +45,14 @@ namespace Web.Controllers
         }
 
         [HttpPut("{roomId}")]
-        [Authorize("Admin")]
+        [Authorize(Roles = "Admin")]
         public Task UpdateRoom([FromRoute] int roomId, [FromBody] RoomUpsertDto roomUpdateDto)
         {
             return roomService.UpdateRoomAsync(roomId, roomUpdateDto);
         }
 
         [HttpDelete("{roomId}")]
-        [Authorize("Admin")]
+        [Authorize(Roles = "Admin")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         public Task DeleteRoom([FromRoute] int roomId)
         {

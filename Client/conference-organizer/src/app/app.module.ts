@@ -37,6 +37,7 @@ import { NewSectionDialogComponent } from './components/dialogs/new-section-dial
 import { NewPresentationDialogComponent } from './components/dialogs/new-presentation-dialog/new-presentation-dialog.component';
 import { RoomsPageComponent } from './components/rooms-page/rooms-page.component';
 import { FieldsPageComponent } from './components/fields-page/fields-page.component';
+import { NewRoomDialogComponent } from './components/dialogs/new-room-dialog/new-room-dialog.component';
 
 
 @NgModule({
@@ -57,6 +58,7 @@ import { FieldsPageComponent } from './components/fields-page/fields-page.compon
         NewPresentationDialogComponent,
         RoomsPageComponent,
         FieldsPageComponent,
+        NewRoomDialogComponent,
     ],
     imports: [
         BrowserModule,

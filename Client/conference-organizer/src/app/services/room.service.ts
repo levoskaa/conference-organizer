@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { RoomsViewModel } from '@models/generated';
+import { RoomsViewModel, RoomUpsertDto } from '@models/generated';
 import { Observable } from 'rxjs';
 import { AppHttpClient } from '../core/app-http-client';
 
@@ -13,5 +13,9 @@ export class RoomService {
 
     getRooms(): Observable<RoomsViewModel> {
         return this.httpClient.get(`${this.roomsApiUrl}`);
+    }
+
+    addRoom(dto: RoomUpsertDto): Observable<RoomUpsertDto> {
+        return this.httpClient.post<RoomUpsertDto>(`${this.roomsApiUrl}`, dto);
     }
 }
