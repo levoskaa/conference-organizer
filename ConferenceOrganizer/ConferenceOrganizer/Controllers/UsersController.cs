@@ -70,5 +70,12 @@ namespace Web.Controllers
         {
             return userService.GetUsersAsync();
         }
-    }
+
+        [HttpGet("{userId}")]
+        [Authorize(Roles = "Admin")]
+        public Task<UserViewModel> GetUser([FromRoute] int userId)
+        {
+          return userService.GetUserAsync(userId);
+        }
+  }
 }

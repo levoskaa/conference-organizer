@@ -1,0 +1,28 @@
+<div class="conf-content">
+    <div class="header flex-box space-between">
+        <h2>Felhasználó részletei</h2>
+        <div>
+            <!--  <button mat-flat-button color="accent" (click)="updateUser()" [disabled]="form.invalid">Frissítés</button>
+            <button mat-flat-button color="warn" (click)="deleteUser()">Törlés</button>-->
+        </div>
+    </div>
+    <form [formGroup]="form" class="form">
+        <div class="form-group vertical">
+            <label class="form-group-label">Név</label>
+            <mat-form-field appearance="outline">
+                <input matInput [formControl]="formControls.name" />
+            </mat-form-field>
+            <label class="form-group-label">Szerep</label>
+            <mat-form-field appearance="outline">
+                <input matInput [formControl]="formControls.role" />
+            </mat-form-field>
+        </div>
+    </form>
+
+    <div class="header flex-box space-between">
+        <h2>Szekciók</h2>
+        <!-- <button mat-flat-button color="accent" (click)="addUserField()">Szekció
+            hozzáadása</button> -->
+    </div>
+    <app-table [dataSource]="userFields" [columns]="userFieldColumns" [rowsClickable]="false"></app-table>
+</div>

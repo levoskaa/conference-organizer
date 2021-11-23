@@ -24,10 +24,14 @@ export class UsersService {
     }
 
     getUserFields(userId: number): Observable<ProfessionalFieldsViewModel> {
-        return this.httpClient.get(`${this.usersApiUrl}/${userId}/fields`)
+        return this.httpClient.get(`${this.usersApiUrl}/${userId}/fields`);
     }
 
     addUser(createUserDto: CreateUserDto): Observable<EntityCreatedViewModel> {
         return this.httpClient.post<EntityCreatedViewModel>(`${this.usersApiUrl}`, createUserDto);
+    }
+
+    getUser(userId: number): Observable<UserViewModel> {
+        return this.httpClient.get(`${this.usersApiUrl}/${userId}`);
     }
 }

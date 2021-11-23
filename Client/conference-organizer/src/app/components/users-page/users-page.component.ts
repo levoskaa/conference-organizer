@@ -55,4 +55,8 @@ export class UsersPageComponent extends UnsubscribeOnDestroy implements OnInit {
             }),
         ));
     }
+
+    onUserClicked(userViewModel: UserViewModel): void {
+        this.router.navigate(['/users', userViewModel.id]);
+    }
 }

@@ -8,6 +8,7 @@ import { LoginPageComponent } from './components/login-page/login-page.component
 import { ProfilePageComponent } from './components/profile-page/profile-page.component';
 import { RoomsPageComponent } from './components/rooms-page/rooms-page.component';
 import { SectionDetailsComponent } from './components/section-details/section-details.component';
+import { UserDetailsComponent } from './components/user-details/user-details.component';
 import { UsersPageComponent } from './components/users-page/users-page.component';
 import { AdminAuthGuard } from './guards/admin-auth.guard';
 import { UserAuthGuard } from './guards/user-auth.guard';
@@ -39,7 +40,19 @@ const routes: Routes = [
     { path: 'conferences', component: ConferencesPageComponent },
     { path: 'rooms', component: RoomsPageComponent },
     { path: 'fields', component: FieldsPageComponent },
-    { path: 'users', component: UsersPageComponent, canActivate: [AdminAuthGuard] },
+    {
+        path: 'users', canActivate: [AdminAuthGuard], children: [
+            {
+                path: '',
+                pathMatch: 'full',
+                component: UsersPageComponent
+            },
+            {
+                path: ':id',
+                component: UserDetailsComponent,
+            }
+        ]
+    },
     { path: '', pathMatch: 'full', component: HomeComponent }
 ];
 

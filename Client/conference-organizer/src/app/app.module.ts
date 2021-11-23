@@ -40,6 +40,7 @@ import { FieldsPageComponent } from './components/fields-page/fields-page.compon
 import { NewRoomDialogComponent } from './components/dialogs/new-room-dialog/new-room-dialog.component';
 import { NewFieldDialogComponent } from './components/dialogs/new-field-dialog/new-field-dialog.component';
 import { NewConferenceDialogComponent } from './components/dialogs/new-conference-dialog/new-conference-dialog.component';
+import { UserDetailsComponent } from './components/user-details/user-details.component';
 
 
 @NgModule({
@@ -63,6 +64,7 @@ import { NewConferenceDialogComponent } from './components/dialogs/new-conferenc
         NewRoomDialogComponent,
         NewFieldDialogComponent,
         NewConferenceDialogComponent,
+        UserDetailsComponent,
     ],
     imports: [
         BrowserModule,

@@ -1,10 +1,10 @@
 <div>
-
     <div class="heading">
         <h2>Felhasználók</h2>
         <button mat-raised-button color="primary" (click)="addUserClick()">
             <span>Felhasználó hozzáadása</span>
         </button>
     </div>
-    <app-table [columns]="columns" [dataSource]="users" class="usersTable"></app-table>
+    <app-table [columns]="columns" [dataSource]="users" (rowClicked)="onUserClicked($event)" class="usersTable">
+    </app-table>
 </div>
