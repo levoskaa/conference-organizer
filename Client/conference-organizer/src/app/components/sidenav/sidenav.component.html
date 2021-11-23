@@ -10,6 +10,12 @@
     <mat-icon>assignment</mat-icon>
     <span>Szakterületek</span>
 </button>
+<ng-container *ngIf="currentUser?.role === 'User'">
+    <button mat-button class="menu-button" (click)="onUserFieldsClick()">
+        <mat-icon>person</mat-icon>
+        <span>Szakterületeim</span>
+    </button>
+</ng-container>
 <ng-container *ngIf="currentUser?.role === 'Admin'">
     <button mat-button class="menu-button" (click)="onUsersClick()">
         <mat-icon>person</mat-icon>

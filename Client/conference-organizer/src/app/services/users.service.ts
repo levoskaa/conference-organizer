@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { CreateUserDto, DropDownViewModel, EntityCreatedViewModel, ProfessionalFieldsViewModel, UsersViewModel, UserViewModel } from '@models/generated';
+import { CreateUserDto, DropDownViewModel, EntityCreatedViewModel, ProfessionalFieldsViewModel, ProfessionalFieldUpdateDto, UsersViewModel, UserViewModel } from '@models/generated';
 import { Observable } from 'rxjs';
 import { AppHttpClient } from '../core/app-http-client';
 
@@ -33,5 +33,9 @@ export class UsersService {
 
     getUser(userId: number): Observable<UserViewModel> {
         return this.httpClient.get(`${this.usersApiUrl}/${userId}`);
+    }
+
+    addUserField(dto: ProfessionalFieldUpdateDto): Observable<void> {
+        return this.httpClient.put<void>(`${this.usersApiUrl}/me/fields`, dto);
     }
 }

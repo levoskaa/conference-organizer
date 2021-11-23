@@ -1,0 +1,7 @@
+<div class="conf-content">
+    <div class="header flex-box space-between">
+        <h2>Saját szakterületek</h2>
+        <button mat-flat-button color="accent" (click)="chooseUserFields()">Szakterületek kiválasztása</button>
+    </div>
+    <app-table [dataSource]="userFields" [columns]="userFieldColumns" [rowsClickable]="false"></app-table>
+</div>

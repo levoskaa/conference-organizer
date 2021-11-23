@@ -42,4 +42,8 @@ export class SidenavComponent extends UnsubscribeOnDestroy implements OnInit {
         this.router.navigate(['/fields']);
     }
 
+    onUserFieldsClick() {
+        this.router.navigate(['/user-fields']);
+    }
+
 }

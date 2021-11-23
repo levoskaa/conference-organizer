@@ -9,6 +9,7 @@ import { ProfilePageComponent } from './components/profile-page/profile-page.com
 import { RoomsPageComponent } from './components/rooms-page/rooms-page.component';
 import { SectionDetailsComponent } from './components/section-details/section-details.component';
 import { UserDetailsComponent } from './components/user-details/user-details.component';
+import { UserFieldsPageComponent } from './components/user-fields-page/user-fields-page.component';
 import { UsersPageComponent } from './components/users-page/users-page.component';
 import { AdminAuthGuard } from './guards/admin-auth.guard';
 import { UserAuthGuard } from './guards/user-auth.guard';
@@ -39,6 +40,7 @@ const routes: Routes = [
     },
     { path: 'conferences', component: ConferencesPageComponent },
     { path: 'rooms', component: RoomsPageComponent },
+    { path: 'user-fields', component: UserFieldsPageComponent },
     { path: 'fields', component: FieldsPageComponent },
     {
         path: 'users', canActivate: [AdminAuthGuard], children: [

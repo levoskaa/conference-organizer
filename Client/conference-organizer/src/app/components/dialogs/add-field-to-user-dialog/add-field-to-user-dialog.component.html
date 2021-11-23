@@ -1,0 +1,15 @@
+<h1 mat-dialog-title>Szakterületek kiválasztása</h1>
+<div mat-dialog-content>
+    <form [formGroup]="form" class="form_container">
+        <mat-form-field appearance="outline">
+            <mat-label>Szakterületek</mat-label>
+            <mat-select [formControl]="formControls.fieldIds" multiple>
+                <mat-option *ngFor="let field of fields" [value]="field.id">{{ field.name }}</mat-option>
+            </mat-select>
+        </mat-form-field>
+    </form>
+</div>
+<div mat-dialog-actions class="button_container">
+    <button mat-raised-button color="secondary" (click)="cancel()" cdkFocusInitial>Mégse</button>
+    <button mat-raised-button color="primary" [disabled]="!form.valid" (click)="submit()">Kiválaszt</button>
+</div>

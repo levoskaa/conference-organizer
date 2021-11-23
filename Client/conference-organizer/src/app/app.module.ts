@@ -41,6 +41,8 @@ import { NewRoomDialogComponent } from './components/dialogs/new-room-dialog/new
 import { NewFieldDialogComponent } from './components/dialogs/new-field-dialog/new-field-dialog.component';
 import { NewConferenceDialogComponent } from './components/dialogs/new-conference-dialog/new-conference-dialog.component';
 import { UserDetailsComponent } from './components/user-details/user-details.component';
+import { UserFieldsPageComponent } from './components/user-fields-page/user-fields-page.component';
+import { AddFieldToUserDialogComponent } from './components/dialogs/add-field-to-user-dialog/add-field-to-user-dialog.component';
 
 
 @NgModule({
@@ -65,6 +67,8 @@ import { UserDetailsComponent } from './components/user-details/user-details.com
         NewFieldDialogComponent,
         NewConferenceDialogComponent,
         UserDetailsComponent,
+        UserFieldsPageComponent,
+        AddFieldToUserDialogComponent,
     ],
     imports: [
         BrowserModule,
