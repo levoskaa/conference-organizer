@@ -46,17 +46,14 @@ namespace BLL.Services
             return sectionViewModel;
         }
 
-        public async Task AddPresentationsAsync(int sectionId, PresentationsUpsertDto presentationsUpsertDto)
+        public async Task AddPresentationAsync(int sectionId, PresentationUpsertDto presentationUpsertDto)
         {
-            var section = await sectionRepository.FindSectionByIdAsync(sectionId);
+          var section = await sectionRepository.FindSectionByIdAsync(sectionId);
 
-            foreach (var presentationUpsertDto in presentationsUpsertDto.Presentations)
-            {
-                var presentation = mapper.Map<Presentation>(presentationUpsertDto);
-                section.AddPresentation(presentation);
-            }
+          var presentation = mapper.Map<Presentation>(presentationUpsertDto); 
+          section.AddPresentation(presentation);
 
-            await unitOfWork.SaveChangesAsync();
+          await unitOfWork.SaveChangesAsync();
         }
 
         public async Task AddPresentationsByFileAsync(int sectionId, IFormFile presentationsFile)
@@ -71,14 +68,17 @@ namespace BLL.Services
             foreach (var presentationDto in presentationDtos)
             {
               var presentation = mapper.Map<Presentation>(presentationDto);
+              presentation.Section = section;
+              presentation.SectionId = section.Id;
               section.AddPresentation(presentation);
+
             }
           }
 
           await unitOfWork.SaveChangesAsync();
         }
 
-        public async Task UpdateSectionAsync(int sectionId, SectionUpsertDto sectionUpdateDto)
+    public async Task UpdateSectionAsync(int sectionId, SectionUpsertDto sectionUpdateDto)
         {
             var section = await sectionRepository.FindSectionByIdAsync(sectionId);
             var timeFrame = new TimeFrame(sectionUpdateDto.BeginDate, sectionUpdateDto.EndDate);
@@ -119,7 +119,7 @@ namespace BLL.Services
         public async Task<UserViewModel> GetSectionChairmanAsync(int sectionId)
         {
           var section = await sectionRepository.FindSectionByIdAsync(sectionId);
-          var userViewModel = mapper.Map<UserViewModel>(section.Chairman);
+          var userViewModel = await userService.GetUserAsync(section.ChairmanId);
           return userViewModel;
     }
 

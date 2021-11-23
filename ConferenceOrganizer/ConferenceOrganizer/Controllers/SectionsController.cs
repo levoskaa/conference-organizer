@@ -24,10 +24,10 @@ namespace Web.Controllers
         [HttpPost("{sectionId}/presentations")]
         [Authorize]
         [ProducesResponseType(StatusCodes.Status201Created)]
-        public Task AddPresentations([FromRoute] int sectionId, [FromBody] PresentationsUpsertDto presentationsUpsertDto)
+        public Task AddPresentations([FromRoute] int sectionId, [FromBody] PresentationUpsertDto presentationUpsertDto)
         {
             HttpContext.Response.StatusCode = StatusCodes.Status201Created;
-            return sectionService.AddPresentationsAsync(sectionId, presentationsUpsertDto);
+            return sectionService.AddPresentationAsync(sectionId, presentationUpsertDto);
         }
 
         [HttpPost("{sectionId}/presentations/file")]

@@ -35,6 +35,8 @@ import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 import { NewSectionDialogComponent } from './components/dialogs/new-section-dialog/new-section-dialog.component';
 import { NewPresentationDialogComponent } from './components/dialogs/new-presentation-dialog/new-presentation-dialog.component';
+import { RoomsPageComponent } from './components/rooms-page/rooms-page.component';
+import { FieldsPageComponent } from './components/fields-page/fields-page.component';
 
 
 @NgModule({
@@ -53,6 +55,8 @@ import { NewPresentationDialogComponent } from './components/dialogs/new-present
         SectionDetailsComponent,
         NewSectionDialogComponent,
         NewPresentationDialogComponent,
+        RoomsPageComponent,
+        FieldsPageComponent,
     ],
     imports: [
         BrowserModule,

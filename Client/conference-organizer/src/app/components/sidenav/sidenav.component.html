@@ -2,6 +2,14 @@
     <mat-icon>home</mat-icon>
     <span>Konferenciák</span>
 </button>
+<button mat-button class="menu-button" (click)="onRoomsClick()">
+    <mat-icon>room</mat-icon>
+    <span>Szobák</span>
+</button>
+<button mat-button class="menu-button" (click)="onFieldsClick()">
+    <mat-icon>assignment</mat-icon>
+    <span>Szakterületek</span>
+</button>
 <ng-container *ngIf="currentUser?.role === 'Admin'">
     <button mat-button class="menu-button" (click)="onUsersClick()">
         <mat-icon>person</mat-icon>

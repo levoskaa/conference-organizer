@@ -25,8 +25,12 @@ export class SectionDetailsComponent extends UnsubscribeOnDestroy implements OnI
     user: UserViewModel | undefined;
     users: UserViewModel[];
     rooms: RoomViewModel[] = [];
-    userFields: ProfessionalFieldViewModel[] = [];
+    chairman: UserViewModel;
+    field: ProfessionalFieldViewModel;
+    room: RoomViewModel;
+    selectedChairmanFields: ProfessionalFieldViewModel[] = [];
     Role = Role;
+    fileName: string;
 
     formControls = {
         roomId: new FormControl(null, Validators.required),
@@ -41,7 +45,7 @@ export class SectionDetailsComponent extends UnsubscribeOnDestroy implements OnI
     formDisabled = true;
 
 
-    readonly sectionColumns: TableColumn[] = [{
+    readonly presentationColumns: TableColumn[] = [{
         name: "Cím",
         dataField: "title",
     },
@@ -51,7 +55,6 @@ export class SectionDetailsComponent extends UnsubscribeOnDestroy implements OnI
     },];
 
     constructor(private readonly route: ActivatedRoute,
-        private readonly conferencesService: ConferencesService,
         private readonly sectionsService: SectionsService,
         private readonly usersService: UsersService,
         private readonly roomService: RoomService,
@@ -70,11 +73,17 @@ export class SectionDetailsComponent extends UnsubscribeOnDestroy implements OnI
     }
 
     private getData(): void {
-        const conference$ = this.route.params.pipe(
-            switchMap((params => this.conferencesService.getConference(params['id']))),
-            tap((conference) => {
-                this.conference = conference;
+        const section$ = this.route.params.pipe(
+            switchMap((params => this.sectionsService.getSection(params['id']))),
+            tap((section) => {
+                this.section = section;
+                this.formControls.dateRange.controls.start.patchValue(section.beginDate);
+                this.formControls.dateRange.controls.end.patchValue(section.endDate);
             }),
+        );
+        const conference$ = section$.pipe(
+            switchMap((section) => this.sectionsService.getSectionConference(section.id)),
+            tap((conference) => this.conference = conference),
         );
         this.subscribe(combineLatest([conference$, this.usersService.getCurrentUser()]).pipe(
             tap(([conference, user]) => {
@@ -82,21 +91,33 @@ export class SectionDetailsComponent extends UnsubscribeOnDestroy implements OnI
                 this.formDisabled = !user.editableConferenceIds.includes(conference.id) && user.role !== Role.Admin;
             }),
         ));
-        const section$ = this.route.params.pipe(
-            switchMap((params => this.sectionsService.getSection(params['id']))),
-            tap((section) => {
-                this.section = section;
-                //this.formControls.fieldId.patchValue(section.field);
-                this.formControls.dateRange.controls.start.patchValue(section.beginDate);
-                this.formControls.dateRange.controls.end.patchValue(section.endDate);
-                //this.formControls.chairmanId.patchValue(section.chairman);
-                //this.formControls.roomId.patchValue(section.room);
+        this.subscribe(section$.pipe(
+            switchMap((section) => this.sectionsService.getSectionChairman(section.id)),
+            tap((chairman) => {
+                this.chairman = chairman;
+                this.formControls.chairmanId.patchValue(chairman.id);
             }),
-        );
+        ));
+        this.subscribe(section$.pipe(
+            switchMap((section) => this.sectionsService.getSectionField(section.id)),
+            tap((field) => {
+                this.field = field;
+                this.formControls.fieldId.patchValue(field.id);
+            }),
+        ));
+        this.subscribe(section$.pipe(
+            switchMap((section) => this.sectionsService.getSectionRoom(section.id)),
+            tap((room) => {
+                this.room = room;
+                this.formControls.roomId.patchValue(room.id);
+            }),
+        ));
         this.subscribe(section$.pipe(
             switchMap((section) => this.sectionsService.getSectionPresentations(section.id)),
             map((response) => response.presentations),
-            tap((presentations) => this.presentations = presentations),
+            tap((presentations) => {
+                this.presentations = presentations;
+            }),
         ));
         this.subscribe(this.roomService.getRooms().pipe(
             map((response) => response.rooms),
@@ -105,10 +126,9 @@ export class SectionDetailsComponent extends UnsubscribeOnDestroy implements OnI
         this.subscribe(this.formControls.chairmanId.valueChanges.pipe(
             switchMap((userId) => this.usersService.getUserFields(userId)),
             map((response) => response.professionalFields),
-            tap((userFields) => this.userFields = userFields),
+            tap((userFields) => this.selectedChairmanFields = userFields),
         ));
     }
-
 
     updateSection(): void {
         const dto: SectionUpsertDto = {
@@ -125,7 +145,7 @@ export class SectionDetailsComponent extends UnsubscribeOnDestroy implements OnI
 
     deleteSection(): void {
         this.subscribe(this.sectionsService.deleteSection(this.section.id).pipe(
-            tap(() => this.router.navigate(['/conferences'])),
+            tap(() => this.router.navigate(['/conferences', this.conference.id])),
         ));
     }
 
@@ -135,5 +155,19 @@ export class SectionDetailsComponent extends UnsubscribeOnDestroy implements OnI
             filter((result) => !!result?.isSuccessful),
             tap(() => this.getData()),
         ));
+    }
+
+    onFileSelected(event: any): void {
+
+        const file: File = event.target.files[0];
+
+        if (file) {
+            this.fileName = file.name;
+            const formData = new FormData();
+            formData.append("presentations", file);
+            this.subscribe(this.sectionsService.addPresentationByFile(this.section.id, formData).pipe(
+                tap(() => this.getData()),
+            ));
+        }
     }
 }

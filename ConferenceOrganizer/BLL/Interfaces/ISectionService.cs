@@ -9,7 +9,7 @@ namespace BLL.Interfaces
     {
         Task<SectionViewModel> FindSectionByIdAsync(int sectionId);
 
-        Task AddPresentationsAsync(int sectionId, PresentationsUpsertDto presentationsUpsertDto);
+        Task AddPresentationAsync(int sectionId, PresentationUpsertDto presentationUpsertDto);
 
         Task AddPresentationsByFileAsync(int sectionId, IFormFile presentationsFile);
 

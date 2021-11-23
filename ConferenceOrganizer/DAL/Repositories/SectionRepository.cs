@@ -21,6 +21,8 @@ namespace DAL.Repositories
                 .Include(s => s.Room)
                 .Include(s => s.Chairman)
                 .Include(s => s.Field)
+                .Include(s => s.Conference)
+                .Include(s => s.Presentations)
                 .FirstOrDefaultAsync(s => s.Id == sectionId);
             if (section == null)
             {

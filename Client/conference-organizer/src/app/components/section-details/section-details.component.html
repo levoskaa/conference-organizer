@@ -39,7 +39,8 @@
             <label class="form-group-label">Téma</label>
             <mat-form-field appearance="outline">
                 <mat-select [formControl]="formControls.fieldId" [disabled]="formControls.chairmanId.invalid">
-                    <mat-option *ngFor="let field of userFields" [value]="field.id">{{ field.name }}</mat-option>
+                    <mat-option *ngFor="let field of selectedChairmanFields" [value]="field.id">{{ field.name }}
+                    </mat-option>
                 </mat-select>
             </mat-form-field>
         </div>
@@ -47,9 +48,19 @@
 
     <div class="header flex-box space-between">
         <h2>Prezentációk</h2>
-        <button mat-flat-button color="accent" *ngIf="!formDisabled" (click)="addPresentation()">Prezentáció
-            hozzáadása</button>
+
+        <div class="flex-box">
+            <button mat-flat-button color="accent" *ngIf="!formDisabled" (click)="addPresentation()">Prezentáció
+                hozzáadása</button>
+
+            <input type="file" #fileUpload (change)="onFileSelected($event)" class="file-input">
+            <button class="file-upload-button" mat-flat-button color="accent" *ngIf="!formDisabled"
+                (click)="fileUpload.click()">
+                Hozzáadás fájlból
+            </button>
+        </div>
+
     </div>
-    <app-table [dataSource]="presentations" [columns]="sectionColumns"></app-table>
+    <app-table [dataSource]="presentations" [columns]="presentationColumns"></app-table>
 
 </div>

@@ -1,15 +1,15 @@
 <div class="content">
     <form class="form" [formGroup]="form">
         <div class="form-group vertical">
-            <label class="form-group-label">Cím</label>
             <mat-form-field appearance="outline">
-                <input type="text" [formControl]="formControls.title" />
+                <mat-label>Cím</mat-label>
+                <input matInput type="text" [formControl]="formControls.title" />
             </mat-form-field>
         </div>
         <div class="form-group vertical">
-            <label class="form-group-label">Előadó</label>
             <mat-form-field appearance="outline">
-                <input type="text" [formControl]="formControls.presenter" />
+                <mat-label>Előadó</mat-label>
+                <input matInput type="text" [formControl]="formControls.presenter" />
             </mat-form-field>
         </div>
     </form>

@@ -59,6 +59,12 @@ namespace BLL
       
             CreateMap<IEnumerable<Presentation>, PresentationsViewModel>()
               .ForMember(pvm => pvm.Presentations, options => options.MapFrom(x => x));
-    }
+
+            CreateMap<PresentationUpsertDto, Presentation>()
+              .ForMember(p => p.Presenter,
+                options => options.MapFrom(dto => dto.Presenter))
+              .ForMember(p => p.Title,
+                options => options.MapFrom(dto => dto.Title));
+        }
     }
 }
