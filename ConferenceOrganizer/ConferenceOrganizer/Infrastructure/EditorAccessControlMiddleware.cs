@@ -45,6 +45,13 @@ namespace Web.Infrastructure
                 return;
             }
 
+            var userRoles = identityHelper.GetAuthenticatedUserRoles();
+            if (userRoles.Contains("Admin"))
+            {
+                await next(httpContext);
+                return;
+            }
+
             if (httpContext.Request.Method.Equals("GET"))
             {
                 await next(httpContext);
