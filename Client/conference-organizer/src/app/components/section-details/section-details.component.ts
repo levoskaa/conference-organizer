@@ -98,13 +98,7 @@ export class SectionDetailsComponent extends UnsubscribeOnDestroy implements OnI
                 this.formControls.chairmanId.patchValue(chairman.id);
             }),
         ));
-        this.subscribe(section$.pipe(
-            switchMap((section) => this.sectionsService.getSectionField(section.id)),
-            tap((field) => {
-                this.field = field;
-                this.formControls.fieldId.patchValue(field.id);
-            }),
-        ));
+
         this.subscribe(section$.pipe(
             switchMap((section) => this.sectionsService.getSectionRoom(section.id)),
             tap((room) => {
@@ -127,6 +121,13 @@ export class SectionDetailsComponent extends UnsubscribeOnDestroy implements OnI
             switchMap((userId) => this.usersService.getUserFields(userId)),
             map((response) => response.professionalFields),
             tap((userFields) => this.selectedChairmanFields = userFields),
+        ));
+        this.subscribe(section$.pipe(
+            switchMap((section) => this.sectionsService.getSectionField(section.id)),
+            tap((field) => {
+                this.field = field;
+                this.formControls.fieldId.patchValue(field.id);
+            }),
         ));
     }
 
