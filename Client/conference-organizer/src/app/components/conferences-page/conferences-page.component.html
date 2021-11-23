@@ -1,4 +1,8 @@
 <div class="conf-content">
-    <h2>Konferenciák</h2>
+    <div class="header flex-box space-between heading">
+        <h2>Konferenciák</h2>
+        <button mat-flat-button color="accent" *ngIf="!formDisabled" (click)="addConference()">Konferencia
+            hozzáadása</button>
+    </div>
     <app-table [columns]="columns" [dataSource]="conferences" (rowClicked)="onRowClicked($event)"></app-table>
 </div>

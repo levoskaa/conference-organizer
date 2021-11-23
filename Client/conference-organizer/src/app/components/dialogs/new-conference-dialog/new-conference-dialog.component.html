@@ -1,0 +1,28 @@
+<h1 mat-dialog-title>Új konferencia hozzáadása</h1>
+<div mat-dialog-content>
+    <form [formGroup]="form" class="form_container">
+        <mat-form-field appearance="outline">
+            <mat-label>Név</mat-label>
+            <input matInput type="text" formControlName="name">
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Időtartam</mat-label>
+            <mat-date-range-input [formGroup]="formControls.dateRange" [rangePicker]="picker">
+                <input matStartDate formControlName="start">
+                <input matEndDate formControlName="end">
+            </mat-date-range-input>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-date-range-picker #picker></mat-date-range-picker>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Szerkesztők</mat-label>
+            <mat-select [formControl]="formControls.editors" multiple>
+                <mat-option *ngFor="let user of users" [value]="user.id">{{ user.username }}</mat-option>
+            </mat-select>
+        </mat-form-field>
+    </form>
+</div>
+<div mat-dialog-actions class="button_container">
+    <button mat-raised-button color="secondary" (click)="cancel()" cdkFocusInitial>Mégse</button>
+    <button mat-raised-button color="primary" [disabled]="!form.valid" (click)="submit()">Hozzáad</button>
+</div>

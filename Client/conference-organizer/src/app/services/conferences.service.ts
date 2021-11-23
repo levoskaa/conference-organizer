@@ -27,6 +27,10 @@ export class ConferencesService {
         return this.httpClient.put(`${this.conferencesApiUrl}/${conferenceId}`, dto);
     }
 
+    addConference(dto: ConferenceUpsertDto): Observable<EntityCreatedViewModel> {
+        return this.httpClient.post<EntityCreatedViewModel>(`${this.conferencesApiUrl}`, dto);
+    }
+
     addSection(conferenceId: number, dto: SectionUpsertDto): Observable<EntityCreatedViewModel> {
         return this.httpClient.post<EntityCreatedViewModel>(`${this.conferencesApiUrl}/${conferenceId}/sections`, dto);
     }

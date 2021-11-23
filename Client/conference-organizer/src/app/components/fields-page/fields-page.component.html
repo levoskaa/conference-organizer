@@ -1,1 +1,8 @@
-<p>fields-page works!</p>
+<div class="fields-content">
+    <div class="header flex-box space-between heading">
+        <h2>Szakterületek</h2>
+        <button mat-flat-button color="accent" *ngIf="!formDisabled" (click)="addField()">Szakterület
+            hozzáadása</button>
+    </div>
+    <app-table [columns]="columns" [dataSource]="fields"></app-table>
+</div>

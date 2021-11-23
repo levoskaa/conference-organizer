@@ -1,0 +1,13 @@
+<h1 mat-dialog-title>Új szakterület hozzáadása</h1>
+<div mat-dialog-content>
+    <form [formGroup]="form" class="form_container">
+        <mat-form-field appearance="outline">
+            <mat-label>Név</mat-label>
+            <input matInput type="text" formControlName="name">
+        </mat-form-field>
+    </form>
+</div>
+<div mat-dialog-actions class="button_container">
+    <button mat-raised-button color="secondary" (click)="cancel()" cdkFocusInitial>Mégse</button>
+    <button mat-raised-button color="primary" [disabled]="!form.valid" (click)="submit()">Hozzáad</button>
+</div>

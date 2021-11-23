@@ -38,6 +38,8 @@ import { NewPresentationDialogComponent } from './components/dialogs/new-present
 import { RoomsPageComponent } from './components/rooms-page/rooms-page.component';
 import { FieldsPageComponent } from './components/fields-page/fields-page.component';
 import { NewRoomDialogComponent } from './components/dialogs/new-room-dialog/new-room-dialog.component';
+import { NewFieldDialogComponent } from './components/dialogs/new-field-dialog/new-field-dialog.component';
+import { NewConferenceDialogComponent } from './components/dialogs/new-conference-dialog/new-conference-dialog.component';
 
 
 @NgModule({
@@ -59,6 +61,8 @@ import { NewRoomDialogComponent } from './components/dialogs/new-room-dialog/new
         RoomsPageComponent,
         FieldsPageComponent,
         NewRoomDialogComponent,
+        NewFieldDialogComponent,
+        NewConferenceDialogComponent,
     ],
     imports: [
         BrowserModule,

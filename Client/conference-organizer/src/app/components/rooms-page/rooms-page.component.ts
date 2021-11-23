@@ -11,7 +11,8 @@ import { TableColumn } from '../table/table.models';
 
 @Component({
     selector: 'app-rooms-page',
-    templateUrl: './rooms-page.component.html'
+    templateUrl: './rooms-page.component.html',
+    styleUrls: ['./rooms-page.component.scss']
 })
 export class RoomsPageComponent extends UnsubscribeOnDestroy implements OnInit {
     readonly columns: TableColumn[] = [{
@@ -26,7 +27,6 @@ export class RoomsPageComponent extends UnsubscribeOnDestroy implements OnInit {
     ];
     rooms: RoomViewModel[];
     user: UserViewModel | undefined;
-    users: UserViewModel[];
     formDisabled = true;
 
 
